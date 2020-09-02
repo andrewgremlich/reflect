@@ -1,0 +1,32 @@
+@ROOT = http://localhost:8888/.netlify/functions/index
+@SETS = {{ROOT}}/sets
+
+###
+GET {{ROOT}}/mainRouterTest HTTP/1.1
+
+###
+GET {{SETS}}/test HTTP/1.1
+
+###
+POST {{SETS}}/create HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "",
+  "description": "",
+  "test": "",
+  "exerciseGroups": []
+}
+
+###
+GET {{SETS}}/273871975638630924 HTTP/1.1
+
+###
+PUT {{SETS}}/273871975638630924 HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Set 1",
+  "description": "",
+  "exerciseGroups": ["An exercise group"]
+}

@@ -1,0 +1,7 @@
+[build]
+command = "yarn && yarn build"
+functions = './.netlify/functions/'
+publish = "build"
+
+[context.production.environment]
+NODE_VERSION = "14.7.0"
