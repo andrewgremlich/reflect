@@ -1,11 +1,20 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
+
+import { AuthButton, AdminLink } from "../../features/Auth";
 
 import "./style.css";
 
 export const Nav = () => {
   return (
     <nav>
-      <h1>Navigation Bar</h1>
+      <div>
+        <p>
+          <Link to="/">Home</Link>
+        </p>
+        <AdminLink />
+      </div>
+      <AuthButton />
     </nav>
-  )
-}
+  );
+};
