@@ -6,8 +6,8 @@ netlifyIdentity.init();
 
 const user = netlifyIdentity.currentUser();
 
-export const loginSlice = createSlice({
-  name: "login",
+export const protectedRouteSlice = createSlice({
+  name: "protectedRoute",
   initialState: {
     isAuthenticated: user?.email ? true : false,
     userEmail: user?.email ? user.email : null,
@@ -42,7 +42,7 @@ export const {
   unsetEmail,
   unsetUserRoles,
   unauthenticate,
-} = loginSlice.actions;
+} = protectedRouteSlice.actions;
 
 export const authenticateUser = () => (dispatch) => {
   netlifyIdentity.on("login", (user) => {
@@ -60,6 +60,6 @@ export const signoutUser = () => (dispatch) => {
   dispatch(unauthenticate());
 };
 
-export const selectLogin = (state) => state.login;
+export const selectProtectedRoute = (state) => state.protectedRoute;
 
-export default loginSlice.reducer;
+export default protectedRouteSlice.reducer;

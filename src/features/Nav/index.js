@@ -1,9 +1,10 @@
 import React from "react";
+import { withRouter, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, withRouter, Link } from "react-router-dom";
 
-import { authenticateUser, signoutUser, selectLogin } from "./loginSlice";
-// import styles from "./Login.module.css";
+import { authenticateUser, signoutUser, selectLogin } from "./navSlice";
+
+import './Nav.module.css';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -19,20 +20,7 @@ const Login = () => {
   );
 };
 
-export const PrivateRoute = ({ component: Component, ...rest }) => {
-  const login = useSelector(selectLogin);
-
-  return (
-    login.isAuthenticated && (
-      <Route
-        {...rest}
-        render={(props) => login.isAuthenticated && <Component {...props} />}
-      />
-    )
-  );
-};
-
-export const AuthButton = withRouter(({ history }) => {
+const AuthButton = withRouter(({ history }) => {
   const login = useSelector(selectLogin);
   const dispatch = useDispatch();
 
@@ -51,7 +39,7 @@ export const AuthButton = withRouter(({ history }) => {
   );
 });
 
-export const AdminLink = () => {
+const AdminLink = () => {
   const login = useSelector(selectLogin);
 
   return (
@@ -61,5 +49,19 @@ export const AdminLink = () => {
         <Link to="/admin">Admin</Link>
       </p>
     )
+  );
+};
+
+export const Nav = () => {
+  return (
+    <nav>
+      <div>
+        <p>
+          <Link to="/">Home</Link>
+        </p>
+        <AdminLink />
+      </div>
+      <AuthButton />
+    </nav>
   );
 };

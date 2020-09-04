@@ -1,8 +1,13 @@
-import { configureStore } from '@reduxjs/toolkit';
-import loginReducer from '../features/Auth/loginSlice';
+import { configureStore } from "@reduxjs/toolkit";
+
+import programsTableReducer from "../features/ProgramsTable/programsTableSlice";
+import protectedRouteReducer from "../features/PrivateRoute/protectedRouteSlice";
+import navReducer from "../features/Nav/navSlice";
 
 export default configureStore({
   reducer: {
-    login: loginReducer,
+    protectedRoute: protectedRouteReducer,
+    navigation: navReducer,
+    programsTable: programsTableReducer,
   },
 });
