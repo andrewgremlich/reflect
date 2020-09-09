@@ -86,7 +86,9 @@ const getAllDocumentsInCollection = async (IndexName) => {
       Map(paginateMatchIndex, Lambda("X", Get(Var("X"))))
     );
 
-    const reducedData = data.map(({ data }) => data);
+    const reducedData = data.map((document) => {
+      return { ...document.data, id: document.ref.value.id };
+    });
 
     return { data: reducedData, loaded: true };
   } catch (err) {

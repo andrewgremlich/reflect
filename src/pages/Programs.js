@@ -7,7 +7,7 @@ export const Programs = () => {
   return (
     <div>
       <Nav />
-      <h2>Exercise Programs</h2>
+      <h2 style={{ paddingBottom: "20px" }}>Exercise Programs</h2>
       <ProgramsTable />
     </div>
   );

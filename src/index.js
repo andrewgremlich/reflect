@@ -10,6 +10,7 @@ import { PrivateRoute } from "./features/PrivateRoute";
 import { Home } from "./pages/Home";
 import { Admin } from "./pages/Admin";
 import { Programs } from "./pages/Programs";
+import { ExerciseGroups } from "./pages/ExerciseGroups";
 
 import * as serviceWorker from "./serviceWorker";
 import "./index.css";
@@ -21,8 +22,8 @@ ReactDOM.render(
         <Route exact path="/" component={Home} />
         <PrivateRoute exact path="/admin" component={Admin} />
         <PrivateRoute exact path="/admin/programs" component={Programs} />
-        {/* <PrivateRoute exact path="/admin/exerciseGroups" component={Admin} />
-        <PrivateRoute exact path="/admin/exerciseSets" component={Admin} />
+        <PrivateRoute exact path="/admin/exerciseGroups" component={ExerciseGroups} />
+        {/* <PrivateRoute exact path="/admin/exerciseSets" component={Admin} />
         <PrivateRoute exact path="/admin/exercises" component={Admin} /> */}
       </BrowserRouter>
     </Provider>

@@ -7,10 +7,10 @@ export const AdminMain = () => {
       <p>
         <Link to="/admin/programs">Edit Programs</Link>
       </p>
-      {/* <p>
+      <p>
         <Link to="/admin/exerciseGroups">Edit Exercise Groups</Link>
       </p>
-      <p>
+      {/* <p>
         <Link to="/admin/exerciseSets">Edit Exercise Sets</Link>
       </p>
       <p>

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { authenticateUser, signoutUser, selectLogin } from "./navSlice";
 
-import './Nav.module.css';
+import styles from "./Nav.module.css";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const AdminLink = () => {
   return (
     login.isAuthenticated &&
     login.userRoles.includes("Administrator") && (
-      <p>
+      <p className={styles["nav-item"]}>
         <Link to="/admin">Admin</Link>
       </p>
     )
@@ -54,9 +54,9 @@ const AdminLink = () => {
 
 export const Nav = () => {
   return (
-    <nav>
+    <nav className={styles["nav-bar"]}>
       <div>
-        <p>
+        <p className={styles["nav-item"]}>
           <Link to="/">Home</Link>
         </p>
         <AdminLink />

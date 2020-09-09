@@ -1,10 +1,10 @@
-nav {
+.nav-bar {
   display: flex;
   justify-content: space-between;
   padding: 10px;
 }
 
-p {
+.nav-item {
   display: inline-block;
   margin-right: 10px;
 }
