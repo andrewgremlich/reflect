@@ -5,6 +5,7 @@ export const programsTableSlice = createSlice({
   initialState: {
     allPrograms: [],
     editProgram: null,
+    newProgram: false,
   },
   reducers: {
     setAllPrograms: (state, { payload }) => {
@@ -13,20 +14,18 @@ export const programsTableSlice = createSlice({
     setEditProgram: (state, { payload }) => {
       state.editProgram = payload;
     },
+    setNewProgram: (state, { payload }) => {
+      state.newProgram = payload;
+    },
   },
 });
 
-export const { setAllPrograms, setEditProgram } = programsTableSlice.actions;
-
-export const getPrograms = () => (dispatch) => {
-  fetch("/.netlify/functions/index/programs/all")
-    .then((data) => data.json())
-    .then((allPrograms) => {
-      dispatch(setAllPrograms(allPrograms));
-    });
-};
-
-export const selectAllPrograms = (state) => state.programsTable.allPrograms;
-export const selectEditProgram = (state) => state.programsTable.editProgram;
+export const {
+  setAllPrograms,
+  setEditProgram,
+  setNewProgram,
+} = programsTableSlice.actions;
 
 export default programsTableSlice.reducer;
+export * from "./ProgramsTable.effects";
+export * from "./ProgramsTable.selectors";
