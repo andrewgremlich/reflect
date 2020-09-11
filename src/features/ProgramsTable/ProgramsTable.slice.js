@@ -5,7 +5,6 @@ export const programsTableSlice = createSlice({
   initialState: {
     allPrograms: [],
     editProgram: null,
-    newProgram: false,
   },
   reducers: {
     setAllPrograms: (state, { payload }) => {
@@ -13,9 +12,6 @@ export const programsTableSlice = createSlice({
     },
     setEditProgram: (state, { payload }) => {
       state.editProgram = payload;
-    },
-    setNewProgram: (state, { payload }) => {
-      state.newProgram = payload;
     },
   },
 });
@@ -26,6 +22,8 @@ export const {
   setNewProgram,
 } = programsTableSlice.actions;
 
+export const selectAllPrograms = (state) => state.programsTable.allPrograms;
+export const selectEditProgram = (state) => state.programsTable.editProgram;
+
 export default programsTableSlice.reducer;
 export * from "./ProgramsTable.effects";
-export * from "./ProgramsTable.selectors";

@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { authenticateUser, signoutUser, selectLogin } from "./navSlice";
+import { authenticateUser, signoutUser, selectLogin } from "./Nav.slice";
 
 import styles from "./Nav.module.css";
 

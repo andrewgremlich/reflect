@@ -1,14 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import exerciseGroupsTableReducer from "../features/ExerciseGroupsTable/exerciseGroupsTableSlice";
-import programsTableReducer from "../features/ProgramsTable/programsTableSlice";
-import protectedRouteReducer from "../features/PrivateRoute/protectedRouteSlice";
-import navReducer from "../features/Nav/navSlice";
+import exerciseGroupsTableReducer from "../features/ExerciseGroupsTable/ExerciseGroupsTable.slice";
+import programsTableReducer from "../features/ProgramsTable/ProgramsTable.slice";
+import privateRouteReducer from "../features/PrivateRoute/PrivateRoute.slice";
+import navReducer from "../features/Nav/Nav.slice";
+import administrationReducer from "../features/Administration/Administration.slice";
 
 export default configureStore({
   reducer: {
-    protectedRoute: protectedRouteReducer,
+    protectedRoute: privateRouteReducer,
     navigation: navReducer,
+    administration: administrationReducer,
     programsTable: programsTableReducer,
     exerciseGroupsTable: exerciseGroupsTableReducer,
   },

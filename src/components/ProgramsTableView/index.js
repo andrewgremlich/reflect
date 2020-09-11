@@ -7,7 +7,7 @@ export const ProgramsTableView = ({ data, setEdit }) => (
   <div className={styles.table}>
     <p className={styles["table-header"]}>Name</p>
     <p className={styles["table-header"]}>Description</p>
-    <p className={styles["table-header"]}>Exercise Groups</p>
+    <p className={styles["table-header"]}>Sets</p>
     <p className={styles["table-header"]}>Edit Program</p>
     {data.map(({ id, name, description, sets }) => {
       return (
@@ -23,7 +23,9 @@ export const ProgramsTableView = ({ data, setEdit }) => (
           >
             {description}
           </p>
-          <p className={styles["table-cell"]}>{sets.join(", ")}</p>
+          <p className={styles["table-cell"]}>
+            {sets.length > 0 ? sets.join(", ") : ""}
+          </p>
           <div className={styles["table-cell"]}>
             <button
               onClick={() => {

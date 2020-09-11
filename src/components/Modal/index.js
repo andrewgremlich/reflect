@@ -5,7 +5,12 @@ import styles from "./Modal.module.css";
 
 export const Modal = ({ active, closeModal, children }) => {
   return (
-    <div className={classes(styles["modal-shade"], active && styles["active"])}>
+    <div
+      className={classes(
+        styles["modal-shade"],
+        active ? styles["active"] : styles["inactive"]
+      )}
+    >
       <div className={styles["modal-container"]}>
         <button
           onClick={() => {

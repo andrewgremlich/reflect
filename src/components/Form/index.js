@@ -38,9 +38,8 @@ export const Textarea = ({
       cols={columns}
       placeholder={placeholder}
       onChange={changeValue}
-    >
-      {value}
-    </textarea>
+      defaultValue={value}
+    />
   </FieldLabel>
 );
 
@@ -52,4 +51,8 @@ export const MultiSelect = ({ origValue }) => (
       <option value="World">World</option>
     </select>
   </FieldLabel>
+);
+
+export const Submit = ({ submitter }) => (
+  <button onClick={submitter}>Submit</button>
 );

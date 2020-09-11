@@ -1,14 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Nav } from "../features/Nav";
-import { ProgramsTable } from "../features/ProgramsTable";
+import { Administration } from "../features/Administration";
+import { switchEdit } from "../features/Administration/Administration.slice";
+import {
+  getPrograms,
+  createProgram,
+  modifyProgram,
+  selectAllPrograms,
+  setEditProgram,
+  selectEditProgram,
+} from "../features/ProgramsTable/ProgramsTable.slice";
+
+import { ProgramsForm } from "../components/ProgramsForm";
+import { ProgramsTableView } from "../components/ProgramsTableView";
 
 export const Programs = () => {
+  const dispatch = useDispatch();
+
+  const allPrograms = useSelector(selectAllPrograms);
+  const editProgram = useSelector(selectEditProgram);
+
+  const [inputValue, setInputValue] = useState({
+    name: "",
+    description: "",
+    sets: [],
+  });
+
+  useEffect(() => {
+    dispatch(getPrograms());
+  }, [dispatch]);
+
   return (
     <div>
       <Nav />
       <h2 style={{ paddingBottom: "20px" }}>Exercise Programs</h2>
-      <ProgramsTable />
+      <Administration
+        name={"Program"}
+        create={() => dispatch(createProgram(inputValue))}
+        modify={() =>
+          dispatch(modifyProgram({ ...inputValue, id: editProgram.id }))
+        }
+        passerForm={ProgramsForm}
+        editData={editProgram}
+      >
+        <ProgramsForm {...{ inputValue, setInputValue }} />
+      </Administration>
+      <ProgramsTableView
+        data={allPrograms}
+        setEdit={(program) => {
+          dispatch(setEditProgram(program));
+          dispatch(switchEdit());
+        }}
+      />
+      {/* <ProgramsTable /> */}
     </div>
   );
 };

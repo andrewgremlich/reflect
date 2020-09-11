@@ -1,13 +1,11 @@
-import { setAllPrograms } from "./programsTableSlice.js";
+import { setAllPrograms } from "./ProgramsTable.slice.js";
 
 const PROGRAMS_ROOT_API = "/.netlify/functions/index/programs";
 
 export const getPrograms = () => (dispatch) => {
   fetch(`${PROGRAMS_ROOT_API}/all`)
     .then((data) => data.json())
-    .then((allPrograms) => {
-      dispatch(setAllPrograms(allPrograms));
-    });
+    .then((allPrograms) => dispatch(setAllPrograms(allPrograms)));
 };
 
 export const createProgram = (payload) => (dispatch) => {
@@ -19,13 +17,10 @@ export const createProgram = (payload) => (dispatch) => {
     body: JSON.stringify(payload),
   })
     .then((data) => data.json())
-    .then((resp) => {
-      console.log(resp);
-      dispatch(getPrograms());
-    });
+    .then((resp) => dispatch(getPrograms()));
 };
 
-export const modifyProgram = ({ id, description, name, exerciseGroups }) => (
+export const modifyProgram = ({ id, description, name, sets }) => (
   dispatch
 ) => {
   fetch(`${PROGRAMS_ROOT_API}/${id}`, {
@@ -33,11 +28,8 @@ export const modifyProgram = ({ id, description, name, exerciseGroups }) => (
       "Content-Type": "application/json",
     },
     method: "PUT",
-    body: JSON.stringify({ description, name, exerciseGroups }),
+    body: JSON.stringify({ description, name, sets }),
   })
     .then((data) => data.json())
-    .then((resp) => {
-      console.log(resp);
-      dispatch(getPrograms());
-    });
+    .then((resp) => dispatch(getPrograms()));
 };
