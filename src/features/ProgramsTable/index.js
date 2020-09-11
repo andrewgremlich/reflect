@@ -29,7 +29,7 @@ export const ProgramsTable = () => {
   const [inputValue, setInputValue] = useState({
     name: "",
     description: "",
-    exerciseGroups: [],
+    sets: [],
   });
 
   useEffect(() => {
@@ -85,7 +85,7 @@ export const ProgramsTable = () => {
             setInputValue,
             name: editProgram?.name,
             description: editProgram?.description,
-            exerciseGroups: editProgram?.exerciseGroups,
+            sets: editProgram?.sets,
           }}
         />
         <button

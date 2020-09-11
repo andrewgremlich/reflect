@@ -2,7 +2,7 @@ const express = require("express");
 
 const exercisesRouter = require("./exercises.js");
 const exerciseGroupRouter = require("./exerciseGroup.js");
-const programRouter = require("./exerciseProgram.js");
+const programRouter = require("./programs.js");
 const exerciseSetsRouter = require("./exerciseSets.js");
 
 const appRouter = express.Router();

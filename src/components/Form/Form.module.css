@@ -1,4 +1,12 @@
-.input-label span {
+.field-label > * {
+  display: block;
+}
+
+.field-label span {
   font-size: 10px;
   color: grey;
+}
+
+.textarea {
+  width: 100%;
 }

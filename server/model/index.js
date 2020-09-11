@@ -3,6 +3,7 @@ const exercise = {
   description: "string",
   svgId: "string",
   exerciseGroups: "array",
+  sets: "array",
 };
 
 const exerciseGroup = {
@@ -14,13 +15,13 @@ const exerciseGroup = {
 const program = {
   name: "string",
   description: "string",
-  exerciseGroups: "array",
+  sets: "array",
 };
 
 const sets = {
   name: "string",
   description: "string",
-  exerciseGroups: "array",
+  sets: "array",
 };
 
 module.exports = {

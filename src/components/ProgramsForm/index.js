@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import { Input } from "../Form";
+import { Input, Textarea, MultiSelect } from "../Form";
 
 export const ProgramsForm = ({
   inputValue,
@@ -19,23 +19,23 @@ export const ProgramsForm = ({
         setInputValue({ ...inputValue, name: target.value })
       }
     />
-    <Input
+    <Textarea
       value={inputValue.description}
       placeholder="Program Description"
-      type="input"
       origValue={description}
       changeValue={({ target }) =>
         setInputValue({ ...inputValue, description: target.value })
       }
     />
-    <Input
+    <MultiSelect />
+    {/* <Input
       value={inputValue.exerciseSets}
       placeholder="Exercise Sets"
       type="input"
       origValue={exerciseGroups}
       changeValue={({ target }) =>
-        setInputValue({ ...inputValue, exerciseSets: target.value })
+        setInputValue({ ...inputValue, sets: target.value })
       }
-    />
+    /> */}
   </Fragment>
 );

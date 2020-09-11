@@ -9,7 +9,7 @@ export const ProgramsTableView = ({ data, setEdit }) => (
     <p className={styles["table-header"]}>Description</p>
     <p className={styles["table-header"]}>Exercise Groups</p>
     <p className={styles["table-header"]}>Edit Program</p>
-    {data.map(({ id, name, description, exerciseGroups }) => {
+    {data.map(({ id, name, description, sets }) => {
       return (
         <Fragment key={id}>
           <p className={classes(styles["table-cell"], styles["name-cell"])}>
@@ -23,11 +23,11 @@ export const ProgramsTableView = ({ data, setEdit }) => (
           >
             {description}
           </p>
-          <p className={styles["table-cell"]}>{exerciseGroups.join(", ")}</p>
+          <p className={styles["table-cell"]}>{sets.join(", ")}</p>
           <div className={styles["table-cell"]}>
             <button
               onClick={() => {
-                setEdit({ id, name, description, exerciseGroups });
+                setEdit({ id, name, description, sets });
               }}
             >
               Edit Program
