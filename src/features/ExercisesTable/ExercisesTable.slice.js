@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const exercisesTableSlice = createSlice9({
+export const exercisesTableSlice = createSlice({
   name: "exercisesTable",
   initialState: {
     allExercises: [],
     editExercise: null,
-    newExercise: true,
   },
   reducers: {
     setAllExercises: (state, payload) => {
@@ -14,8 +13,13 @@ export const exercisesTableSlice = createSlice9({
     setEditExercise: (state, { payload }) => {
       state.editExercise = payload;
     },
-    setNewExercise: (state, payload) => {
-      state.newExercise = payload;
-    },
   },
 });
+
+export const { setAllExercises, setEditExercise } = exercisesTableSlice.actions;
+
+export const selectAllExercises = (state) => state.exercisesTable.allExercises;
+export const selectEditExercise = (state) => state.exercisesTable.editExercise;
+
+export default exercisesTableSlice.reducer;
+export * from "./ExercisesTable.effects";

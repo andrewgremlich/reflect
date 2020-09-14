@@ -4,6 +4,7 @@ const exercise = {
   svgId: "string",
   exerciseGroups: "array",
   sets: "array",
+  difficulty: "number",
 };
 
 const exerciseGroup = {

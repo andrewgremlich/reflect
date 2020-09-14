@@ -42,7 +42,6 @@ export const Programs = () => {
         modify={() =>
           dispatch(modifyProgram({ ...inputValue, id: editProgram.id }))
         }
-        passerForm={ProgramsForm}
         editData={editProgram}
       >
         <ProgramsForm {...{ inputValue, setInputValue }} />
@@ -54,7 +53,6 @@ export const Programs = () => {
           dispatch(switchEdit());
         }}
       />
-      {/* <ProgramsTable /> */}
     </div>
   );
 };
