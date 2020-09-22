@@ -7,15 +7,15 @@ import { switchEdit } from "../features/Administration/Administration.slice";
 
 import {
   getExercises,
+  selectAllExercises,
   createExercise,
   modifyExercise,
-  selectAllExercises,
   selectEditExercise,
   setEditExercise,
 } from "../features/ExercisesTable/ExercisesTable.slice";
 
 import { ExerciseForm } from "../components/ExerciseForm";
-// import { ExercisesTableView } from "../components/ExercisesTableView";
+import { ExercisesTableView } from "../components/ExercisesTableView";
 
 export const Exercises = () => {
   const dispatch = useDispatch();
@@ -50,7 +50,13 @@ export const Exercises = () => {
       >
         <ExerciseForm {...{ inputValue, setInputValue }} />
       </Administration>
-      {/* <ExercisesTableView /> */}
+      <ExercisesTableView
+        data={allExercises.payload}
+        setEdit={(exercise) => {
+          dispatch(setEditExercise(exercise));
+          dispatch(switchEdit());
+        }}
+      />
     </div>
   );
 };

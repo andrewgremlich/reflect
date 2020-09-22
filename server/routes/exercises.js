@@ -4,6 +4,7 @@ const {
   getDocByIdFromCollection,
   postBodyInCollection,
   updateDocInCollection,
+  getAllDocumentsInCollection,
 } = require("../db/index.js");
 const { matchKeys } = require("../utils/index.js");
 const { exercise: exerciseSchema } = require("../model/index.js");

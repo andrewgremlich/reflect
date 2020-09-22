@@ -12,11 +12,11 @@ POST {{EXERCISES}}/create HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "bench press",
+  "name": "push up",
   "description": "",
-  "svgId": "bench-press",
+  "svgId": "push up",
   "exerciseGroups": [],
-  "set": [],
+  "sets": [],
   "difficulty": 1
 }
 
@@ -32,6 +32,6 @@ Content-Type: application/json
   "description": "An exercise to lift a weighted bar from standing position.",
   "svgId": "bar-deadlift",
   "exerciseGroups": ["An exercise group"],
-  "set": [],
+  "sets": [],
   "difficulty": 1
 }

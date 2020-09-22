@@ -32,7 +32,7 @@ export const modifyExercise = ({
       description,
       svgId,
       exerciseGroups,
-      set,
+      sets: set,
       difficulty,
     }),
     ...JSON_PUT,

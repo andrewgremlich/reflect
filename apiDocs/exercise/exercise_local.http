@@ -16,7 +16,7 @@ Content-Type: application/json
   "description": "",
   "svgId": "bench-press",
   "exerciseGroups": [],
-  "set": [],
+  "sets": [],
   "difficulty": 1
 }
 
@@ -32,6 +32,6 @@ Content-Type: application/json
   "description": "An exercise to lift a weighted bar from standing position.",
   "svgId": "bar-deadlift",
   "exerciseGroups": ["An exercise group"],
-  "set": [],
+  "sets": [],
   "difficulty": 1
 }
