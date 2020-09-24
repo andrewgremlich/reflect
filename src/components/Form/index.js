@@ -14,7 +14,7 @@ export const Input = ({ placeholder, type, origValue, value, changeValue }) => (
   <FieldLabel>
     <SpanLabel origValue={origValue} />
     <input
-      placeholder={placeholder}
+      placeholder={origValue || placeholder}
       type={type}
       value={value}
       onChange={changeValue}
@@ -36,7 +36,7 @@ export const Textarea = ({
       className={styles["textarea"]}
       rows={rows}
       cols={columns}
-      placeholder={placeholder}
+      placeholder={origValue || placeholder}
       onChange={changeValue}
       defaultValue={value}
     />
