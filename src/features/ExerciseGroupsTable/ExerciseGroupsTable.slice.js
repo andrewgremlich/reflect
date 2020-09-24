@@ -4,24 +4,27 @@ export const exerciseGroupsTableSlice = createSlice({
   name: "exerciseGroupsTable",
   initialState: {
     allExerciseGroups: [],
+    editExerciseGroup: null,
   },
   reducers: {
     setAllExerciseGroups: (state, { payload }) => {
       state.allExerciseGroups = payload;
     },
+    setEditExerciseGroup: (state, { payload }) => {
+      state.editExerciseGroup = payload;
+    },
   },
 });
 
-export const { setAllExerciseGroups } = exerciseGroupsTableSlice.actions;
+export const {
+  setAllExerciseGroups,
+  setEditExerciseGroup,
+} = exerciseGroupsTableSlice.actions;
 
-export const getPrograms = () => (dispatch) => {
-  fetch("/.netlify/functions/index/exerciseGroup/all")
-    .then((data) => data.json())
-    .then((allPrograms) => {
-      dispatch(setAllExerciseGroups(allPrograms));
-    });
-};
+export const selectAllExerciseGroups = (state) =>
+  state.exerciseGroupsTable.allExerciseGroups;
 
-export const selectAllPrograms = (state) => state.exerciseGroupsTable.allPrograms;
+export const selectEditExerciseGroup = (state) =>
+  state.exerciseGroupsTable.editExerciseGroup;
 
 export default exerciseGroupsTableSlice.reducer;
