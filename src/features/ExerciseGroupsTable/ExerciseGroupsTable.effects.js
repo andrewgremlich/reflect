@@ -2,7 +2,7 @@ import { jsonFetch, JSON_POST, JSON_PUT } from "../../utility";
 
 import { setAllExerciseGroups } from "./ExerciseGroupsTable.slice";
 
-const EXERCISE_GROUPS_API = "/.netlify/functions/index/exerciseGroup";
+const EXERCISE_GROUPS_API = "/.netlify/functions/index/exerciseGroups";
 
 export const getExerciseGroups = () => (dispatch) => {
   jsonFetch(`${EXERCISE_GROUPS_API}/all`).then((allPrograms) => {
@@ -12,12 +12,12 @@ export const getExerciseGroups = () => (dispatch) => {
 
 export const createExerciseGroup = (payload) => (dispatch) => {
   jsonFetch(`${EXERCISE_GROUPS_API}/create`, {
-    bodoy: JSON.stringify(payload),
+    body: JSON.stringify(payload),
     ...JSON_POST,
   }).then((resp) => dispatch(getExerciseGroups()));
 };
 
-export const modifyExerciseGroup = ({ group, description, exercises }) => (
+export const modifyExerciseGroup = ({ id, group, description, exercises }) => (
   dispatch
 ) => {
   jsonFetch(`${EXERCISE_GROUPS_API}/${id}`, {

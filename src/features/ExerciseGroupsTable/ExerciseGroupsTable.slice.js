@@ -28,3 +28,4 @@ export const selectEditExerciseGroup = (state) =>
   state.exerciseGroupsTable.editExerciseGroup;
 
 export default exerciseGroupsTableSlice.reducer;
+export * from "./ExerciseGroupsTable.effects";

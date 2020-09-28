@@ -1,5 +1,5 @@
 @ROOT = http://localhost:8888/.netlify/functions/index
-@GROUP = {{ROOT}}/exerciseGroup
+@GROUP = {{ROOT}}/exerciseGroups
 
 ###
 GET {{ROOT}}/mainRouterTest HTTP/1.1
@@ -12,20 +12,20 @@ POST {{GROUP}}/create HTTP/1.1
 Content-Type: application/json
 
 {
-  "group": "back",
-  "description": "",
+  "group": "Feet",
+  "description": "The things you walk on.",
   "exercises": []
 }
 
 ###
-GET {{GROUP}}/273574032764305928 HTTP/1.1
+GET {{GROUP}}/273226579392332296 HTTP/1.1
 
 ###
-PUT {{GROUP}}/273578167975805448 HTTP/1.1
+PUT {{GROUP}}/273226579392332296 HTTP/1.1
 Content-Type: application/json
 
 {
-  "group": "Back",
-  "description": "Everything behind you.",
-  "exercises": ["exercise"]
+  "group": "Arms",
+  "description": "Those one appendages",
+  "exercises": []
 }
