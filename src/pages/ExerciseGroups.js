@@ -36,8 +36,6 @@ export const ExerciseGroups = () => {
   return (
     <div>
       <Nav />
-      <h2>Exercise Groups</h2>
-      <h2 style={{ paddingBottom: "20px" }}>Exercise Groups</h2>
       <Administration
         name="Exercise Group"
         create={() => dispatch(createExerciseGroup(inputValue))}

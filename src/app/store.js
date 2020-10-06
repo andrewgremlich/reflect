@@ -6,6 +6,7 @@ import privateRouteReducer from "../features/PrivateRoute/PrivateRoute.slice";
 import navReducer from "../features/Nav/Nav.slice";
 import administrationReducer from "../features/Administration/Administration.slice";
 import exercisesTableReducer from "../features/ExercisesTable/ExercisesTable.slice";
+import exerciseSetsTableReducer from "../features/ExerciseSetsTable/ExerciseSetsTable.slice";
 
 export default configureStore({
   reducer: {
@@ -15,5 +16,6 @@ export default configureStore({
     programsTable: programsTableReducer,
     exerciseGroupsTable: exerciseGroupsTableReducer,
     exercisesTable: exercisesTableReducer,
+    exerciseSetsTable: exerciseSetsTableReducer,
   },
 });

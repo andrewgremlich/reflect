@@ -22,7 +22,7 @@ const program = {
 const sets = {
   name: "string",
   description: "string",
-  sets: "array",
+  exerciseGroups: "array",
 };
 
 module.exports = {

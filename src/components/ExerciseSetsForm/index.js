@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 
 import { Input, Textarea, MultiSelect } from "../Form";
 
-export const ProgramsForm = ({
+export const ExerciseSetsForm = ({
   inputValue,
   setInputValue,
   name,
@@ -12,7 +12,7 @@ export const ProgramsForm = ({
   <Fragment>
     <Input
       value={inputValue.name}
-      placeholder="Program Name"
+      placeholder="Exercise Set Name"
       type="input"
       origValue={name}
       changeValue={({ target }) =>
@@ -21,13 +21,12 @@ export const ProgramsForm = ({
     />
     <Textarea
       value={inputValue.description}
-      placeholder="Program Description"
+      placeholder="Exercise Set Description"
       origValue={description}
       changeValue={({ target }) =>
         setInputValue({ ...inputValue, description: target.value })
       }
     />
-    <MultiSelect />
     <MultiSelect />
   </Fragment>
 );

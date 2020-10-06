@@ -39,7 +39,6 @@ export const Exercises = () => {
   return (
     <div>
       <Nav />
-      <h2 style={{ paddingBottom: "20px" }}>Exercises</h2>
       <Administration
         name="Exercise"
         create={() => dispatch(createExercise(inputValue))}

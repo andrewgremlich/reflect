@@ -1,15 +1,16 @@
 import React, { Fragment } from "react";
 import classes from "classnames";
 
-import styles from "./ProgramsTableView.module.css";
+import styles from "./ExerciseSetsTableView.module.css";
 
-export const ProgramsTableView = ({ data, setEdit }) => (
+export const ExerciseSetsTableView = ({ data, setEdit }) => (
   <div className={styles.table}>
     <p className={styles["table-header"]}>Name</p>
     <p className={styles["table-header"]}>Description</p>
-    <p className={styles["table-header"]}>Sets</p>
+    <p className={styles["table-header"]}>Exercise Groups</p>
     <p className={styles["table-header"]}>Edit Program</p>
-    {data.map(({ id, name, description, sets }) => (
+    {data.map(({ id, name, description, exerciseGroups }) => (
+      console.log({ id, name, description, exerciseGroups }),
       <Fragment key={id}>
         <p className={classes(styles["table-cell"], styles["name-cell"])}>
           {name}
@@ -20,15 +21,15 @@ export const ProgramsTableView = ({ data, setEdit }) => (
           {description}
         </p>
         <p className={styles["table-cell"]}>
-          {sets.length > 0 ? sets.join(", ") : ""}
+          {exerciseGroups?.length > 0 ? exerciseGroups.join(", ") : ""}
         </p>
         <div className={styles["table-cell"]}>
           <button
             onClick={() => {
-              setEdit({ id, name, description, sets });
+              setEdit({ id, name, description, exerciseGroups });
             }}
           >
-            Edit Program
+            Edit Exercise Set
           </button>
         </div>
       </Fragment>
