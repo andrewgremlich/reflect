@@ -22,7 +22,7 @@ export const ExerciseTableRow = ({
       {difficulty}
     </p>
     <p className={styles["table-cell"]}>
-      {sets.length > 0 ? sets.join(", ") : ""}
+      {sets?.length > 0 ? sets.join(", ") : ""}
     </p>
     <p className={styles["table-cell"]}>
       {exerciseGroups.length > 0 ? exerciseGroups.join(", ") : ""}

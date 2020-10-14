@@ -5,6 +5,7 @@ import { Input, Textarea, MultiSelect } from "../Form";
 export const ExerciseForm = ({
   inputValue,
   setInputValue,
+  allExerciseSets,
   name,
   description,
   svgId,
@@ -39,7 +40,16 @@ export const ExerciseForm = ({
         setInputValue({ ...inputValue, svgId: target.value })
       }
     />
-    <MultiSelect />
+    <MultiSelect
+      data={allExerciseSets}
+      origValue={set}
+      changeValue={({ target }) => {
+        setInputValue({
+          ...inputValue,
+          sets: [...inputValue.sets, target.value],
+        });
+      }}
+    />
     <MultiSelect />
     <Input
       value={inputValue.difficulty}
