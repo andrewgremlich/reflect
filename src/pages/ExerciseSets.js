@@ -34,6 +34,11 @@ export const ExerciseSets = () => {
     exerciseGroups: [],
   });
 
+  const editData = {
+    ...editExerciseSet,
+    exerciseGroups: allExerciseGroups,
+  };
+
   useEffect(() => {
     dispatch(getExerciseSets());
     dispatch(getExerciseGroups());
@@ -43,12 +48,15 @@ export const ExerciseSets = () => {
     <div>
       <Nav />
       <Administration
-        name={"Exercise Set"}
-        create={() => dispatch(createExerciseSet(inputValue))}
-        modify={() =>
-          dispatch(modifyExerciseSet({ ...inputValue, id: editExerciseSet.id }))
-        }
-        editData={editExerciseSet}
+        {...{
+          name: "Exercise Set",
+          create: () => dispatch(createExerciseSet(inputValue)),
+          modify: () =>
+            dispatch(
+              modifyExerciseSet({ ...inputValue, id: editExerciseSet.id })
+            ),
+          editData,
+        }}
       >
         <ExerciseSetsForm
           {...{ inputValue, setInputValue, exerciseGroups: allExerciseGroups }}
