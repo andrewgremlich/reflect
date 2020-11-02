@@ -13,6 +13,10 @@ import {
   setEditExerciseSet,
   selectEditExerciseSet,
 } from "../features/ExerciseSetsTable/ExerciseSetsTable.slice";
+import {
+  getExerciseGroups,
+  selectAllExerciseGroups,
+} from "../features/ExerciseGroupsTable/ExerciseGroupsTable.slice";
 
 import { ExerciseSetsForm } from "../components/ExerciseSetsForm";
 import { ExerciseSetsTableView } from "../components/ExerciseSetsTableView";
@@ -21,6 +25,7 @@ export const ExerciseSets = () => {
   const dispatch = useDispatch();
 
   const allExerciseSets = useSelector(selectAllExerciseSets);
+  const allExerciseGroups = useSelector(selectAllExerciseGroups);
   const editExerciseSet = useSelector(selectEditExerciseSet);
 
   const [inputValue, setInputValue] = useState({
@@ -31,6 +36,7 @@ export const ExerciseSets = () => {
 
   useEffect(() => {
     dispatch(getExerciseSets());
+    dispatch(getExerciseGroups());
   }, [dispatch]);
 
   return (
@@ -44,7 +50,9 @@ export const ExerciseSets = () => {
         }
         editData={editExerciseSet}
       >
-        <ExerciseSetsForm {...{ inputValue, setInputValue }} />
+        <ExerciseSetsForm
+          {...{ inputValue, setInputValue, exerciseGroups: allExerciseGroups }}
+        />
       </Administration>
       <ExerciseSetsTableView
         data={allExerciseSets}

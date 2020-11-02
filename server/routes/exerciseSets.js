@@ -1,4 +1,5 @@
 const express = require("express");
+const axios = require("axios");
 
 const {
   getDocByIdFromCollection,
@@ -36,12 +37,21 @@ exerciseSetsRouter.post("/create", async (req, res) => {
 });
 
 exerciseSetsRouter.get("/all", async (req, res) => {
-  const indexName = "all_exercise_sets";
+  const sets = "all_exercise_sets";
+  const groups = "all_exercise_groups";
 
-  const { loaded, data } = await getAllDocumentsInCollection(indexName);
+  const fetchedSets = await getAllDocumentsInCollection(sets);
+  const fetchGroups = await getAllDocumentsInCollection(groups);
 
-  if (loaded) {
-    res.status(200).send(data);
+  const exerciseSetsWithGroupsTranslated = fetchedSets.data.map((set) => ({
+    ...set,
+    exerciseGroups: { ...set }.exerciseGroups.map((id) =>
+      fetchGroups.data.find((group) => group.id === id)
+    ),
+  }));
+
+  if (fetchedSets.loaded) {
+    res.status(200).send(exerciseSetsWithGroupsTranslated);
   } else {
     res.status(data.statusCode).send(data.description);
   }

@@ -43,15 +43,11 @@ export const Textarea = ({
   </FieldLabel>
 );
 
-export const MultiSelect = ({ origValue, data, changeValue }) => (
+export const MultiSelect = ({ origValue, changeValue, children }) => (
   <FieldLabel>
     <SpanLabel origValue={origValue} />
-    <select multiple onChange={changeValue}>
-      {data?.map((item) => (
-        <option key={item.id} value={item.id}>
-          {item.name}
-        </option>
-      ))}
+    <select onChange={changeValue} multiple>
+      {children}
     </select>
   </FieldLabel>
 );

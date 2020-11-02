@@ -11,7 +11,6 @@ export const exerciseSetsTableSlice = createSlice({
       state.allExerciseSets = payload;
     },
     setEditExerciseSet: (state, { payload }) => {
-      console.log("set edit exercise", payload);
       state.editExerciseSet = payload;
     },
   },

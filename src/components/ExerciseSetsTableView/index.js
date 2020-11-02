@@ -10,7 +10,6 @@ export const ExerciseSetsTableView = ({ data, setEdit }) => (
     <p className={styles["table-header"]}>Exercise Groups</p>
     <p className={styles["table-header"]}>Edit Program</p>
     {data.map(({ id, name, description, exerciseGroups }) => (
-      console.log({ id, name, description, exerciseGroups }),
       <Fragment key={id}>
         <p className={classes(styles["table-cell"], styles["name-cell"])}>
           {name}
@@ -21,7 +20,9 @@ export const ExerciseSetsTableView = ({ data, setEdit }) => (
           {description}
         </p>
         <p className={styles["table-cell"]}>
-          {exerciseGroups?.length > 0 ? exerciseGroups.join(", ") : ""}
+          {exerciseGroups?.length > 0
+            ? exerciseGroups.map(({ group }) => `${group}, `)
+            : ""}
         </p>
         <div className={styles["table-cell"]}>
           <button
