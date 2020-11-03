@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 
-import { Input, Textarea, MultiSelect } from "../Form";
+import { Input, Textarea, MultiSelect, setChosenOptions } from "../Form";
 
 export const ProgramsForm = ({
   inputValue,
   setInputValue,
   name,
   description,
-  exerciseGroups,
+  sets,
 }) => (
   <Fragment>
     <Input
@@ -27,7 +27,14 @@ export const ProgramsForm = ({
         setInputValue({ ...inputValue, description: target.value })
       }
     />
-    <MultiSelect />
-    <MultiSelect />
+    <MultiSelect
+      changeValue={setChosenOptions(setInputValue, inputValue, "sets")}
+    >
+      {sets.map(({ id, name: setName }) => (
+        <option key={id} value={id}>
+          {setName}
+        </option>
+      ))}
+    </MultiSelect>
   </Fragment>
 );

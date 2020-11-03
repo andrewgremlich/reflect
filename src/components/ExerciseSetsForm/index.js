@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import { Input, Textarea, MultiSelect } from "../Form";
+import { Input, Textarea, MultiSelect, setChosenOptions } from "../Form";
 
 export const ExerciseSetsForm = ({
   inputValue,
@@ -27,19 +27,7 @@ export const ExerciseSetsForm = ({
         setInputValue({ ...inputValue, description: target.value })
       }
     />
-    <MultiSelect
-      changeValue={({ target }) => {
-        let optionsSelected = [];
-
-        for (let option of target.options) {
-          if (option.selected) {
-            optionsSelected.push(option.value);
-          }
-        }
-
-        setInputValue({ ...inputValue, exerciseGroups: optionsSelected });
-      }}
-    >
+    <MultiSelect changeValue={setChosenOptions(setInputValue, inputValue, "exerciseGroups")}>
       {exerciseGroups.map(({ id, group }) => (
         <option key={id} value={id}>
           {group}

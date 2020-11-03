@@ -12,6 +12,10 @@ import {
   setEditProgram,
   selectEditProgram,
 } from "../features/ProgramsTable/ProgramsTable.slice";
+import {
+  getExerciseSets,
+  selectAllExerciseSets,
+} from "../features/ExerciseSetsTable/ExerciseSetsTable.slice";
 
 import { ProgramsForm } from "../components/ProgramsForm";
 import { ProgramsTableView } from "../components/ProgramsTableView";
@@ -20,6 +24,7 @@ export const Programs = () => {
   const dispatch = useDispatch();
 
   const allPrograms = useSelector(selectAllPrograms);
+  const allExerciseSets = useSelector(selectAllExerciseSets);
   const editProgram = useSelector(selectEditProgram);
 
   const [inputValue, setInputValue] = useState({
@@ -28,22 +33,31 @@ export const Programs = () => {
     sets: [],
   });
 
+  const editData = {
+    ...editProgram,
+    sets: allExerciseSets,
+  };
+
   useEffect(() => {
     dispatch(getPrograms());
+    dispatch(getExerciseSets());
   }, [dispatch]);
 
   return (
     <div>
       <Nav />
       <Administration
-        name={"Program"}
-        create={() => dispatch(createProgram(inputValue))}
-        modify={() =>
-          dispatch(modifyProgram({ ...inputValue, id: editProgram.id }))
-        }
-        editData={editProgram}
+        {...{
+          name: "Program",
+          create: () => dispatch(createProgram(inputValue)),
+          modify: () =>
+            dispatch(modifyProgram({ ...inputValue, id: editProgram.id })),
+          editData,
+        }}
       >
-        <ProgramsForm {...{ inputValue, setInputValue }} />
+        <ProgramsForm
+          {...{ inputValue, setInputValue, sets: allExerciseSets }}
+        />
       </Administration>
       <ProgramsTableView
         data={allPrograms}

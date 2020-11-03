@@ -20,7 +20,9 @@ export const ProgramsTableView = ({ data, setEdit }) => (
           {description}
         </p>
         <p className={styles["table-cell"]}>
-          {sets.length > 0 ? sets.join(", ") : ""}
+          {sets?.length > 0
+            ? sets.map(({ name: setName }) => `${setName}, `)
+            : ""}
         </p>
         <div className={styles["table-cell"]}>
           <button

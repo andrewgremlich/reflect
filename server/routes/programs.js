@@ -31,19 +31,32 @@ programRouter.post("/create", async (req, res) => {
       res.status(data.statusCode).send(data.description);
     }
   } else {
-    res.status(400).send({ message: "Keys don't match for program post", success: false });
+    res
+      .status(400)
+      .send({ message: "Keys don't match for program post", success: false });
   }
 });
 
 programRouter.get("/all", async (req, res) => {
-  const indexName = "all_programs";
+  const programs = "all_programs";
+  const sets = "all_exercise_sets";
 
-  const { loaded, data } = await getAllDocumentsInCollection(indexName);
+  const fetchedPrograms = await getAllDocumentsInCollection(programs);
+  const fetchedSets = await getAllDocumentsInCollection(sets);
 
-  if (loaded) {
-    res.status(200).send(data);
+  const programsWithSetsTranslated = fetchedPrograms.data.map((program) => ({
+    ...program,
+    sets: { ...program }.sets.map((id) =>
+      fetchedSets.data.find((set) => set.id === id)
+    ),
+  }));
+
+  if (fetchedPrograms.loaded) {
+    res.status(200).send(programsWithSetsTranslated);
   } else {
-    res.status(data.statusCode).send(data.description);
+    res
+      .status(fetchedPrograms.data.statusCode)
+      .send(fetchedPrograms.data.description);
   }
 });
 

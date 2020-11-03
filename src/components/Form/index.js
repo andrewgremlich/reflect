@@ -43,6 +43,24 @@ export const Textarea = ({
   </FieldLabel>
 );
 
+export const Submit = ({ submitter }) => (
+  <button onClick={submitter}>Submit</button>
+);
+
+export const setChosenOptions = (setInputValue, inputValue, optionName) => ({
+  target,
+}) => {
+  let optionsSelected = [];
+
+  for (let option of target.options) {
+    if (option.selected) {
+      optionsSelected.push(option.value);
+    }
+  }
+
+  setInputValue({ ...inputValue, [optionName]: optionsSelected });
+};
+
 export const MultiSelect = ({ origValue, changeValue, children }) => (
   <FieldLabel>
     <SpanLabel origValue={origValue} />
@@ -50,8 +68,4 @@ export const MultiSelect = ({ origValue, changeValue, children }) => (
       {children}
     </select>
   </FieldLabel>
-);
-
-export const Submit = ({ submitter }) => (
-  <button onClick={submitter}>Submit</button>
 );

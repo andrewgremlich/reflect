@@ -52,7 +52,7 @@ exerciseSetsRouter.get("/all", async (req, res) => {
   if (fetchedSets.loaded) {
     res.status(200).send(exerciseSetsWithGroupsTranslated);
   } else {
-    res.status(data.statusCode).send(data.description);
+    res.status(fetchedSets.data.statusCode).send(fetchedSets.data.description);
   }
 });
 
