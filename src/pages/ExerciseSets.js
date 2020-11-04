@@ -62,10 +62,12 @@ export const ExerciseSets = () => {
         />
       </Administration>
       <ExerciseSetsTableView
-        data={allExerciseSets}
-        setEdit={(exerciseSet) => {
-          dispatch(setEditExerciseSet(exerciseSet));
-          dispatch(switchEdit());
+        {...{
+          data: allExerciseSets,
+          setEdit: (exerciseSet) => {
+            dispatch(setEditExerciseSet(exerciseSet));
+            dispatch(switchEdit());
+          },
         }}
       />
     </div>

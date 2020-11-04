@@ -2,8 +2,6 @@ const exercise = {
   name: "string",
   description: "string",
   svgId: "string",
-  exerciseGroups: "array",
-  sets: "array",
   difficulty: "number",
 };
 

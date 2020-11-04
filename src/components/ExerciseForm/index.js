@@ -40,17 +40,6 @@ export const ExerciseForm = ({
         setInputValue({ ...inputValue, svgId: target.value })
       }
     />
-    <MultiSelect
-      data={allExerciseSets}
-      origValue={set}
-      changeValue={({ target }) => {
-        setInputValue({
-          ...inputValue,
-          sets: [...inputValue.sets, target.value],
-        });
-      }}
-    />
-    <MultiSelect />
     <Input
       value={inputValue.difficulty}
       placeholder="Difficulty"

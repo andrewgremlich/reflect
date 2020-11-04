@@ -34,8 +34,6 @@ export const Exercises = () => {
     name: "",
     description: "",
     svgId: "",
-    exerciseGroups: [],
-    sets: [],
     difficulty: 1,
   });
 
@@ -43,8 +41,6 @@ export const Exercises = () => {
     dispatch(getExercises());
     dispatch(getExerciseSets());
   }, [dispatch]);
-
-  console.log(allExercises);
 
   return (
     <div>

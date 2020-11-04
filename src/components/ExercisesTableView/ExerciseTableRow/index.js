@@ -21,12 +21,6 @@ export const ExerciseTableRow = ({
     <p className={classes(styles["table-cell"], styles["description-cell"])}>
       {difficulty}
     </p>
-    <p className={styles["table-cell"]}>
-      {sets?.length > 0 ? sets.join(", ") : ""}
-    </p>
-    <p className={styles["table-cell"]}>
-      {exerciseGroups.length > 0 ? exerciseGroups.join(", ") : ""}
-    </p>
     <div className={styles["table-cell"]}>
       <button
         onClick={() => {
@@ -34,8 +28,6 @@ export const ExerciseTableRow = ({
             id,
             name,
             description,
-            sets,
-            exerciseGroups,
             difficulty,
             svgId,
           });

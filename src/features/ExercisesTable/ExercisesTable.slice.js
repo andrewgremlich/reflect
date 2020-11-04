@@ -7,7 +7,7 @@ export const exercisesTableSlice = createSlice({
     editExercise: null,
   },
   reducers: {
-    setAllExercises: (state, payload) => {
+    setAllExercises: (state, { payload }) => {
       state.allExercises = payload;
     },
     setEditExercise: (state, { payload }) => {
@@ -18,7 +18,7 @@ export const exercisesTableSlice = createSlice({
 
 export const { setAllExercises, setEditExercise } = exercisesTableSlice.actions;
 
-export const selectAllExercises = (state) => state.exercisesTable.allExercises.payload;
+export const selectAllExercises = (state) => state.exercisesTable.allExercises;
 export const selectEditExercise = (state) => state.exercisesTable.editExercise;
 
 export default exercisesTableSlice.reducer;

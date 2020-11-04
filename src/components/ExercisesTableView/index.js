@@ -9,25 +9,19 @@ export const ExercisesTableView = ({ data, setEdit }) => (
     <p className={styles["table-header"]}>Name</p>
     <p className={styles["table-header"]}>Description</p>
     <p className={styles["table-header"]}>Difficulty</p>
-    <p className={styles["table-header"]}>Sets</p>
-    <p className={styles["table-header"]}>Exercise Groups</p>
     <p className={styles["table-header"]}>Edit Exercise</p>
-    {data?.map(
-      ({ id, name, description, sets, exerciseGroups, difficulty, svgId }) => (
-        <ExerciseTableRow
-          key={id}
-          {...{
-            id,
-            setEdit,
-            name,
-            description,
-            sets,
-            exerciseGroups,
-            difficulty,
-            svgId,
-          }}
-        />
-      )
-    )}
+    {data.map(({ id, name, description, difficulty, svgId }) => (
+      <ExerciseTableRow
+        key={id}
+        {...{
+          id,
+          setEdit,
+          name,
+          description,
+          difficulty,
+          svgId,
+        }}
+      />
+    ))}
   </div>
 );
