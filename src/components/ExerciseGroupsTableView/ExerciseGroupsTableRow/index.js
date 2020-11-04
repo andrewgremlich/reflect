@@ -12,7 +12,9 @@ export const ExerciseGroupsTableRow = ({
   <Fragment>
     <p className={styles["table-cell"]}>{group}</p>
     <p className={styles["table-cell"]}>{description}</p>
-    <p className={styles["table-cell"]}>{exercises}</p>
+    <p className={styles["table-cell"]}>
+      {exercises?.length > 0 ? exercises.map(({ name }) => `${name}, `) : ""}
+    </p>
     <div className={styles["table-cell"]}>
       <button
         onClick={() => {

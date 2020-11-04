@@ -40,12 +40,12 @@ exerciseSetsRouter.get("/all", async (req, res) => {
   const groups = "all_exercise_groups";
 
   const fetchedSets = await getAllDocumentsInCollection(sets);
-  const fetchGroups = await getAllDocumentsInCollection(groups);
+  const fetchedGroups = await getAllDocumentsInCollection(groups);
 
   const exerciseSetsWithGroupsTranslated = fetchedSets.data.map((set) => ({
     ...set,
     exerciseGroups: { ...set }.exerciseGroups.map((id) =>
-      fetchGroups.data.find((group) => group.id === id)
+      fetchedGroups.data.find((group) => group.id === id)
     ),
   }));
 

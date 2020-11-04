@@ -1,16 +1,13 @@
 import React, { Fragment } from "react";
 
-import { Input, Textarea, MultiSelect } from "../Form";
+import { Input, Textarea } from "../Form";
 
 export const ExerciseForm = ({
   inputValue,
   setInputValue,
-  allExerciseSets,
   name,
   description,
   svgId,
-  exerciseGroups,
-  set,
   difficulty,
 }) => (
   <Fragment>

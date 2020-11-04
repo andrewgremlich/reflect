@@ -36,14 +36,29 @@ exerciseGroupRouter.post("/create", async (req, res) => {
 });
 
 exerciseGroupRouter.get("/all", async (req, res) => {
-  const indexName = "all_exercise_groups";
+  const exerciseGroups = "all_exercise_groups";
+  const exercises = "all_exercises";
 
-  const { loaded, data } = await getAllDocumentsInCollection(indexName);
+  const fetchedExerciseGroups = await getAllDocumentsInCollection(
+    exerciseGroups
+  );
+  const fetchedExercises = await getAllDocumentsInCollection(exercises);
 
-  if (loaded) {
-    res.status(200).send(data);
+  const exerciseGroupsWithExercisesTranslated = fetchedExerciseGroups.data.map(
+    (group) => ({
+      ...group,
+      exercises: { ...group }.exercises.map((id) =>
+        fetchedExercises.data.find((exercise) => exercise.id === id)
+      ),
+    })
+  );
+
+  if (fetchedExerciseGroups.loaded) {
+    res.status(200).send(exerciseGroupsWithExercisesTranslated);
   } else {
-    res.status(data.statusCode).send(data.description);
+    res
+      .status(fetchedExerciseGroups.data.statusCode)
+      .send(fetchedExerciseGroups.data.description);
   }
 });
 

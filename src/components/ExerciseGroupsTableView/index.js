@@ -10,8 +10,11 @@ export const ExerciseGroupsTableView = ({ data, setEdit }) => (
     <p className={styles["table-header"]}>Description</p>
     <p className={styles["table-header"]}>Exercises</p>
     <p className={styles["table-header"]}>Edit Exercise Group</p>
-    {data?.map(({ group, description, id }) => (
-      <ExerciseGroupsTableRow key={id} {...{ group, description, id, setEdit }} />
+    {data?.map(({ group, description, id, exercises }) => (
+      <ExerciseGroupsTableRow
+        key={id}
+        {...{ group, description, id, exercises, setEdit }}
+      />
     ))}
   </div>
 );
