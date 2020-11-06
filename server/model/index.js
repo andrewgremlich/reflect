@@ -3,12 +3,7 @@ const exercise = {
   description: "string",
   svgId: "string",
   difficulty: "number",
-};
-
-const exerciseGroup = {
-  group: "string",
-  description: "string",
-  exercises: "array",
+  exerciseGroup: "string",
 };
 
 const program = {
@@ -25,7 +20,6 @@ const sets = {
 
 module.exports = {
   exercise,
-  exerciseGroup,
   program,
   sets,
 };

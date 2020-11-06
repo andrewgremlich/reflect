@@ -20,7 +20,10 @@ exercisesRouter.post("/create", async (req, res) => {
   const keysMatch = matchKeys(exerciseSchema, req.body);
 
   if (keysMatch) {
-    const { loaded, data } = await postBodyInCollection(COLLECTION_NAME, req.body);
+    const { loaded, data } = await postBodyInCollection(
+      COLLECTION_NAME,
+      req.body
+    );
 
     if (loaded) {
       res.status(200).send({ message: "exercise created" });

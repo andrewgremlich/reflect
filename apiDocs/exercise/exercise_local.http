@@ -15,7 +15,8 @@ Content-Type: application/json
   "name": "bench press",
   "description": "",
   "svgId": "bench-press",
-  "difficulty": 1
+  "difficulty": 1,
+  "exerciseGroup": "chest"
 }
 
 ###

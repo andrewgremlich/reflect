@@ -35,6 +35,7 @@ export const Exercises = () => {
     description: "",
     svgId: "",
     difficulty: 1,
+    exerciseGroup: "",
   });
 
   useEffect(() => {

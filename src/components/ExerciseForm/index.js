@@ -8,6 +8,7 @@ export const ExerciseForm = ({
   name,
   description,
   svgId,
+  exerciseGroup,
   difficulty,
 }) => (
   <Fragment>
@@ -35,6 +36,15 @@ export const ExerciseForm = ({
       origValue={svgId}
       changeValue={({ target }) =>
         setInputValue({ ...inputValue, svgId: target.value })
+      }
+    />
+    <Input
+      value={inputValue.exerciseGroup}
+      placeholder="Exercise Group"
+      type="input"
+      origValue={exerciseGroup}
+      changeValue={({ target }) =>
+        setInputValue({ ...inputValue, exerciseGroup: target.value })
       }
     />
     <Input

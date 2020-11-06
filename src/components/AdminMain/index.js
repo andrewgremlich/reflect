@@ -8,9 +8,6 @@ export const AdminMain = () => {
         <Link to="/admin/exercises">Edit Exercises</Link>
       </p>
       <p>
-        <Link to="/admin/exerciseGroups">Edit Exercise Groups</Link>
-      </p>
-      <p>
         <Link to="/admin/exerciseSets">Edit Exercise Sets</Link>
       </p>
       <p>

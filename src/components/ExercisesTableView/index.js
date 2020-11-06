@@ -9,8 +9,9 @@ export const ExercisesTableView = ({ data, setEdit }) => (
     <p className={styles["table-header"]}>Name</p>
     <p className={styles["table-header"]}>Description</p>
     <p className={styles["table-header"]}>Difficulty</p>
-    <p className={styles["table-header"]}>Edit Exercise</p>
-    {data.map(({ id, name, description, difficulty, svgId }) => (
+    <p className={styles["table-header"]}>Exercise Group</p>
+    <p className={styles["table-header"]}>Edit Exercise Group</p>
+    {data.map(({ id, name, description, difficulty, svgId, exerciseGroup }) => (
       <ExerciseTableRow
         key={id}
         {...{
@@ -18,6 +19,7 @@ export const ExercisesTableView = ({ data, setEdit }) => (
           setEdit,
           name,
           description,
+          exerciseGroup,
           difficulty,
           svgId,
         }}

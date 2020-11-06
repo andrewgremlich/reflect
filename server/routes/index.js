@@ -1,7 +1,6 @@
 const express = require("express");
 
 const exercisesRouter = require("./exercises.js");
-const exerciseGroupRouter = require("./exerciseGroup.js");
 const programRouter = require("./programs.js");
 const exerciseSetsRouter = require("./exerciseSets.js");
 
@@ -12,7 +11,6 @@ appRouter.get("/mainRouterTest", (req, res) => {
 });
 
 appRouter.use("/exercises", exercisesRouter);
-appRouter.use("/exerciseGroups", exerciseGroupRouter);
 appRouter.use("/programs", programRouter);
 appRouter.use("/sets", exerciseSetsRouter);
 

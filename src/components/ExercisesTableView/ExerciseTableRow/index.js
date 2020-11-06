@@ -8,8 +8,7 @@ export const ExerciseTableRow = ({
   setEdit,
   name,
   description,
-  sets,
-  exerciseGroups,
+  exerciseGroup,
   difficulty,
   svgId,
 }) => (
@@ -20,6 +19,9 @@ export const ExerciseTableRow = ({
     </p>
     <p className={classes(styles["table-cell"], styles["description-cell"])}>
       {difficulty}
+    </p>
+    <p className={classes(styles["table-cell"], styles["description-cell"])}>
+      {exerciseGroup}
     </p>
     <div className={styles["table-cell"]}>
       <button

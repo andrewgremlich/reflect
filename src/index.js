@@ -10,7 +10,6 @@ import { PrivateRoute } from "./features/PrivateRoute";
 import {
   Home,
   Admin,
-  ExerciseGroups,
   Exercises,
   Programs,
   ExerciseSets,
@@ -26,11 +25,6 @@ ReactDOM.render(
         <Route exact path="/" component={Home} />
         <PrivateRoute exact path="/admin" component={Admin} />
         <PrivateRoute exact path="/admin/programs" component={Programs} />
-        <PrivateRoute
-          exact
-          path="/admin/exerciseGroups"
-          component={ExerciseGroups}
-        />
         <PrivateRoute
           exact
           path="/admin/exerciseSets"
