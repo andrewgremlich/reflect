@@ -18,6 +18,15 @@ const client = new faunadb.Client({
   secret: process.env.FAUNADB_KEY,
 });
 
+const extractData = (data) => {
+  const mappedData = data.map((document) => ({
+    ...document.data,
+    id: document.ref.value.id,
+  }));
+
+  return mappedData;
+};
+
 const getDocByIdFromCollection = async (collectionName, id) => {
   const collection = Collection(collectionName);
   const ref = Ref(collection, id);
@@ -76,6 +85,30 @@ const updateDocInCollection = async (collectionName, id, body) => {
   }
 };
 
+const getMetaGroupByName = async (metaGroupName, indexName) => {
+  const index = Index(indexName);
+  const matchIndex = Match(index, metaGroupName);
+  const paginateMatchIndex = Paginate(matchIndex);
+
+  try {
+    const { data } = await client.query(
+      Map(paginateMatchIndex, Lambda("X", Get(Var("X"))))
+    );
+
+    return {
+      data: extractData(data),
+      loaded: true,
+    };
+  } catch (err) {
+    const {
+      description,
+      requestResult: { statusCode },
+    } = err;
+
+    return { data: { statusCode, description }, loaded: false };
+  }
+};
+
 const getAllDocumentsInCollection = async (IndexName) => {
   const index = Index(IndexName);
   const matchIndex = Match(index);
@@ -86,11 +119,7 @@ const getAllDocumentsInCollection = async (IndexName) => {
       Map(paginateMatchIndex, Lambda("X", Get(Var("X"))))
     );
 
-    const reducedData = data.map((document) => {
-      return { ...document.data, id: document.ref.value.id };
-    });
-
-    return { data: reducedData, loaded: true };
+    return { data: extractData(data), loaded: true };
   } catch (err) {
     const {
       description,
@@ -106,4 +135,5 @@ module.exports = {
   postBodyInCollection,
   updateDocInCollection,
   getAllDocumentsInCollection,
+  getMetaGroupByName,
 };

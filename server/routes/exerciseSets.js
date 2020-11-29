@@ -37,20 +37,11 @@ exerciseSetsRouter.post("/create", async (req, res) => {
 
 exerciseSetsRouter.get("/all", async (req, res) => {
   const sets = "all_exercise_sets";
-  const groups = "all_exercise_groups";
 
   const fetchedSets = await getAllDocumentsInCollection(sets);
-  const fetchedGroups = await getAllDocumentsInCollection(groups);
-
-  const exerciseSetsWithGroupsTranslated = fetchedSets.data.map((set) => ({
-    ...set,
-    exerciseGroups: { ...set }.exerciseGroups.map((id) =>
-      fetchedGroups.data.find((group) => group.id === id)
-    ),
-  }));
 
   if (fetchedSets.loaded) {
-    res.status(200).send(exerciseSetsWithGroupsTranslated);
+    res.status(200).send(fetchedSets.data);
   } else {
     res.status(fetchedSets.data.statusCode).send(fetchedSets.data.description);
   }

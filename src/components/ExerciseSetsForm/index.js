@@ -27,12 +27,12 @@ export const ExerciseSetsForm = ({
         setInputValue({ ...inputValue, description: target.value })
       }
     />
-    <MultiSelect changeValue={setChosenOptions(setInputValue, inputValue, "exerciseGroups")}>
+    {/* <MultiSelect changeValue={setChosenOptions(setInputValue, inputValue, "exerciseGroups")}>
       {exerciseGroups.map(({ id, group }) => (
         <option key={id} value={id}>
           {group}
         </option>
       ))}
-    </MultiSelect>
+    </MultiSelect> */}
   </Fragment>
 );

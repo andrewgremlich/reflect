@@ -8,7 +8,7 @@ export const ExerciseSetsTableView = ({ data, setEdit }) => (
     <p className={styles["table-header"]}>Name</p>
     <p className={styles["table-header"]}>Description</p>
     <p className={styles["table-header"]}>Exercise Groups</p>
-    <p className={styles["table-header"]}>Edit Program</p>
+    <p className={styles["table-header"]}>Edit Exercise Set</p>
     {data.map(({ id, name, description, exerciseGroups }) => (
       <Fragment key={id}>
         <p className={classes(styles["table-cell"], styles["name-cell"])}>
