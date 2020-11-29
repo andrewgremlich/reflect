@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import { Input, Textarea } from "../Form";
+import { Input, SingleSelect, Textarea } from "../Form";
 
 export const ExerciseForm = ({
   inputValue,
@@ -8,7 +8,7 @@ export const ExerciseForm = ({
   name,
   description,
   svgId,
-  exerciseGroup,
+  exerciseGroups,
   difficulty,
 }) => (
   <Fragment>
@@ -38,15 +38,23 @@ export const ExerciseForm = ({
         setInputValue({ ...inputValue, svgId: target.value })
       }
     />
-    <Input
-      value={inputValue.exerciseGroup}
-      placeholder="Exercise Group"
-      type="input"
-      origValue={exerciseGroup}
-      changeValue={({ target }) =>
-        setInputValue({ ...inputValue, exerciseGroup: target.value })
-      }
-    />
+    {exerciseGroups && (
+      <SingleSelect
+        changeValue={({ target }) =>
+          setInputValue({
+            ...inputValue,
+            exerciseGroup: target.value,
+          })
+        }
+      >
+        <option value=""></option>
+        {exerciseGroups.map((group, index) => (
+          <option key={index} value={group}>
+            {group}
+          </option>
+        ))}
+      </SingleSelect>
+    )}
     <Input
       value={inputValue.difficulty}
       placeholder="Difficulty"

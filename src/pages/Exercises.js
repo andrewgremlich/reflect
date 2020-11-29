@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Nav } from "../features/Nav";
 import { Administration } from "../features/Administration";
-import { switchEdit } from "../features/Administration/Administration.slice";
+import {
+  switchEdit,
+  getExerciseGroup,
+  selectExerciseGroups,
+} from "../features/Administration/Administration.slice";
 
 import {
   getExercises,
@@ -27,6 +31,7 @@ export const Exercises = () => {
 
   const allExercises = useSelector(selectAllExercises);
   const editExercise = useSelector(selectEditExercise);
+  const exerciseGroups = useSelector(selectExerciseGroups);
 
   const allExerciseSets = useSelector(selectAllExerciseSets);
 
@@ -41,6 +46,7 @@ export const Exercises = () => {
   useEffect(() => {
     dispatch(getExercises());
     dispatch(getExerciseSets());
+    dispatch(getExerciseGroup());
   }, [dispatch]);
 
   return (
@@ -64,6 +70,7 @@ export const Exercises = () => {
             allExerciseSets,
             inputValue,
             setInputValue,
+            exerciseGroups,
           }}
         />
       </Administration>

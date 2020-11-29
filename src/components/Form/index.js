@@ -69,3 +69,10 @@ export const MultiSelect = ({ origValue, changeValue, children }) => (
     </select>
   </FieldLabel>
 );
+
+export const SingleSelect = ({ origValue, changeValue, children }) => (
+  <FieldLabel>
+    <SpanLabel origValue={origValue} />
+    <select onChange={changeValue}>{children}</select>
+  </FieldLabel>
+);
