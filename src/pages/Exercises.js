@@ -24,6 +24,7 @@ import {
 } from "../features/ExerciseSetsTable/ExerciseSetsTable.slice";
 
 import { ExerciseForm } from "../components/ExerciseForm";
+import { SingleSelect } from "../components/Form";
 import { ExercisesTableView } from "../components/ExercisesTableView";
 
 export const Exercises = () => {
@@ -32,9 +33,9 @@ export const Exercises = () => {
   const allExercises = useSelector(selectAllExercises);
   const editExercise = useSelector(selectEditExercise);
   const exerciseGroups = useSelector(selectExerciseGroups);
-
   const allExerciseSets = useSelector(selectAllExerciseSets);
 
+  const [sortByExerciseGroup, setSortByExerciseGroup] = useState("");
   const [inputValue, setInputValue] = useState({
     name: "",
     description: "",
@@ -42,6 +43,10 @@ export const Exercises = () => {
     difficulty: 1,
     exerciseGroup: "",
   });
+
+  const filteredGroups = allExercises.filter(
+    (exercise) => exercise.exerciseGroup === sortByExerciseGroup
+  );
 
   useEffect(() => {
     dispatch(getExercises());
@@ -74,8 +79,22 @@ export const Exercises = () => {
           }}
         />
       </Administration>
+      {exerciseGroups && (
+        <SingleSelect
+          value={exerciseGroups[0]}
+          changeValue={({ target }) => setSortByExerciseGroup(target.value)}
+          origValue="Filter Exercise Group"
+        >
+          <option value=""></option>
+          {exerciseGroups.map((group, index) => (
+            <option key={index} value={group}>
+              {group}
+            </option>
+          ))}
+        </SingleSelect>
+      )}
       <ExercisesTableView
-        data={allExercises}
+        data={filteredGroups.length > 0 ? filteredGroups : allExercises}
         setEdit={(exercise) => {
           dispatch(setEditExercise(exercise));
           dispatch(switchEdit());

@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./Form.module.css";
 
 const SpanLabel = ({ origValue }) => (
-  <span>{origValue ? `(Was: ${origValue})` : "New Input"}</span>
+  <span>{origValue ? `(${origValue})` : "New Input"}</span>
 );
 
 const FieldLabel = ({ children }) => (
