@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Nav } from "../features/Nav";
 import { Administration } from "../features/Administration";
-import { switchEdit } from "../features/Administration/Administration.slice";
+import {
+  switchEdit,
+  getExerciseGroup,
+  selectExerciseGroups,
+} from "../features/Administration/Administration.slice";
 import {
   getExerciseSets,
   createExerciseSet,
@@ -21,10 +25,12 @@ export const ExerciseSets = () => {
 
   const allExerciseSets = useSelector(selectAllExerciseSets);
   const editExerciseSet = useSelector(selectEditExerciseSet);
+  const allExerciseGroups = useSelector(selectExerciseGroups);
 
   const [inputValue, setInputValue] = useState({
     name: "",
     description: "",
+    exerciseGroups: [],
   });
 
   const editData = {
@@ -33,6 +39,7 @@ export const ExerciseSets = () => {
 
   useEffect(() => {
     dispatch(getExerciseSets());
+    dispatch(getExerciseGroup());
   }, [dispatch]);
 
   return (
@@ -50,14 +57,19 @@ export const ExerciseSets = () => {
         }}
       >
         <ExerciseSetsForm
-          {...{ inputValue, setInputValue }}
+          {...{ inputValue, setInputValue, exerciseGroups: allExerciseGroups }}
         />
       </Administration>
       <ExerciseSetsTableView
         {...{
           data: allExerciseSets,
           setEdit: (exerciseSet) => {
-            dispatch(setEditExerciseSet(exerciseSet));
+            dispatch(
+              setEditExerciseSet({
+                ...exerciseSet,
+                exerciseGroups: allExerciseGroups,
+              })
+            );
             dispatch(switchEdit());
           },
         }}

@@ -21,14 +21,12 @@ export const ExerciseSetsTableView = ({ data, setEdit }) => (
         </p>
         <p className={styles["table-cell"]}>
           {exerciseGroups?.length > 0
-            ? exerciseGroups.map(({ group }) => `${group}, `)
+            ? exerciseGroups.map((group) => `${group}, `)
             : ""}
         </p>
         <div className={styles["table-cell"]}>
           <button
-            onClick={() => {
-              setEdit({ id, name, description, exerciseGroups });
-            }}
+            onClick={() => setEdit({ id, name, description, exerciseGroups })}
           >
             Edit Exercise Set
           </button>
