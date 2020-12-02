@@ -4,8 +4,11 @@ import { setAllExercises } from "./ExercisesTable.slice";
 
 const EXERCISES_ROOT_API = "/.netlify/functions/index/exercises";
 
-export const getExercises = () => (dispatch) => {
-  jsonFetch(`${EXERCISES_ROOT_API}/all`).then((exercises) => {
+export const getExercises = (exerciseGroup) => (dispatch) => {
+  const fetchString = `${EXERCISES_ROOT_API}/group?exerciseGroupName=${exerciseGroup}`;
+  const fetchStringURIEncoded = encodeURI(fetchString);
+
+  jsonFetch(fetchStringURIEncoded).then((exercises) => {
     dispatch(setAllExercises(exercises));
   });
 };
@@ -14,7 +17,7 @@ export const createExercise = (payload) => (dispatch) => {
   jsonFetch(`${EXERCISES_ROOT_API}/create`, {
     body: JSON.stringify(payload),
     ...JSON_POST,
-  }).then((resp) => dispatch(getExercises()));
+  }).then((resp) => dispatch(getExercises(payload.exerciseGroup)));
 };
 
 export const modifyExercise = ({
@@ -22,8 +25,7 @@ export const modifyExercise = ({
   name,
   description,
   svgId,
-  exerciseGroups,
-  set,
+  exerciseGroup,
   difficulty,
 }) => (dispatch) => {
   jsonFetch(`${EXERCISES_ROOT_API}/${id}`, {
@@ -31,10 +33,9 @@ export const modifyExercise = ({
       name,
       description,
       svgId,
-      exerciseGroups,
-      sets: set,
+      exerciseGroup,
       difficulty,
     }),
     ...JSON_PUT,
-  }).then((resp) => dispatch(getExercises()));
+  }).then((resp) => dispatch(getExercises(exerciseGroup)));
 };

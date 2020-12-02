@@ -49,10 +49,13 @@ export const Exercises = () => {
   );
 
   useEffect(() => {
-    dispatch(getExercises());
     dispatch(getExerciseSets());
     dispatch(getExerciseGroup());
-  }, [dispatch]);
+
+    if (sortByExerciseGroup) {
+      dispatch(getExercises(sortByExerciseGroup));
+    }
+  }, [dispatch, sortByExerciseGroup]);
 
   return (
     <div>

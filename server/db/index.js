@@ -85,9 +85,9 @@ const updateDocInCollection = async (collectionName, id, body) => {
   }
 };
 
-const getMetaGroupByName = async (metaGroupName, indexName) => {
+const getIndexResultByInput = async (input, indexName) => {
   const index = Index(indexName);
-  const matchIndex = Match(index, metaGroupName);
+  const matchIndex = Match(index, input);
   const paginateMatchIndex = Paginate(matchIndex);
 
   try {
@@ -135,5 +135,5 @@ module.exports = {
   postBodyInCollection,
   updateDocInCollection,
   getAllDocumentsInCollection,
-  getMetaGroupByName,
+  getMetaGroupByName: getIndexResultByInput,
 };

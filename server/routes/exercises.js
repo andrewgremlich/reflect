@@ -5,6 +5,7 @@ const {
   postBodyInCollection,
   updateDocInCollection,
   getAllDocumentsInCollection,
+  getMetaGroupByName,
 } = require("../db/index.js");
 const { matchKeys } = require("../utils/index.js");
 const { exercise: exerciseSchema } = require("../model/index.js");
@@ -39,6 +40,21 @@ exercisesRouter.get("/all", async (req, res) => {
   const indexName = "all_exercises";
 
   const { loaded, data } = await getAllDocumentsInCollection(indexName);
+
+  if (loaded) {
+    res.status(200).send(data);
+  } else {
+    res.status(data.statusCode).send(data.description);
+  }
+});
+
+exercisesRouter.get("/group", async (req, res) => {
+  const { exerciseGroupName } = req.query;
+
+  const { loaded, data } = await getMetaGroupByName(
+    exerciseGroupName,
+    "index_exercises_by_exercise_group"
+  );
 
   if (loaded) {
     res.status(200).send(data);
