@@ -45,6 +45,10 @@ const getDocByIdFromCollection = async (collectionName, id) => {
   }
 };
 
+const getProgramsWithSetData = async (collectionName, id) => {
+  console.log(collectionName, id);
+};
+
 const postBodyInCollection = async (collectionName, body) => {
   const collection = Collection(collectionName);
   const createDocInCollection = Create(collection, {
@@ -135,5 +139,6 @@ module.exports = {
   postBodyInCollection,
   updateDocInCollection,
   getAllDocumentsInCollection,
+  getProgramsWithSetData,
   getMetaGroupByName: getIndexResultByInput,
 };

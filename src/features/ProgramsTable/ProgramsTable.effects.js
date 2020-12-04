@@ -10,6 +10,12 @@ export const getPrograms = () => (dispatch) => {
   );
 };
 
+export const getProgram = (id) => (dispatch) => {
+  jsonFetch(`${PROGRAMS_ROOT_API}/${id}`).then((program) => {
+    dispatch(setAllPrograms([program]));
+  });
+};
+
 export const createProgram = (payload) => (dispatch) => {
   jsonFetch(`${PROGRAMS_ROOT_API}/create`, {
     body: JSON.stringify(payload),

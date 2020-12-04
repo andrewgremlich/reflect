@@ -1,4 +1,4 @@
-@ROOT = http://localhost:36135/.netlify/functions/index
+@ROOT = http://localhost:8888/.netlify/functions/index
 @PROGRAM = {{ROOT}}/programs
 
 ###
@@ -18,7 +18,10 @@ Content-Type: application/json
 }
 
 ###
-GET {{PROGRAM}}/273664359806272013 HTTP/1.1
+GET {{PROGRAM}}/283641128203321869 HTTP/1.1
+
+###
+GET {{PROGRAM}}/withSetData/283641128203321869 HTTP/1.1
 
 ###
 GET {{PROGRAM}}/all HTTP/1.1

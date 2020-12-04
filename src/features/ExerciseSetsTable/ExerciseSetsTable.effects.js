@@ -1,6 +1,9 @@
 import { jsonFetch, JSON_PUT, JSON_POST } from "../../utility";
 
-import { setAllExerciseSets } from "./ExerciseSetsTable.slice";
+import {
+  setAllExerciseSets,
+  setSelectedGroup,
+} from "./ExerciseSetsTable.slice";
 
 const EXERCISE_SETS_ROOT_API = "/.netlify/functions/index/sets";
 
@@ -11,9 +14,10 @@ export const getExerciseSets = () => (dispatch) => {
 };
 
 export const getExerciseSet = (id) => (dispatch) => {
-  jsonFetch(`${EXERCISE_SETS_ROOT_API}/${id}`).then((exerciseSet) =>
-    dispatch(setAllExerciseSets(exerciseSet))
-  );
+  jsonFetch(`${EXERCISE_SETS_ROOT_API}/${id}`).then((exerciseSet) => {
+    dispatch(setAllExerciseSets([exerciseSet]));
+    dispatch(setSelectedGroup(exerciseSet.exerciseGroups[0]));
+  });
 };
 
 export const createExerciseSet = (payload) => (dispatch) => {

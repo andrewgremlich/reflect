@@ -5,9 +5,10 @@ const {
   postBodyInCollection,
   updateDocInCollection,
   getAllDocumentsInCollection,
+  getProgramsWithSetData,
 } = require("../db/index.js");
 const { matchKeys } = require("../utils/index.js");
-const { program: programSchema } = require("../model/index.js");
+const { program: programSchema, program } = require("../model/index.js");
 
 const programRouter = express.Router();
 const COLLECTION_NAME = "program";
@@ -70,6 +71,14 @@ programRouter.get("/:id", async (req, res) => {
   } else if (!loaded) {
     res.status(data.statusCode).send(data.description);
   }
+});
+
+programRouter.get("/withSetData/:id", async (req, res) => {
+  const { id } = req.params;
+
+  await getProgramsWithSetData(COLLECTION_NAME, id);
+
+  res.status(200).send("HELLO!!");
 });
 
 programRouter.put("/:id", async (req, res) => {

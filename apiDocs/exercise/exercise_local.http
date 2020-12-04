@@ -27,7 +27,11 @@ GET {{EXERCISES}}/273226539989991944 HTTP/1.1
 GET {{EXERCISES}}/all HTTP/1.1
 
 ###
-GET {{EXERCISES}}/group?exerciseGroupName=power%20lift HTTP/1.1
+GET {{EXERCISES}}/group?exerciseGroupName=vertical%20pull HTTP/1.1
+
+
+###
+GET {{EXERCISES}}/group?exerciseGroupName=vertical%20pull&exerciseGroupName=horizontal%20push HTTP/1.1
 
 ###
 PUT {{EXERCISES}}/273577952522797580 HTTP/1.1

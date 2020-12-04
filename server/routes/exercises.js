@@ -51,15 +51,19 @@ exercisesRouter.get("/all", async (req, res) => {
 exercisesRouter.get("/group", async (req, res) => {
   const { exerciseGroupName } = req.query;
 
-  const { loaded, data } = await getMetaGroupByName(
-    exerciseGroupName,
-    "index_exercises_by_exercise_group"
-  );
-
-  if (loaded) {
-    res.status(200).send(data);
+  if (Array.isArray(exerciseGroupName)) {
+    res.status(200).send("Exercise group array");
   } else {
-    res.status(data.statusCode).send(data.description);
+    const { loaded, data } = await getMetaGroupByName(
+      exerciseGroupName,
+      "index_exercises_by_exercise_group"
+    );
+
+    if (loaded) {
+      res.status(200).send(data);
+    } else {
+      res.status(data.statusCode).send(data.description);
+    }
   }
 });
 

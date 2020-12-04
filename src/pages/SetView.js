@@ -1,15 +1,17 @@
 // I am putting this into the `./feature` folder because I want to
 // integrate local storage or index db for analytics
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { Nav } from "../features/Nav";
+import { ExerciseGroupsView } from "../features/ExerciseGroupsView";
 
 import {
   getExerciseSet,
   selectAllExerciseSets,
+  selectExerciseGroup,
 } from "../features/ExerciseSetsTable/ExerciseSetsTable.slice";
 
 export const SetView = () => {
@@ -17,19 +19,20 @@ export const SetView = () => {
   const dispatch = useDispatch();
 
   const selectedExerciseSet = useSelector(selectAllExerciseSets);
+  const selectedExerciseGroup = useSelector(selectExerciseGroup);
 
   useEffect(() => {
-    //TODO: there needs to be some combination API call to get the exercises related to
-    // the exercise groups
     dispatch(getExerciseSet(exercsiceSetId));
-  }, [dispatch]);
-
-  console.log(selectedExerciseSet);
+  }, [dispatch, exercsiceSetId]);
 
   return (
     <div>
       <Nav />
       <h1>Set View</h1>
+      <ExerciseGroupsView
+        groupsInSet={selectedExerciseSet[0]?.exerciseGroups}
+        selectedExerciseGroup={selectedExerciseGroup}
+      />
     </div>
   );
 };

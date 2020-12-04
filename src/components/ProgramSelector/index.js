@@ -1,25 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export const ProgramSelector = ({
-  name,
-  description,
-  sets,
-  activateProgram,
-}) => {
+export const ProgramSelector = ({ name, description, setId }) => {
   return (
     <div>
-      <h2
-        className="clicky"
-        onClick={() => {
-          activateProgram({
-            name,
-            description,
-            sets,
-          });
-        }}
-      >
-        {name}
-      </h2>
+      <Link to={`/program/${setId}`}>{name}</Link>
       {description && <p>{description}</p>}
     </div>
   );
