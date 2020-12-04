@@ -7,13 +7,7 @@ import store from "./app/store";
 
 import { PrivateRoute } from "./features/PrivateRoute";
 
-import {
-  Home,
-  Admin,
-  Exercises,
-  Programs,
-  ExerciseSets,
-} from "./pages";
+import { Home, Admin, Exercises, Programs, ExerciseSets, SetView } from "./pages";
 
 import * as serviceWorker from "./serviceWorker";
 import "./index.css";
@@ -23,6 +17,7 @@ ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <Route exact path="/" component={Home} />
+        <Route exact path="/set/:id" component={SetView} />
         <PrivateRoute exact path="/admin" component={Admin} />
         <PrivateRoute exact path="/admin/programs" component={Programs} />
         <PrivateRoute

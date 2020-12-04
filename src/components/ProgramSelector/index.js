@@ -9,6 +9,7 @@ export const ProgramSelector = ({
   return (
     <div>
       <h2
+        className="clicky"
         onClick={() => {
           activateProgram({
             name,

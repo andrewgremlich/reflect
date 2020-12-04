@@ -10,6 +10,12 @@ export const getExerciseSets = () => (dispatch) => {
   );
 };
 
+export const getExerciseSet = (id) => (dispatch) => {
+  jsonFetch(`${EXERCISE_SETS_ROOT_API}/${id}`).then((exerciseSet) =>
+    dispatch(setAllExerciseSets(exerciseSet))
+  );
+};
+
 export const createExerciseSet = (payload) => (dispatch) => {
   jsonFetch(`${EXERCISE_SETS_ROOT_API}/create`, {
     body: JSON.stringify(payload),
@@ -17,9 +23,12 @@ export const createExerciseSet = (payload) => (dispatch) => {
   }).then((resp) => dispatch(getExerciseSets()));
 };
 
-export const modifyExerciseSet = ({ id, description, name, exerciseGroups }) => (
-  dispatch
-) => {
+export const modifyExerciseSet = ({
+  id,
+  description,
+  name,
+  exerciseGroups,
+}) => (dispatch) => {
   jsonFetch(`${EXERCISE_SETS_ROOT_API}/${id}`, {
     body: JSON.stringify({ description, name, exerciseGroups }),
     ...JSON_PUT,
