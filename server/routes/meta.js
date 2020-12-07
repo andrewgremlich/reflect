@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { getMetaGroupByName } = require("../db/index.js");
+const { getMetaGroupByName } = require("../db/generic.js");
 const metaRouter = express.Router();
 
 const COLLECTION_NAME = "meta";

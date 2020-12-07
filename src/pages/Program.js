@@ -17,10 +17,17 @@ export const Program = () => {
   const programs = useSelector(selectAllPrograms);
 
   useEffect(() => {
-    dispatch(getProgram(programId));
+    if (programs) {
+      dispatch(getProgram(programId));
+    }
   }, [dispatch, programId]);
 
-  console.log(programs);
+  console.log(
+    programs.filter((program) => {
+      console.log(program);
+      return true;
+    })
+  );
 
   return (
     <Fragment>

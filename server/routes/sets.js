@@ -5,7 +5,7 @@ const {
   postBodyInCollection,
   updateDocInCollection,
   getAllDocumentsInCollection,
-} = require("../db/index.js");
+} = require("../db/generic.js");
 const { matchKeys } = require("../utils/index.js");
 const { sets: setsSchema } = require("../model/index.js");
 

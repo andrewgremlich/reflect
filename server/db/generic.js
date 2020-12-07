@@ -1,4 +1,5 @@
 const faunadb = require("faunadb");
+const { extractData, client } = require("./util.js");
 
 const {
   Get,
@@ -13,19 +14,6 @@ const {
   Lambda,
   Var,
 } = faunadb.query;
-
-const client = new faunadb.Client({
-  secret: process.env.FAUNADB_KEY,
-});
-
-const extractData = (data) => {
-  const mappedData = data.map((document) => ({
-    ...document.data,
-    id: document.ref.value.id,
-  }));
-
-  return mappedData;
-};
 
 const getDocByIdFromCollection = async (collectionName, id) => {
   const collection = Collection(collectionName);
@@ -42,19 +30,6 @@ const getDocByIdFromCollection = async (collectionName, id) => {
     } = err;
 
     return { data: { statusCode, description }, loaded: false };
-  }
-};
-
-const getProgramsWithSetData = async (collectionName, id) => {
-  console.log(collectionName, id);
-  try {
-    const { data } = await client.query(
-      Get(Ref(Collection(collectionName), id))
-    );
-
-    console.log(data);
-  } catch (err) {
-    console.log(err);
   }
 };
 
@@ -79,14 +54,12 @@ const postBodyInCollection = async (collectionName, body) => {
 };
 
 const updateDocInCollection = async (collectionName, id, body) => {
-  const collection = Collection(collectionName);
-  const ref = Ref(collection, id);
-  const replaceDoc = Replace(ref, {
-    data: body,
-  });
-
   try {
-    const { data } = await client.query(replaceDoc);
+    const { data } = await client.query(
+      Replace(Ref(Collection(collectionName), id), {
+        data: body,
+      })
+    );
     return { data, loaded: true };
   } catch (err) {
     const {
@@ -148,6 +121,5 @@ module.exports = {
   postBodyInCollection,
   updateDocInCollection,
   getAllDocumentsInCollection,
-  getProgramsWithSetData,
   getMetaGroupByName: getIndexResultByInput,
 };

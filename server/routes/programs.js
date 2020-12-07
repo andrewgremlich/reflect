@@ -5,10 +5,14 @@ const {
   postBodyInCollection,
   updateDocInCollection,
   getAllDocumentsInCollection,
-  getProgramsWithSetData,
-} = require("../db/index.js");
+} = require("../db/generic.js");
+const {
+  createProgramWithSetRefIds,
+  getProgramWithSets,
+  updateProgramWithSetRefIds,
+} = require("../db/programs.js");
 const { matchKeys } = require("../utils/index.js");
-const { program: programSchema, program } = require("../model/index.js");
+const { program: programSchema } = require("../model/index.js");
 
 const programRouter = express.Router();
 const COLLECTION_NAME = "program";
@@ -21,13 +25,12 @@ programRouter.post("/create", async (req, res) => {
   const keysMatch = matchKeys(programSchema, req.body);
 
   if (keysMatch) {
-    const { loaded, data } = await postBodyInCollection(
-      COLLECTION_NAME,
-      req.body
-    );
+    const { data, loaded } = await createProgramWithSetRefIds(req.body);
 
     if (loaded) {
-      res.status(200).send({ message: "program created", success: true });
+      res
+        .status(200)
+        .send({ message: `${req.body.name} program created`, success: true });
     } else if (!loaded) {
       res.status(data.statusCode).send(data.description);
     }
@@ -45,12 +48,14 @@ programRouter.get("/all", async (req, res) => {
   const fetchedPrograms = await getAllDocumentsInCollection(programs);
   const fetchedSets = await getAllDocumentsInCollection(sets);
 
-  const programsWithSetsTranslated = fetchedPrograms.data.map((program) => ({
-    ...program,
-    sets: { ...program }.sets.map((id) =>
-      fetchedSets.data.find((set) => set.id === id)
-    ),
-  }));
+  const programsWithSetsTranslated = fetchedPrograms.data.map(
+    (programData) => ({
+      ...programData,
+      sets: { ...programData }.sets.map((id) =>
+        fetchedSets.data.find((set) => set.id === id)
+      ),
+    })
+  );
 
   if (fetchedPrograms.loaded) {
     res.status(200).send(programsWithSetsTranslated);
@@ -63,17 +68,14 @@ programRouter.get("/all", async (req, res) => {
 
 programRouter.get("/:id", async (req, res) => {
   const { id } = req.params;
-  const programs = "all_programs";
 
-  await getProgramsWithSetData(COLLECTION_NAME, id);
+  const { data, loaded } = await getProgramWithSets(id);
 
-  res.status(200).send("HELLO!!");
-
-  // if (loaded) {
-  //   res.status(200).send(data);
-  // } else if (!loaded) {
-  //   res.status(data.statusCode).send(data.description);
-  // }
+  if (loaded) {
+    res.status(200).send(data);
+  } else if (!loaded) {
+    res.status(data.statusCode).send(data.description);
+  }
 });
 
 programRouter.put("/:id", async (req, res) => {
@@ -82,14 +84,12 @@ programRouter.put("/:id", async (req, res) => {
   let keysMatch = matchKeys(programSchema, req.body);
 
   if (keysMatch) {
-    const { data, loaded } = await updateDocInCollection(
-      COLLECTION_NAME,
-      id,
-      req.body
-    );
+    const { data, loaded } = await updateProgramWithSetRefIds(id, req.body);
 
     if (loaded) {
-      res.status(200).send({ message: "program updated" });
+      res
+        .status(200)
+        .send({ message: `${req.body.name} program updated`, success: true });
     } else if (!loaded) {
       res.status(data.statusCode).send(data.description);
     }

@@ -6,7 +6,7 @@ const {
   updateDocInCollection,
   getAllDocumentsInCollection,
   getMetaGroupByName,
-} = require("../db/index.js");
+} = require("../db/generic.js");
 const { matchKeys } = require("../utils/index.js");
 const { exercise: exerciseSchema } = require("../model/index.js");
 
