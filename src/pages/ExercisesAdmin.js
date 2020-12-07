@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Nav } from "../features/Nav";
 import { Administration } from "../features/Administration";
 import {
   switchEdit,
@@ -27,7 +26,7 @@ import { ExerciseForm } from "../components/ExerciseForm";
 import { SingleSelect } from "../components/Form";
 import { ExercisesTableView } from "../components/ExercisesTableView";
 
-export const Exercises = () => {
+export const ExercisesAdmin = () => {
   const dispatch = useDispatch();
 
   const allExercises = useSelector(selectAllExercises);
@@ -58,8 +57,7 @@ export const Exercises = () => {
   }, [dispatch, sortByExerciseGroup]);
 
   return (
-    <div>
-      <Nav />
+    <Fragment>
       <Administration
         name="Exercise"
         create={() => dispatch(createExercise(inputValue))}
@@ -103,6 +101,6 @@ export const Exercises = () => {
           dispatch(switchEdit());
         }}
       />
-    </div>
+    </Fragment>
   );
 };

@@ -21,9 +21,6 @@ Content-Type: application/json
 GET {{PROGRAM}}/283641128203321869 HTTP/1.1
 
 ###
-GET {{PROGRAM}}/withSetData/283641128203321869 HTTP/1.1
-
-###
 GET {{PROGRAM}}/all HTTP/1.1
 
 ###

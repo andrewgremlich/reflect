@@ -1,8 +1,8 @@
 export * from "./Home";
 export * from "./Admin";
 
-export * from "./Exercises";
-export * from "./Programs";
-export * from "./ExerciseSets";
-export * from "./SetView";
-export * from "./ProgramHome";
+export * from "./ExercisesAdmin";
+export * from "./ProgramsAdmin";
+export * from "./SetsAdmin";
+export * from "./Sets";
+export * from "./Program";

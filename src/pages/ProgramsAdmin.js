@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Nav } from "../features/Nav";
 import { Administration } from "../features/Administration";
 import { switchEdit } from "../features/Administration/Administration.slice";
 import {
@@ -20,7 +19,7 @@ import {
 import { ProgramsForm } from "../components/ProgramsForm";
 import { ProgramsTableView } from "../components/ProgramsTableView";
 
-export const Programs = () => {
+export const ProgramsAdmin = () => {
   const dispatch = useDispatch();
 
   const allPrograms = useSelector(selectAllPrograms);
@@ -44,8 +43,7 @@ export const Programs = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <Nav />
+    <Fragment>
       <Administration
         {...{
           name: "Program",
@@ -66,6 +64,6 @@ export const Programs = () => {
           dispatch(switchEdit());
         }}
       />
-    </div>
+    </Fragment>
   );
 };

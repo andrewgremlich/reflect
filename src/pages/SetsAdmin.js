@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Nav } from "../features/Nav";
 import { Administration } from "../features/Administration";
 import {
   switchEdit,
@@ -17,10 +16,10 @@ import {
   selectEditExerciseSet,
 } from "../features/ExerciseSetsTable/ExerciseSetsTable.slice";
 
-import { ExerciseSetsForm } from "../components/ExerciseSetsForm";
-import { ExerciseSetsTableView } from "../components/ExerciseSetsTableView";
+import { ExerciseSetsForm } from "../components/SetsForm";
+import { ExerciseSetsTableView } from "../components/SetsTableView";
 
-export const ExerciseSets = () => {
+export const SetsAdmin = () => {
   const dispatch = useDispatch();
 
   const allExerciseSets = useSelector(selectAllExerciseSets);
@@ -43,8 +42,7 @@ export const ExerciseSets = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <Nav />
+    <Fragment>
       <Administration
         {...{
           name: "Exercise Set",
@@ -74,6 +72,6 @@ export const ExerciseSets = () => {
           },
         }}
       />
-    </div>
+    </Fragment>
   );
 };

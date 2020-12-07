@@ -6,8 +6,17 @@ import { BrowserRouter, Route } from "react-router-dom";
 import store from "./app/store";
 
 import { PrivateRoute } from "./features/PrivateRoute";
+import { Nav } from "./features/Nav";
 
-import { Home, Admin, Exercises, Programs, ExerciseSets, SetView, ProgramHome } from "./pages";
+import {
+  Home,
+  Program,
+  Sets,
+  Admin,
+  ExercisesAdmin,
+  SetsAdmin,
+  ProgramsAdmin,
+} from "./pages";
 
 import * as serviceWorker from "./serviceWorker";
 import "./index.css";
@@ -16,17 +25,18 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
+        <Nav />
         <Route exact path="/" component={Home} />
-        <Route exact path="/program/:id" component={ProgramHome} />
-        <Route exact path="/set/:id" component={SetView} />
+        <Route exact path="/program/:id" component={Program} />
+        <Route exact path="/set/:id" component={Sets} />
         <PrivateRoute exact path="/admin" component={Admin} />
-        <PrivateRoute exact path="/admin/programs" component={Programs} />
         <PrivateRoute
           exact
-          path="/admin/exerciseSets"
-          component={ExerciseSets}
+          path="/admin/exercises"
+          component={ExercisesAdmin}
         />
-        <PrivateRoute exact path="/admin/exercises" component={Exercises} />
+        <PrivateRoute exact path="/admin/sets" component={SetsAdmin} />
+        <PrivateRoute exact path="/admin/programs" component={ProgramsAdmin} />
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,

@@ -47,6 +47,15 @@ const getDocByIdFromCollection = async (collectionName, id) => {
 
 const getProgramsWithSetData = async (collectionName, id) => {
   console.log(collectionName, id);
+  try {
+    const { data } = await client.query(
+      Get(Ref(Collection(collectionName), id))
+    );
+
+    console.log(data);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const postBodyInCollection = async (collectionName, body) => {

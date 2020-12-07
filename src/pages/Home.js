@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Nav } from "../features/Nav";
 import { ProgramSelector } from "../components/ProgramSelector";
 
 import {
@@ -19,12 +18,11 @@ export const Home = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <Nav />
+    <Fragment>
       <h1>Home Page.</h1>
       {allPrograms.map(({ name, description, id }) => (
         <ProgramSelector key={id} {...{ setId: id, name, description }} />
       ))}
-    </div>
+    </Fragment>
   );
 };

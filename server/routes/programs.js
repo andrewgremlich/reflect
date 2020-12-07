@@ -63,22 +63,17 @@ programRouter.get("/all", async (req, res) => {
 
 programRouter.get("/:id", async (req, res) => {
   const { id } = req.params;
-
-  const { loaded, data } = await getDocByIdFromCollection(COLLECTION_NAME, id);
-
-  if (loaded) {
-    res.status(200).send(data);
-  } else if (!loaded) {
-    res.status(data.statusCode).send(data.description);
-  }
-});
-
-programRouter.get("/withSetData/:id", async (req, res) => {
-  const { id } = req.params;
+  const programs = "all_programs";
 
   await getProgramsWithSetData(COLLECTION_NAME, id);
 
   res.status(200).send("HELLO!!");
+
+  // if (loaded) {
+  //   res.status(200).send(data);
+  // } else if (!loaded) {
+  //   res.status(data.statusCode).send(data.description);
+  // }
 });
 
 programRouter.put("/:id", async (req, res) => {

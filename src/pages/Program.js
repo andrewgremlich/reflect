@@ -1,14 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Nav } from "../features/Nav";
 import {
   getProgram,
   selectAllPrograms,
 } from "../features/ProgramsTable/ProgramsTable.slice";
 
-export const ProgramHome = () => {
+import { SetsViewer } from "../components/SetsViewer";
+
+export const Program = () => {
   const { id: programId } = useParams();
 
   const dispatch = useDispatch();
@@ -22,9 +23,13 @@ export const ProgramHome = () => {
   console.log(programs);
 
   return (
-    <div>
-      <Nav />
-      <h3>Program Home</h3>
-    </div>
+    <Fragment>
+      <h1>Program Home</h1>
+      {/* {programs
+        .filter((program) => program.id === programId)
+        .map((program) => (
+          <SetsViewer />
+        ))} */}
+    </Fragment>
   );
 };
