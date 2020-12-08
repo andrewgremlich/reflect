@@ -2,14 +2,13 @@ const express = require("express");
 
 const {
   getDocByIdFromCollection,
-  postBodyInCollection,
-  updateDocInCollection,
   getAllDocumentsInCollection,
 } = require("../db/generic.js");
 const {
   createProgramWithSetRefIds,
   getProgramWithSets,
   updateProgramWithSetRefIds,
+  getProgramsWithSets,
 } = require("../db/programs.js");
 const { matchKeys } = require("../utils/index.js");
 const { program: programSchema } = require("../model/index.js");
@@ -31,7 +30,7 @@ programRouter.post("/create", async (req, res) => {
       res
         .status(200)
         .send({ message: `${req.body.name} program created`, success: true });
-    } else if (!loaded) {
+    } else {
       res.status(data.statusCode).send(data.description);
     }
   } else {
@@ -42,27 +41,12 @@ programRouter.post("/create", async (req, res) => {
 });
 
 programRouter.get("/all", async (req, res) => {
-  const programs = "all_programs";
-  const sets = "all_exercise_sets";
+  const { data, loaded } = await getProgramsWithSets();
 
-  const fetchedPrograms = await getAllDocumentsInCollection(programs);
-  const fetchedSets = await getAllDocumentsInCollection(sets);
-
-  const programsWithSetsTranslated = fetchedPrograms.data.map(
-    (programData) => ({
-      ...programData,
-      sets: { ...programData }.sets.map((id) =>
-        fetchedSets.data.find((set) => set.id === id)
-      ),
-    })
-  );
-
-  if (fetchedPrograms.loaded) {
-    res.status(200).send(programsWithSetsTranslated);
+  if (loaded) {
+    res.status(200).send(data);
   } else {
-    res
-      .status(fetchedPrograms.data.statusCode)
-      .send(fetchedPrograms.data.description);
+    res.status(400).send({ message: data.description });
   }
 });
 
@@ -73,8 +57,8 @@ programRouter.get("/:id", async (req, res) => {
 
   if (loaded) {
     res.status(200).send(data);
-  } else if (!loaded) {
-    res.status(data.statusCode).send(data.description);
+  } else {
+    res.status(400).send({ message: data.description });
   }
 });
 
@@ -90,7 +74,7 @@ programRouter.put("/:id", async (req, res) => {
       res
         .status(200)
         .send({ message: `${req.body.name} program updated`, success: true });
-    } else if (!loaded) {
+    } else {
       res.status(data.statusCode).send(data.description);
     }
   } else {

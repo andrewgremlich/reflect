@@ -27,7 +27,7 @@ exerciseSetsRouter.post("/create", async (req, res) => {
 
     if (loaded) {
       res.status(200).send({ message: "set created" });
-    } else if (!loaded) {
+    } else {
       res.status(data.statusCode).send(data.description);
     }
   } else {
@@ -54,7 +54,7 @@ exerciseSetsRouter.get("/:id", async (req, res) => {
 
   if (loaded) {
     res.status(200).send(data);
-  } else if (!loaded) {
+  } else {
     res.status(data.statusCode).send(data.description);
   }
 });
@@ -73,7 +73,7 @@ exerciseSetsRouter.put("/:id", async (req, res) => {
 
     if (loaded) {
       res.status(200).send({ message: "set updated" });
-    } else if (!loaded) {
+    } else {
       res.status(data.statusCode).send(data.description);
     }
   } else {

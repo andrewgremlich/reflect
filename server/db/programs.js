@@ -1,6 +1,6 @@
 const faunadb = require("faunadb");
 const { sets } = require("../model/index.js");
-const { client } = require("./util.js");
+const { client, paginateMatchIndex, extractData } = require("./util.js");
 
 const {
   Get,
@@ -16,7 +16,9 @@ const {
 } = faunadb.query;
 
 const PROGRAM_NAME = "program";
+const PROGRAM_INDEX = "all_programs";
 const SETS_NAME = "exerciseSets";
+const SETS_PROPERTY = "sets";
 
 const linkSetIdsToRefs = (data) => {
   const dataToCreate = {
@@ -27,9 +29,58 @@ const linkSetIdsToRefs = (data) => {
   return dataToCreate;
 };
 
-const getProgramWithSets = async (id) => {
-  const setsProperty = "sets";
+const getProgramsWithSets = async () => {
+  const index = paginateMatchIndex(PROGRAM_INDEX);
 
+  try {
+    const { data } = await client.query(
+      Map(
+        index,
+        Lambda(
+          "p",
+          Let(
+            {
+              programDoc: Get(Var("p")),
+            },
+            {
+              program: Var("programDoc"),
+              sets: Map(
+                Select(["data", "sets"], Var("programDoc")),
+                Lambda("sets", Get(Var("sets")))
+              ),
+            }
+          )
+        )
+      )
+    );
+
+    const reducedProgramsResp = data.map(
+      ({
+        program: {
+          ref: { id: programId },
+          data: { name: programName, description: programDescription },
+        },
+        sets: setsData,
+      }) => ({
+        id: programId,
+        name: programName,
+        description: programDescription,
+        sets: setsData.map(({ data: setData }) => setData),
+      })
+    );
+
+    return { data: reducedProgramsResp, loaded: true };
+  } catch (err) {
+    const {
+      description,
+      requestResult: { statusCode },
+    } = err;
+
+    return { data: { statusCode, description }, loaded: false };
+  }
+};
+
+const getProgramWithSets = async (id) => {
   try {
     const resp = await client.query(
       Let(
@@ -39,8 +90,8 @@ const getProgramWithSets = async (id) => {
         {
           program: Var("programDoc"),
           sets: Map(
-            Select(["data", setsProperty], Var("programDoc")),
-            Lambda(setsProperty, Get(Var(setsProperty)))
+            Select(["data", SETS_PROPERTY], Var("programDoc")),
+            Lambda(SETS_PROPERTY, Get(Var(SETS_PROPERTY)))
           ),
         }
       )
@@ -101,6 +152,7 @@ const updateProgramWithSetRefIds = async (id, data) => {
 };
 
 module.exports = {
+  getProgramsWithSets,
   getProgramWithSets,
   createProgramWithSetRefIds,
   updateProgramWithSetRefIds,

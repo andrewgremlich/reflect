@@ -28,23 +28,11 @@ exercisesRouter.post("/create", async (req, res) => {
 
     if (loaded) {
       res.status(200).send({ message: "exercise created" });
-    } else if (!loaded) {
+    } else {
       res.status(data.statusCode).send(data.description);
     }
   } else {
     res.status(400).send({ message: "Keys don't match for exercise post" });
-  }
-});
-
-exercisesRouter.get("/all", async (req, res) => {
-  const indexName = "all_exercises";
-
-  const { loaded, data } = await getAllDocumentsInCollection(indexName);
-
-  if (loaded) {
-    res.status(200).send(data);
-  } else {
-    res.status(data.statusCode).send(data.description);
   }
 });
 
@@ -74,7 +62,7 @@ exercisesRouter.get("/:id", async (req, res) => {
 
   if (loaded) {
     res.status(200).send(data);
-  } else if (!loaded) {
+  } else {
     res.status(data.statusCode).send(data.description);
   }
 });
@@ -93,7 +81,7 @@ exercisesRouter.put("/:id", async (req, res) => {
 
     if (loaded) {
       res.status(200).send({ message: "exercise updated" });
-    } else if (!loaded) {
+    } else {
       res.status(data.statusCode).send(data.description);
     }
   } else {

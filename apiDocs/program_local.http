@@ -1,4 +1,4 @@
-@ROOT = https://we-are-reflect.netlify.app/.netlify/functions/index
+@ROOT = http://localhost:8888/.netlify/functions/index
 @PROGRAM = {{ROOT}}/programs
 
 ###
@@ -12,23 +12,23 @@ POST {{PROGRAM}}/create HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "Spartan",
-  "description": "Build yourself to become a spartan!",
-  "sets": []
+  "name": "Athenian",
+  "description": "",
+  "sets": ["283642537569157644"]
 }
 
 ###
-GET {{PROGRAM}}/273664359806272013 HTTP/1.1
+GET {{PROGRAM}}/284365133684146701 HTTP/1.1
 
 ###
 GET {{PROGRAM}}/all HTTP/1.1
 
 ###
-PUT {{PROGRAM}}/273664792992940552 HTTP/1.1
+PUT {{PROGRAM}}/284288620916900365 HTTP/1.1
 Content-Type: application/json
 
 {
   "name": "Spartan",
   "description": "Build yourself to become a spartan!",
-  "sets": ["Some exercise group", "and another"]
+  "sets": ["283639594736419336"]
 }
