@@ -29,6 +29,11 @@ const linkSetIdsToRefs = (data) => {
   return dataToCreate;
 };
 
+const extractSet = ({ data, ref: { id: setId } }) => ({
+  ...data,
+  id: setId,
+});
+
 const getProgramsWithSets = async () => {
   const index = paginateMatchIndex(PROGRAM_INDEX);
 
@@ -65,7 +70,7 @@ const getProgramsWithSets = async () => {
         id: programId,
         name: programName,
         description: programDescription,
-        sets: setsData.map(({ data: setData }) => setData),
+        sets: setsData.map(extractSet),
       })
     );
 
@@ -99,7 +104,7 @@ const getProgramWithSets = async (id) => {
 
     const cleanResp = {
       ...resp.program.data,
-      sets: resp.sets.map(({ data }) => data),
+      sets: resp.sets.map(extractSet),
     };
 
     return { data: cleanResp, loaded: true };

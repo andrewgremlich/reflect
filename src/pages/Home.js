@@ -1,12 +1,12 @@
 import React, { useEffect, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { ProgramSelector } from "../components/ProgramSelector";
+import { Link } from "react-router-dom";
 
 import {
   getPrograms,
   selectAllPrograms,
 } from "../features/ProgramsTable/ProgramsTable.slice";
+import { setSelectedProgram } from "../features/Viewer/Viewer.slice";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -20,8 +20,16 @@ export const Home = () => {
   return (
     <Fragment>
       <h1>Home Page.</h1>
-      {allPrograms.map(({ name, description, id }) => (
-        <ProgramSelector key={id} {...{ setId: id, name, description }} />
+      {allPrograms.map(({ name, description, id, sets }) => (
+        <div
+          onClick={() =>
+            dispatch(setSelectedProgram({ name, description, id, sets }))
+          }
+          key={id}
+        >
+          <Link to={`/program/${id}`}>{name}</Link>
+          {description && <p>{description}</p>}
+        </div>
       ))}
     </Fragment>
   );

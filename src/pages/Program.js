@@ -3,40 +3,37 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
+  getSelectedProgram,
   getProgram,
-  selectAllPrograms,
-} from "../features/ProgramsTable/ProgramsTable.slice";
+} from "../features/Viewer/Viewer.slice";
 
-import { SetsViewer } from "../components/SetsViewer";
+const setsDisplayer = (set) => (
+  <Fragment key={set.id}>
+    <h3>{set.name}</h3>
+    <p>{set.description}</p>
+    {set.exerciseGroups.map((group, index) => (
+      <p key={index}>{group}</p>
+    ))}
+  </Fragment>
+);
 
 export const Program = () => {
   const { id: programId } = useParams();
 
   const dispatch = useDispatch();
 
-  const programs = useSelector(selectAllPrograms);
+  const selectedProgram = useSelector(getSelectedProgram);
 
   useEffect(() => {
-    if (programs) {
+    if (!selectedProgram) {
       dispatch(getProgram(programId));
     }
-  }, [dispatch, programId]);
-
-  console.log(
-    programs.filter((program) => {
-      console.log(program);
-      return true;
-    })
-  );
+  }, [dispatch, programId, selectedProgram]);
 
   return (
     <Fragment>
       <h1>Program Home</h1>
-      {/* {programs
-        .filter((program) => program.id === programId)
-        .map((program) => (
-          <SetsViewer />
-        ))} */}
+      {selectedProgram && selectedProgram.sets.map(setsDisplayer)}
     </Fragment>
   );
 };
