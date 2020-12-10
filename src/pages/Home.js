@@ -14,8 +14,10 @@ export const Home = () => {
   const allPrograms = useSelector(selectAllPrograms);
 
   useEffect(() => {
-    dispatch(getPrograms());
-  }, [dispatch]);
+    if (allPrograms.length === 0) {
+      dispatch(getPrograms());
+    }
+  }, [dispatch, allPrograms]);
 
   return (
     <Fragment>

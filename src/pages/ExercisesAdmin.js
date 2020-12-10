@@ -48,13 +48,18 @@ export const ExercisesAdmin = () => {
   );
 
   useEffect(() => {
-    dispatch(getExerciseSets());
-    dispatch(getExerciseGroup());
+    if (allExerciseSets.length === 0) {
+      dispatch(getExerciseSets());
+    }
+
+    if (!exerciseGroups) {
+      dispatch(getExerciseGroup());
+    }
 
     if (sortByExerciseGroup) {
       dispatch(getExercises(sortByExerciseGroup));
     }
-  }, [dispatch, sortByExerciseGroup]);
+  }, [dispatch, sortByExerciseGroup, allExerciseSets, exerciseGroups]);
 
   return (
     <Fragment>

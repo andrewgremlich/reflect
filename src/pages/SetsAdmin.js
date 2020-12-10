@@ -37,9 +37,14 @@ export const SetsAdmin = () => {
   };
 
   useEffect(() => {
-    dispatch(getExerciseSets());
-    dispatch(getExerciseGroup());
-  }, [dispatch]);
+    if (allExerciseSets.length === 0) {
+      dispatch(getExerciseSets());
+    }
+
+    if (!allExerciseGroups) {
+      dispatch(getExerciseGroup());
+    }
+  }, [dispatch, allExerciseSets, allExerciseGroups]);
 
   return (
     <Fragment>

@@ -38,9 +38,14 @@ export const ProgramsAdmin = () => {
   };
 
   useEffect(() => {
-    dispatch(getPrograms());
-    dispatch(getExerciseSets());
-  }, [dispatch]);
+    if (allPrograms.length === 0) {
+      dispatch(getPrograms());
+    }
+
+    if (allExerciseSets.length === 0) {
+      dispatch(getExerciseSets());
+    }
+  }, [dispatch, allPrograms, allExerciseSets]);
 
   return (
     <Fragment>
