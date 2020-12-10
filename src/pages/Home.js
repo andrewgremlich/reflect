@@ -22,7 +22,7 @@ export const Home = () => {
   return (
     <Fragment>
       <h1>Home Page.</h1>
-      {allPrograms.map(({ name, description, id, sets }) => (
+      {allPrograms?.map(({ name, description, id, sets }) => (
         <div
           onClick={() =>
             dispatch(setSelectedProgram({ name, description, id, sets }))

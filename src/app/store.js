@@ -10,7 +10,13 @@ import programsTableReducer from "../features/ProgramsTable/ProgramsTable.slice"
 
 import viewerSlice from "../features/Viewer/Viewer.slice";
 
-export default configureStore({
+const APP_LOCAL_STORAGE_KEY = "previousAppState";
+
+const parsedPreviousAppState =
+  localStorage[APP_LOCAL_STORAGE_KEY] &&
+  JSON.parse(localStorage[APP_LOCAL_STORAGE_KEY]);
+
+const storeConfig = {
   reducer: {
     protectedRoute: privateRouteReducer,
     navigation: navReducer,
@@ -20,4 +26,14 @@ export default configureStore({
     exerciseSetsTable: exerciseSetsTableReducer,
     viewer: viewerSlice,
   },
+  preloadedState: parsedPreviousAppState,
+};
+
+const store = configureStore(storeConfig);
+
+window.addEventListener("beforeunload", (evt) => {
+  const previousAppState = store.getState();
+  localStorage[APP_LOCAL_STORAGE_KEY] = JSON.stringify(previousAppState);
 });
+
+export default store;

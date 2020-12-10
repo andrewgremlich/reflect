@@ -4,5 +4,5 @@ export * from "./Admin";
 export * from "./ExercisesAdmin";
 export * from "./ProgramsAdmin";
 export * from "./SetsAdmin";
-export * from "./Sets";
+export * from "./Set";
 export * from "./Program";
