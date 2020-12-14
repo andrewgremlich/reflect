@@ -16,7 +16,7 @@ export const Set = () => {
   const selectedSet = useSelector(getSelectedSet);
 
   useEffect(() => {
-    if (!selectedSet) {
+    if (!selectedSet || setId !== selectedSet.id) {
       dispatch(getSet(setId));
     }
   }, [dispatch, selectedSet, setId]);

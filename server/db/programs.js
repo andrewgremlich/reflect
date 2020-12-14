@@ -1,6 +1,6 @@
 const faunadb = require("faunadb");
 const { sets } = require("../model/index.js");
-const { client, paginateMatchIndex, extractData } = require("./util.js");
+const { client, paginateMatchIndex } = require("./util.js");
 
 const {
   Get,
@@ -104,6 +104,7 @@ const getProgramWithSets = async (id) => {
 
     const cleanResp = {
       ...resp.program.data,
+      id: resp.program.ref.id,
       sets: resp.sets.map(extractSet),
     };
 

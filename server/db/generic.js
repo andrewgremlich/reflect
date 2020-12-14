@@ -21,8 +21,8 @@ const getDocByIdFromCollection = async (collectionName, id) => {
   const getRef = Get(ref);
 
   try {
-    const { data } = await client.query(getRef);
-    return { data, loaded: true };
+    const resp = await client.query(getRef);
+    return { data: { ...resp.data, id: resp.ref.id }, loaded: true };
   } catch (err) {
     const {
       description,

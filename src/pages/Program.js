@@ -16,7 +16,7 @@ export const Program = () => {
   const selectedProgram = useSelector(getSelectedProgram);
 
   useEffect(() => {
-    if (!selectedProgram) {
+    if (!selectedProgram || programId !== selectedProgram.id) {
       dispatch(getProgram(programId));
     }
   }, [dispatch, programId, selectedProgram]);
