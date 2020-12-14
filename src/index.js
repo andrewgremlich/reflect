@@ -12,6 +12,7 @@ import {
   Home,
   Program,
   Set,
+  Group,
   Admin,
   ExercisesAdmin,
   SetsAdmin,
@@ -29,6 +30,7 @@ ReactDOM.render(
         <Route exact path="/" component={Home} />
         <Route exact path="/program/:id" component={Program} />
         <Route exact path="/set/:id" component={Set} />
+        <Route exact path="/group" component={Group} />
         <PrivateRoute exact path="/admin" component={Admin} />
         <PrivateRoute
           exact

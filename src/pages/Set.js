@@ -25,13 +25,13 @@ export const Set = () => {
     <Fragment>
       <h1>{selectedSet?.name}</h1>
       {selectedSet &&
-        selectedSet.exerciseGroups.map((group, index) => {
-          return (
-            <p onClick={() => dispatch(getGroup(group))} key={index}>
-              <p>{group}</p>
-            </p>
-          );
-        })}
+        selectedSet.exerciseGroups.map((group, index) => (
+          <p onClick={() => dispatch(getGroup(group))} key={index}>
+            <Link to={`/group?exerciseGroupName=${encodeURI(group)}`}>
+              {group}
+            </Link>
+          </p>
+        ))}
     </Fragment>
   );
 };
