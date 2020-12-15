@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 export const exerciseSetsTableSlice = createSlice({
   name: "exerciseSetsTable",
   initialState: {
-    allExerciseSets: [],
+    allExerciseSets: undefined,
     editExerciseSet: undefined,
-    selectedGroup: "",
+    selectedGroup: undefined,
   },
   reducers: {
     setAllExerciseSets: (state, { payload }) => {

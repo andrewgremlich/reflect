@@ -6,3 +6,6 @@ GET {{ROOT}}/mainRouterTest HTTP/1.1
 
 ###
 GET {{GROUP}}/test HTTP/1.1
+
+###
+GET {{GROUP}}/exercise-groups HTTP/1.1

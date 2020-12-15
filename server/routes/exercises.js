@@ -42,15 +42,17 @@ exercisesRouter.get("/group", async (req, res) => {
   if (Array.isArray(exerciseGroupName)) {
     res.status(200).send("Exercise group array");
   } else {
-    const { loaded, data } = await getMetaGroupByName(
+    const { loaded, data, id } = await getMetaGroupByName(
       exerciseGroupName,
       "index_exercises_by_exercise_group"
     );
 
     if (loaded) {
-      res.status(200).send(data);
+      res.status(200).send({ data, id });
     } else {
-      res.status(data.statusCode).send(data.description);
+      res
+        .status(data.statusCode)
+        .send({ message: data.description, loaded: false });
     }
   }
 });

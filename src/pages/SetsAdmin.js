@@ -37,7 +37,7 @@ export const SetsAdmin = () => {
   };
 
   useEffect(() => {
-    if (allExerciseSets.length === 0) {
+    if (!allExerciseSets) {
       dispatch(getExerciseSets());
     }
 
@@ -60,7 +60,11 @@ export const SetsAdmin = () => {
         }}
       >
         <ExerciseSetsForm
-          {...{ inputValue, setInputValue, exerciseGroups: allExerciseGroups }}
+          {...{
+            inputValue,
+            setInputValue,
+            exerciseGroups: allExerciseGroups?.data,
+          }}
         />
       </Administration>
       <ExerciseSetsTableView
@@ -70,7 +74,7 @@ export const SetsAdmin = () => {
             dispatch(
               setEditExerciseSet({
                 ...exerciseSet,
-                exerciseGroups: allExerciseGroups,
+                exerciseGroups: allExerciseGroups?.data,
               })
             );
             dispatch(switchEdit());

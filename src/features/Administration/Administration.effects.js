@@ -9,6 +9,8 @@ const getMetaGroup = (groupName) => {
     jsonFetch(`${META_ROOT_API}/${groupName}`).then((metaGroup) => {
       if (metaGroup.loaded) {
         resolve(metaGroup.data[0]);
+      } else {
+        reject(`could not load meta group ${groupName}`);
       }
     });
   });

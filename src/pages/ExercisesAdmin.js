@@ -34,7 +34,9 @@ export const ExercisesAdmin = () => {
   const exerciseGroups = useSelector(selectExerciseGroups);
   const allExerciseSets = useSelector(selectAllExerciseSets);
 
-  const [sortByExerciseGroup, setSortByExerciseGroup] = useState("");
+  const [sortByExerciseGroup, setSortByExerciseGroup] = useState(
+    exerciseGroups?.data[0] || ""
+  );
   const [inputValue, setInputValue] = useState({
     name: "",
     description: "",
@@ -43,12 +45,12 @@ export const ExercisesAdmin = () => {
     exerciseGroup: "",
   });
 
-  const filteredGroups = allExercises.filter(
+  const filteredGroups = allExercises.data?.filter(
     (exercise) => exercise.exerciseGroup === sortByExerciseGroup
   );
 
   useEffect(() => {
-    if (allExerciseSets.length === 0) {
+    if (!allExerciseSets) {
       dispatch(getExerciseSets());
     }
 
@@ -78,21 +80,21 @@ export const ExercisesAdmin = () => {
       >
         <ExerciseForm
           {...{
-            allExerciseSets,
+            allExerciseSets: allExerciseSets?.data,
             inputValue,
             setInputValue,
-            exerciseGroups,
+            exerciseGroups: exerciseGroups?.data,
           }}
         />
       </Administration>
       {exerciseGroups && (
         <SingleSelect
-          value={exerciseGroups[0]}
+          value={exerciseGroups.data[0]}
           changeValue={({ target }) => setSortByExerciseGroup(target.value)}
           origValue="Filter Exercise Group"
         >
           <option value=""></option>
-          {exerciseGroups.map((group, index) => (
+          {exerciseGroups.data.map((group, index) => (
             <option key={index} value={group}>
               {group}
             </option>
@@ -100,7 +102,7 @@ export const ExercisesAdmin = () => {
         </SingleSelect>
       )}
       <ExercisesTableView
-        data={filteredGroups.length > 0 ? filteredGroups : allExercises}
+        data={filteredGroups}
         setEdit={(exercise) => {
           dispatch(setEditExercise(exercise));
           dispatch(switchEdit());

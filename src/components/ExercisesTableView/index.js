@@ -4,7 +4,7 @@ import { ExerciseTableRow } from "./ExerciseTableRow";
 
 import styles from "./ExercisesTableView.module.css";
 
-export const ExercisesTableView = ({ data, setEdit }) => (
+export const ExercisesTableView = ({ data = [], setEdit }) => (
   <div className={styles.table}>
     <p className={styles["table-header"]}>Name</p>
     <p className={styles["table-header"]}>Description</p>

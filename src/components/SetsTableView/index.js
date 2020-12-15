@@ -3,7 +3,7 @@ import classes from "classnames";
 
 import styles from "./ExerciseSetsTableView.module.css";
 
-export const ExerciseSetsTableView = ({ data, setEdit }) => (
+export const ExerciseSetsTableView = ({ data = [], setEdit }) => (
   <div className={styles.table}>
     <p className={styles["table-header"]}>Name</p>
     <p className={styles["table-header"]}>Description</p>

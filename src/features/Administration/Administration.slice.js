@@ -5,7 +5,7 @@ export const administrationSlice = createSlice({
   initialState: {
     edit: false,
     newItem: false,
-    exerciseGroups: {},
+    exerciseGroups: undefined,
   },
   reducers: {
     switchEdit: (state) => {
@@ -28,8 +28,9 @@ export const {
 
 export const selectEdit = (state) => state.administration.edit;
 export const selectNewItem = (state) => state.administration.newItem;
-export const selectExerciseGroups = (state) =>
-  state.administration.exerciseGroups.data;
+export const selectExerciseGroups = (state) => {
+  return state.administration.exerciseGroups;
+};
 
 export default administrationSlice.reducer;
 export * from "./Administration.effects";
