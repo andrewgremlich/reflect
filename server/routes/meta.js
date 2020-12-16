@@ -1,22 +1,37 @@
 const express = require("express");
 
 const { getMetaGroupByName } = require("../db/generic.js");
+const { successfulResponse } = require("../utils/index.js");
 const metaRouter = express.Router();
 
 const COLLECTION_NAME = "meta";
 
 metaRouter.get("/test", (req, res) => {
-  res.status(200).send({ message: "Meta router working" });
+  res.status(200).send(successfulResponse("Meta router working"));
 });
 
-metaRouter.get("/:name", async (req, res) => {
+metaRouter.get("/getGroup/:name", async (req, res) => {
   const { name } = req.params;
 
   const INDEX_NAME = "meta_index_by_name";
 
-  const dbResponse = await getMetaGroupByName(name, INDEX_NAME);
+  const { data, loaded } = await getMetaGroupByName(name, INDEX_NAME);
 
-  res.status(200).send(dbResponse);
+  if (loaded) {
+    const response = successfulResponse(
+      `loaded meta ${name}`,
+      {
+        makeMd5: false,
+        makeId: true,
+      },
+      { data }
+    );
+    res.status(200).send(response);
+  } else {
+    res
+      .status(400)
+      .send({ message: `could not load meta ${name}`, loaded: false });
+  }
 });
 
 module.exports = metaRouter;
