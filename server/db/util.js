@@ -11,6 +11,7 @@ const paginateMatchIndex = (INDEX_NAME) => {
 const extractData = (data) => {
   const mappedData = data.map((document) => ({
     ...document.data,
+    id: document.ref.value.id,
   }));
 
   return mappedData;

@@ -33,10 +33,14 @@ exercisesRouter.post("/create", async (req, res) => {
 
       res.status(200).send(response);
     } else {
-      res.status(data.statusCode).send(data.description);
+      res
+        .status(data.statusCode)
+        .send({ message: data.description, loaded: false });
     }
   } else {
-    res.status(400).send({ message: "Keys don't match for exercise post" });
+    res
+      .status(400)
+      .send({ message: "Keys don't match for exercise post", loaded: false });
   }
 });
 
@@ -57,7 +61,9 @@ exercisesRouter.get("/getExerciseById/:id", async (req, res) => {
 
     res.status(200).send(response);
   } else {
-    res.status(data.statusCode).send(data.description);
+    res
+      .status(data.statusCode)
+      .send({ message: data.description, loaded: false });
   }
 });
 
@@ -118,7 +124,9 @@ exercisesRouter.put("/updateExerciseById/:id", async (req, res) => {
     if (loaded) {
       res.status(200).send(response);
     } else {
-      res.status(data.statusCode).send(data.description);
+      res
+        .status(data.statusCode)
+        .send({ message: data.description, loaded: false });
     }
   } else {
     res.status(400).send({ message: "Keys don't match for exercise update" });
