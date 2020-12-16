@@ -1,6 +1,5 @@
 const faunadb = require("faunadb");
 const { extractData, client } = require("./util.js");
-const { v4: uuidv4 } = require("uuid");
 
 const {
   Get,
@@ -85,7 +84,6 @@ const getIndexResultByInput = async (input, indexName) => {
     return {
       data: extractData(data),
       loaded: true,
-      id: uuidv4(),
     };
   } catch (err) {
     const {

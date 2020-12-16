@@ -4,17 +4,16 @@ const {
   getDocByIdFromCollection,
   postBodyInCollection,
   updateDocInCollection,
-  getAllDocumentsInCollection,
   getMetaGroupByName,
 } = require("../db/generic.js");
-const { matchKeys } = require("../utils/index.js");
+const { matchKeys, successfulResponse } = require("../utils/index.js");
 const { exercise: exerciseSchema } = require("../model/index.js");
 
 const exercisesRouter = express.Router();
 const COLLECTION_NAME = "exercises";
 
 exercisesRouter.get("/test", (req, res) => {
-  res.status(200).send({ message: "Hello from exercises!" });
+  res.status(200).send(successfulResponse("hello from exercises!"));
 });
 
 exercisesRouter.post("/create", async (req, res) => {
@@ -27,7 +26,12 @@ exercisesRouter.post("/create", async (req, res) => {
     );
 
     if (loaded) {
-      res.status(200).send({ message: "exercise created" });
+      const response = successfulResponse("exercise created", {
+        makeMd5: true,
+        makeId: true,
+      });
+
+      res.status(200).send(response);
     } else {
       res.status(data.statusCode).send(data.description);
     }
@@ -36,19 +40,53 @@ exercisesRouter.post("/create", async (req, res) => {
   }
 });
 
+exercisesRouter.get("/getExerciseById/:id", async (req, res) => {
+  const { id } = req.params;
+
+  const { loaded, data } = await getDocByIdFromCollection(COLLECTION_NAME, id);
+
+  if (loaded) {
+    const response = successfulResponse(
+      "exercise Fetched!",
+      {
+        makeMd5: true,
+        makeId: true,
+      },
+      { data }
+    );
+
+    res.status(200).send(response);
+  } else {
+    res.status(data.statusCode).send(data.description);
+  }
+});
+
 exercisesRouter.get("/group", async (req, res) => {
   const { exerciseGroupName } = req.query;
 
   if (Array.isArray(exerciseGroupName)) {
-    res.status(200).send("Exercise group array");
+    res.status(200).send({
+      message: "Exercise group array is not supported. Try individually.",
+      loaded: false,
+    });
   } else {
-    const { loaded, data, id } = await getMetaGroupByName(
+    const { loaded, data } = await getMetaGroupByName(
       exerciseGroupName,
       "index_exercises_by_exercise_group"
     );
+    const response = successfulResponse(
+      "exercise group fetched",
+      {
+        makeMd5: true,
+        makeId: true,
+      },
+      {
+        data,
+      }
+    );
 
     if (loaded) {
-      res.status(200).send({ data, id });
+      res.status(200).send(response);
     } else {
       res
         .status(data.statusCode)
@@ -57,19 +95,7 @@ exercisesRouter.get("/group", async (req, res) => {
   }
 });
 
-exercisesRouter.get("/:id", async (req, res) => {
-  const { id } = req.params;
-
-  const { loaded, data } = await getDocByIdFromCollection(COLLECTION_NAME, id);
-
-  if (loaded) {
-    res.status(200).send(data);
-  } else {
-    res.status(data.statusCode).send(data.description);
-  }
-});
-
-exercisesRouter.put("/:id", async (req, res) => {
+exercisesRouter.put("/updateExerciseById/:id", async (req, res) => {
   const { id } = req.params;
 
   let keysMatch = matchKeys(exerciseSchema, req.body);
@@ -80,9 +106,17 @@ exercisesRouter.put("/:id", async (req, res) => {
       id,
       req.body
     );
+    const response = successfulResponse(
+      "exercise updated",
+      {
+        makeMd5: true,
+        makeId: true,
+      },
+      { data }
+    );
 
     if (loaded) {
-      res.status(200).send({ message: "exercise updated" });
+      res.status(200).send(response);
     } else {
       res.status(data.statusCode).send(data.description);
     }

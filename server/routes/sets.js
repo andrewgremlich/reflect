@@ -41,7 +41,7 @@ exerciseSetsRouter.get("/all", async (req, res) => {
   const fetchedSets = await getAllDocumentsInCollection(sets);
 
   if (fetchedSets.loaded) {
-    res.status(200).send(fetchedSets.data);
+    res.status(200).send({ data: fetchedSets.data, loaded: true });
   } else {
     res.status(fetchedSets.data.statusCode).send(fetchedSets.data.description);
   }

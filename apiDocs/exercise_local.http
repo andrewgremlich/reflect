@@ -20,7 +20,10 @@ Content-Type: application/json
 }
 
 ###
-GET {{EXERCISES}}/283639810434793992 HTTP/1.1
+GET {{EXERCISES}}/getExerciseById/283640056071062028 HTTP/1.1
+
+###
+GET {{EXERCISES}}/group HTTP/1.1
 
 ###
 GET {{EXERCISES}}/group?exerciseGroupName=vertical%20pull HTTP/1.1
@@ -29,12 +32,13 @@ GET {{EXERCISES}}/group?exerciseGroupName=vertical%20pull HTTP/1.1
 GET {{EXERCISES}}/group?exerciseGroupName=vertical%20pull&exerciseGroupName=horizontal%20push HTTP/1.1
 
 ###
-PUT {{EXERCISES}}/273577952522797580 HTTP/1.1
+PUT {{EXERCISES}}/updateExerciseById/283640056071062028 HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "Bar Deadlift",
-  "description": "An exercise to lift a weighted bar from standing position.",
-  "svgId": "bar-deadlift",
-  "difficulty": 1
+  "name": "Weighted pull up",
+  "description": "An exercise to help out the trap muscles",
+  "svgId": "",
+  "difficulty": 1,
+  "exerciseGroup": "vertical pull"
 }
