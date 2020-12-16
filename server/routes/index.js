@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { successfulResponse } = require("../utils/index.js");
+const { successful } = require("../utils/index.js");
 
 const exercisesRouter = require("./exercises.js");
 const programRouter = require("./programs.js");
@@ -10,7 +10,7 @@ const metaRouter = require("./meta.js");
 const appRouter = express.Router();
 
 appRouter.get("/mainRouterTest", (req, res) => {
-  res.status(200).send(successfulResponse("Hello from main router test."));
+  res.status(200).send(successful("Hello from main router test."));
 });
 
 appRouter.use("/exercises", exercisesRouter);

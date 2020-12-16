@@ -13,7 +13,9 @@ const matchKeys = (a, b) => {
   return keysMatch;
 };
 
-const successfulResponse = (message, options, additionalItems) => {
+const unsuccessful = (message) => ({ message, loaded: false });
+
+const successful = (message, options, additionalItems) => {
   let baseResponse = {
     message,
     loaded: true,
@@ -45,5 +47,6 @@ const successfulResponse = (message, options, additionalItems) => {
 
 module.exports = {
   matchKeys,
-  successfulResponse,
+  successful,
+  unsuccessful,
 };

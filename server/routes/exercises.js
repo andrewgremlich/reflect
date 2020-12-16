@@ -6,14 +6,14 @@ const {
   updateDocInCollection,
   getMetaGroupByName,
 } = require("../db/generic.js");
-const { matchKeys, successfulResponse } = require("../utils/index.js");
+const { matchKeys, successful, unsuccessful } = require("../utils/index.js");
 const { exercise: exerciseSchema } = require("../model/index.js");
 
 const exercisesRouter = express.Router();
 const COLLECTION_NAME = "exercises";
 
 exercisesRouter.get("/test", (req, res) => {
-  res.status(200).send(successfulResponse("hello from exercises!"));
+  res.status(200).send(successful("hello from exercises!"));
 });
 
 exercisesRouter.post("/create", async (req, res) => {
@@ -26,21 +26,17 @@ exercisesRouter.post("/create", async (req, res) => {
     );
 
     if (loaded) {
-      const response = successfulResponse("exercise created", {
+      const response = successful("exercise created", {
         makeMd5: true,
         makeId: true,
       });
 
       res.status(200).send(response);
     } else {
-      res
-        .status(data.statusCode)
-        .send({ message: data.description, loaded: false });
+      res.status(data.statusCode).send(unsuccessful(data.description));
     }
   } else {
-    res
-      .status(400)
-      .send({ message: "Keys don't match for exercise post", loaded: false });
+    res.status(400).send(unsuccessful("Keys don't match for exercise post"));
   }
 });
 
@@ -50,7 +46,7 @@ exercisesRouter.get("/getExerciseById/:id", async (req, res) => {
   const { loaded, data } = await getDocByIdFromCollection(COLLECTION_NAME, id);
 
   if (loaded) {
-    const response = successfulResponse(
+    const response = successful(
       "exercise Fetched!",
       {
         makeMd5: true,
@@ -61,9 +57,7 @@ exercisesRouter.get("/getExerciseById/:id", async (req, res) => {
 
     res.status(200).send(response);
   } else {
-    res
-      .status(data.statusCode)
-      .send({ message: data.description, loaded: false });
+    res.status(data.statusCode).send(unsuccessful(data.description));
   }
 });
 
@@ -80,7 +74,7 @@ exercisesRouter.get("/group", async (req, res) => {
       exerciseGroupName,
       "index_exercises_by_exercise_group"
     );
-    const response = successfulResponse(
+    const response = successful(
       "exercise group fetched",
       {
         makeMd5: true,
@@ -94,9 +88,7 @@ exercisesRouter.get("/group", async (req, res) => {
     if (loaded) {
       res.status(200).send(response);
     } else {
-      res
-        .status(data.statusCode)
-        .send({ message: data.description, loaded: false });
+      res.status(data.statusCode).send(unsuccessful(data.description));
     }
   }
 });
@@ -112,7 +104,7 @@ exercisesRouter.put("/updateExerciseById/:id", async (req, res) => {
       id,
       req.body
     );
-    const response = successfulResponse(
+    const response = successful(
       "exercise updated",
       {
         makeMd5: true,
@@ -124,12 +116,10 @@ exercisesRouter.put("/updateExerciseById/:id", async (req, res) => {
     if (loaded) {
       res.status(200).send(response);
     } else {
-      res
-        .status(data.statusCode)
-        .send({ message: data.description, loaded: false });
+      res.status(data.statusCode).send(unsuccessful(data.description));
     }
   } else {
-    res.status(400).send({ message: "Keys don't match for exercise update" });
+    res.status(400).send(unsuccessful("Keys don't match for exercise update"));
   }
 });
 

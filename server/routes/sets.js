@@ -6,14 +6,14 @@ const {
   updateDocInCollection,
   getAllDocumentsInCollection,
 } = require("../db/generic.js");
-const { matchKeys, successfulResponse } = require("../utils/index.js");
+const { matchKeys, successful } = require("../utils/index.js");
 const { sets: setsSchema } = require("../model/index.js");
 
 const exerciseSetsRouter = express.Router();
 const COLLECTION_NAME = "exerciseSets";
 
 exerciseSetsRouter.get("/test", (req, res) => {
-  res.status(200).send(successfulResponse("Hello from Exercise Sets!"));
+  res.status(200).send(successful("Hello from Exercise Sets!"));
 });
 
 exerciseSetsRouter.post("/create", async (req, res) => {
@@ -26,21 +26,17 @@ exerciseSetsRouter.post("/create", async (req, res) => {
     );
 
     if (loaded) {
-      const response = successfulResponse("set created", {
+      const response = successful("set created", {
         makeMd5: true,
         makeId: true,
       });
 
       res.status(200).send(response);
     } else {
-      res
-        .status(data.statusCode)
-        .send({ message: data.description, loaded: false });
+      res.status(data.statusCode).send(unsuccessful(data.description));
     }
   } else {
-    res
-      .status(400)
-      .send({ message: "Keys don't match for set post", loaded: false });
+    res.status(400).send(unsuccessful("Keys don't match for set post"));
   }
 });
 
@@ -50,7 +46,7 @@ exerciseSetsRouter.get("/getSetById/:id", async (req, res) => {
   const { loaded, data } = await getDocByIdFromCollection(COLLECTION_NAME, id);
 
   if (loaded) {
-    const response = successfulResponse(
+    const response = successful(
       "set loaded!",
       {
         makeMd5: true,
@@ -61,9 +57,7 @@ exerciseSetsRouter.get("/getSetById/:id", async (req, res) => {
 
     res.status(200).send(response);
   } else {
-    res
-      .status(data.statusCode)
-      .send({ message: data.description, loaded: false });
+    res.status(data.statusCode).send(unsuccessful(data.description));
   }
 });
 
@@ -73,7 +67,7 @@ exerciseSetsRouter.get("/all", async (req, res) => {
   const { data, loaded } = await getAllDocumentsInCollection(sets);
 
   if (loaded) {
-    const response = successfulResponse(
+    const response = successful(
       "all sets fetched!",
       {
         makeMd5: false,
@@ -84,9 +78,7 @@ exerciseSetsRouter.get("/all", async (req, res) => {
 
     res.status(200).send(response);
   } else {
-    res
-      .status(data.statusCode)
-      .send({ message: data.description, loaded: false });
+    res.status(data.statusCode).send(unsuccessful(data.description));
   }
 });
 
@@ -101,7 +93,7 @@ exerciseSetsRouter.put("/updateSetById/:id", async (req, res) => {
       id,
       req.body
     );
-    const response = successfulResponse(
+    const response = successful(
       "set updated!",
       {
         makeMd5: true,
@@ -113,14 +105,10 @@ exerciseSetsRouter.put("/updateSetById/:id", async (req, res) => {
     if (loaded) {
       res.status(200).send(response);
     } else {
-      res
-        .status(data.statusCode)
-        .send({ message: data.description, loaded: false });
+      res.status(data.statusCode).send(unsuccessful(data.description));
     }
   } else {
-    res
-      .status(400)
-      .send({ message: "Keys don't match for set update", loaded: false });
+    res.status(400).send(unsuccessful("Keys don't match for set update"));
   }
 });
 

@@ -1,13 +1,13 @@
 const express = require("express");
 
 const { getMetaGroupByName } = require("../db/generic.js");
-const { successfulResponse } = require("../utils/index.js");
+const { successful } = require("../utils/index.js");
 const metaRouter = express.Router();
 
 const COLLECTION_NAME = "meta";
 
 metaRouter.get("/test", (req, res) => {
-  res.status(200).send(successfulResponse("Meta router working"));
+  res.status(200).send(successful("Meta router working"));
 });
 
 metaRouter.get("/getGroup/:name", async (req, res) => {
@@ -18,7 +18,7 @@ metaRouter.get("/getGroup/:name", async (req, res) => {
   const { data, loaded } = await getMetaGroupByName(name, INDEX_NAME);
 
   if (loaded) {
-    const response = successfulResponse(
+    const response = successful(
       `loaded meta ${name}`,
       {
         makeMd5: false,
@@ -30,7 +30,7 @@ metaRouter.get("/getGroup/:name", async (req, res) => {
   } else {
     res
       .status(400)
-      .send({ message: `could not load meta ${name}`, loaded: false });
+      .send(unsuccessful(`could not load meta ${name}`));
   }
 });
 
