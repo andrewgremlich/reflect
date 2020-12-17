@@ -17,11 +17,6 @@ import {
   setEditExercise,
 } from "../features/ExercisesTable/ExercisesTable.slice";
 
-import {
-  getExerciseSets,
-  selectAllExerciseSets,
-} from "../features/ExerciseSetsTable/ExerciseSetsTable.slice";
-
 import { ExerciseForm } from "../components/ExerciseForm";
 import { SingleSelect } from "../components/Form";
 import { ExercisesTableView } from "../components/ExercisesTableView";
@@ -32,10 +27,9 @@ export const ExercisesAdmin = () => {
   const allExercises = useSelector(selectAllExercises);
   const editExercise = useSelector(selectEditExercise);
   const exerciseGroups = useSelector(selectExerciseGroups);
-  const allExerciseSets = useSelector(selectAllExerciseSets);
 
   const [sortByExerciseGroup, setSortByExerciseGroup] = useState(
-    exerciseGroups?.data[0] || ""
+    exerciseGroups || ""
   );
   const [inputValue, setInputValue] = useState({
     name: "",
@@ -45,15 +39,11 @@ export const ExercisesAdmin = () => {
     exerciseGroup: "",
   });
 
-  const filteredGroups = allExercises.data?.filter(
+  const filteredGroups = allExercises?.data?.filter(
     (exercise) => exercise.exerciseGroup === sortByExerciseGroup
   );
 
   useEffect(() => {
-    if (!allExerciseSets) {
-      dispatch(getExerciseSets());
-    }
-
     if (!exerciseGroups) {
       dispatch(getExerciseGroup());
     }
@@ -61,7 +51,7 @@ export const ExercisesAdmin = () => {
     if (sortByExerciseGroup) {
       dispatch(getExercises(sortByExerciseGroup));
     }
-  }, [dispatch, sortByExerciseGroup, allExerciseSets, exerciseGroups]);
+  }, [dispatch, sortByExerciseGroup, exerciseGroups]);
 
   return (
     <Fragment>
@@ -80,21 +70,20 @@ export const ExercisesAdmin = () => {
       >
         <ExerciseForm
           {...{
-            allExerciseSets: allExerciseSets?.data,
             inputValue,
             setInputValue,
-            exerciseGroups: exerciseGroups?.data,
+            exerciseGroups,
           }}
         />
       </Administration>
       {exerciseGroups && (
         <SingleSelect
-          value={exerciseGroups.data[0]}
+          value={exerciseGroups}
           changeValue={({ target }) => setSortByExerciseGroup(target.value)}
           origValue="Filter Exercise Group"
         >
           <option value=""></option>
-          {exerciseGroups.data.map((group, index) => (
+          {exerciseGroups?.map((group, index) => (
             <option key={index} value={group}>
               {group}
             </option>

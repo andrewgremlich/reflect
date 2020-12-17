@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export const programsTableSlice = createSlice({
   name: "programsTable",
   initialState: {
-    allPrograms: [],
-    editProgram: null,
+    allPrograms: undefined,
+    editProgram: undefined,
   },
   reducers: {
     setAllPrograms: (state, { payload }) => {

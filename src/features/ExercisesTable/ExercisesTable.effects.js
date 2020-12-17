@@ -5,7 +5,7 @@ import { setAllExercises } from "./ExercisesTable.slice";
 const EXERCISES_ROOT_API = "/.netlify/functions/index/exercises";
 
 export const getExercises = (exerciseGroup) => (dispatch) => {
-  const fetchString = `${EXERCISES_ROOT_API}/group?exerciseGroupName=${exerciseGroup}`;
+  const fetchString = `${EXERCISES_ROOT_API}/getExercisesByGroupName?groupName=${exerciseGroup}`;
   const fetchStringURIEncoded = encodeURI(fetchString);
 
   jsonFetch(fetchStringURIEncoded).then((exercises) => {
@@ -14,7 +14,7 @@ export const getExercises = (exerciseGroup) => (dispatch) => {
 };
 
 export const createExercise = (payload) => (dispatch) => {
-  jsonFetch(`${EXERCISES_ROOT_API}/create`, {
+  jsonFetch(`${EXERCISES_ROOT_API}/createExercise`, {
     body: JSON.stringify(payload),
     ...JSON_POST,
   }).then((resp) => dispatch(getExercises(payload.exerciseGroup)));
@@ -28,7 +28,7 @@ export const modifyExercise = ({
   exerciseGroup,
   difficulty,
 }) => (dispatch) => {
-  jsonFetch(`${EXERCISES_ROOT_API}/${id}`, {
+  jsonFetch(`${EXERCISES_ROOT_API}/updateExerciseById/${id}`, {
     body: JSON.stringify({
       name,
       description,

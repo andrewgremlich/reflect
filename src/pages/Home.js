@@ -12,9 +12,9 @@ export const Home = () => {
   const dispatch = useDispatch();
 
   const allPrograms = useSelector(selectAllPrograms);
-
+  
   useEffect(() => {
-    if (allPrograms.length === 0) {
+    if (!allPrograms) {
       dispatch(getPrograms());
     }
   }, [dispatch, allPrograms]);

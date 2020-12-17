@@ -8,10 +8,10 @@ export const exerciseSetsTableSlice = createSlice({
     selectedGroup: undefined,
   },
   reducers: {
-    setAllExerciseSets: (state, { payload }) => {
+    setAllSets: (state, { payload }) => {
       state.allExerciseSets = payload;
     },
-    setEditExerciseSet: (state, { payload }) => {
+    setEditSet: (state, { payload }) => {
       state.editExerciseSet = payload;
     },
     setSelectedGroup: (state, { payload }) => {
@@ -21,17 +21,17 @@ export const exerciseSetsTableSlice = createSlice({
 });
 
 export const {
-  setAllExerciseSets,
-  setEditExerciseSet,
+  setAllSets,
+  setEditSet,
   setSelectedGroup,
 } = exerciseSetsTableSlice.actions;
 
-export const selectAllExerciseSets = (state) =>
+export const selectAllSets = (state) =>
   state.exerciseSetsTable.allExerciseSets;
-export const selectEditExerciseSet = (state) =>
+export const selectEditSet = (state) =>
   state.exerciseSetsTable.editExerciseSet;
 export const selectExerciseGroup = (state) =>
   state.exerciseSetsTable.selectedGroup;
 
 export default exerciseSetsTableSlice.reducer;
-export * from "./ExerciseSetsTable.effects";
+export * from "./SetsTable.effects";

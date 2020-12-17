@@ -27,7 +27,7 @@ export const Set = () => {
       {selectedSet &&
         selectedSet.exerciseGroups.map((group, index) => (
           <p onClick={() => dispatch(getGroup(group))} key={index}>
-            <Link to={`/group?exerciseGroupName=${encodeURI(group)}`}>
+            <Link to={`/group?groupName=${encodeURI(group)}`}>
               {group}
             </Link>
           </p>

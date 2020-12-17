@@ -11,10 +11,7 @@ import {
   setEditProgram,
   selectEditProgram,
 } from "../features/ProgramsTable/ProgramsTable.slice";
-import {
-  getExerciseSets,
-  selectAllExerciseSets,
-} from "../features/ExerciseSetsTable/ExerciseSetsTable.slice";
+import { getSets, selectAllSets } from "../features/SetsTable/SetsTable.slice";
 
 import { ProgramsForm } from "../components/ProgramsForm";
 import { ProgramsTableView } from "../components/ProgramsTableView";
@@ -23,7 +20,7 @@ export const ProgramsAdmin = () => {
   const dispatch = useDispatch();
 
   const allPrograms = useSelector(selectAllPrograms);
-  const allExerciseSets = useSelector(selectAllExerciseSets);
+  const allSets = useSelector(selectAllSets);
   const editProgram = useSelector(selectEditProgram);
 
   const [inputValue, setInputValue] = useState({
@@ -34,18 +31,18 @@ export const ProgramsAdmin = () => {
 
   const editData = {
     ...editProgram,
-    sets: allExerciseSets,
+    sets: allSets,
   };
 
   useEffect(() => {
-    if (allPrograms.length === 0) {
+    if (!allPrograms) {
       dispatch(getPrograms());
     }
 
-    if (allExerciseSets.length === 0) {
-      dispatch(getExerciseSets());
+    if (!allSets) {
+      dispatch(getSets());
     }
-  }, [dispatch, allPrograms, allExerciseSets]);
+  }, [dispatch, allPrograms, allSets]);
 
   return (
     <Fragment>
@@ -58,9 +55,7 @@ export const ProgramsAdmin = () => {
           editData,
         }}
       >
-        <ProgramsForm
-          {...{ inputValue, setInputValue, sets: allExerciseSets }}
-        />
+        <ProgramsForm {...{ inputValue, setInputValue, sets: allSets }} />
       </Administration>
       <ProgramsTableView
         data={allPrograms}

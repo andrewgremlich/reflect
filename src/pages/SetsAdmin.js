@@ -8,22 +8,22 @@ import {
   selectExerciseGroups,
 } from "../features/Administration/Administration.slice";
 import {
-  getExerciseSets,
-  createExerciseSet,
-  modifyExerciseSet,
-  selectAllExerciseSets,
-  setEditExerciseSet,
-  selectEditExerciseSet,
-} from "../features/ExerciseSetsTable/ExerciseSetsTable.slice";
+  getSets,
+  createSet,
+  modifySet,
+  selectAllSets,
+  setEditSet,
+  selectEditSet,
+} from "../features/SetsTable/SetsTable.slice";
 
 import { ExerciseSetsForm } from "../components/SetsForm";
-import { ExerciseSetsTableView } from "../components/SetsTableView";
+import { SetsTableView } from "../components/SetsTableView";
 
 export const SetsAdmin = () => {
   const dispatch = useDispatch();
 
-  const allExerciseSets = useSelector(selectAllExerciseSets);
-  const editExerciseSet = useSelector(selectEditExerciseSet);
+  const allSets = useSelector(selectAllSets);
+  const editExerciseSet = useSelector(selectEditSet);
   const allExerciseGroups = useSelector(selectExerciseGroups);
 
   const [inputValue, setInputValue] = useState({
@@ -37,25 +37,23 @@ export const SetsAdmin = () => {
   };
 
   useEffect(() => {
-    if (!allExerciseSets) {
-      dispatch(getExerciseSets());
+    if (!allSets) {
+      dispatch(getSets());
     }
 
     if (!allExerciseGroups) {
       dispatch(getExerciseGroup());
     }
-  }, [dispatch, allExerciseSets, allExerciseGroups]);
+  }, [dispatch, allSets, allExerciseGroups]);
 
   return (
     <Fragment>
       <Administration
         {...{
           name: "Exercise Set",
-          create: () => dispatch(createExerciseSet(inputValue)),
+          create: () => dispatch(createSet(inputValue)),
           modify: () =>
-            dispatch(
-              modifyExerciseSet({ ...inputValue, id: editExerciseSet.id })
-            ),
+            dispatch(modifySet({ ...inputValue, id: editExerciseSet.id })),
           editData,
         }}
       >
@@ -63,18 +61,18 @@ export const SetsAdmin = () => {
           {...{
             inputValue,
             setInputValue,
-            exerciseGroups: allExerciseGroups?.data,
+            exerciseGroups: allExerciseGroups,
           }}
         />
       </Administration>
-      <ExerciseSetsTableView
+      <SetsTableView
         {...{
-          data: allExerciseSets,
+          data: allSets,
           setEdit: (exerciseSet) => {
             dispatch(
-              setEditExerciseSet({
+              setEditSet({
                 ...exerciseSet,
-                exerciseGroups: allExerciseGroups?.data,
+                exerciseGroups: allExerciseGroups,
               })
             );
             dispatch(switchEdit());

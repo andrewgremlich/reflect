@@ -4,7 +4,7 @@ import navReducer from "../features/Nav/Nav.slice";
 
 import administrationReducer from "../features/Administration/Administration.slice";
 import exercisesTableReducer from "../features/ExercisesTable/ExercisesTable.slice";
-import exerciseSetsTableReducer from "../features/ExerciseSetsTable/ExerciseSetsTable.slice";
+import setsTableReducer from "../features/SetsTable/SetsTable.slice";
 import programsTableReducer from "../features/ProgramsTable/ProgramsTable.slice";
 
 import viewerSlice from "../features/Viewer/Viewer.slice";
@@ -21,7 +21,7 @@ const storeConfig = {
     administration: administrationReducer,
     programsTable: programsTableReducer,
     exercisesTable: exercisesTableReducer,
-    exerciseSetsTable: exerciseSetsTableReducer,
+    exerciseSetsTable: setsTableReducer,
     viewer: viewerSlice,
   },
   // preloadedState: parsedPreviousAppState || undefined,

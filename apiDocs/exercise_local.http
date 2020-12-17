@@ -26,10 +26,10 @@ GET {{EXERCISES}}/getExerciseById/283640056071062028 HTTP/1.1
 GET {{EXERCISES}}/getExercisesByGroupName HTTP/1.1
 
 ###
-GET {{EXERCISES}}/getExercisesByGroupName?exerciseGroupName=vertical%20pull HTTP/1.1
+GET {{EXERCISES}}/getExercisesByGroupName?groupName=vertical%20pull HTTP/1.1
 
 ###
-GET {{EXERCISES}}/getExercisesByGroupName?exerciseGroupName=vertical%20pull&exerciseGroupName=horizontal%20push HTTP/1.1
+GET {{EXERCISES}}/getExercisesByGroupName?groupName=vertical%20pull&groupName=horizontal%20push HTTP/1.1
 
 ###
 PUT {{EXERCISES}}/updateExerciseById/283640056071062028 HTTP/1.1

@@ -30,11 +30,12 @@ export const ProgramsForm = ({
     <MultiSelect
       changeValue={setChosenOptions(setInputValue, inputValue, "sets")}
     >
-      {sets.map(({ id, name: setName }) => (
-        <option key={id} value={id}>
-          {setName}
-        </option>
-      ))}
+      {sets &&
+        sets?.map(({ id, name: setName }) => (
+          <option key={id} value={id}>
+            {setName}
+          </option>
+        ))}
     </MultiSelect>
   </Fragment>
 );

@@ -13,10 +13,10 @@ const EXERCISES_ROOT_API = "/.netlify/functions/index/exercises";
 const makeGroupNameQueryString = (groups) => {
   if (Array.isArray(groups)) {
     return groups
-      .map((group) => `exerciseGroupName=${encodeURI(group)}`)
+      .map((group) => `groupName=${encodeURI(group)}`)
       .join("&");
   } else {
-    return `exerciseGroupName=${groups}`;
+    return `groupName=${groups}`;
   }
 };
 
