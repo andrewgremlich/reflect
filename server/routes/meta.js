@@ -10,7 +10,7 @@ metaRouter.get("/test", (req, res) => {
   res.status(200).send(successful("Meta router working"));
 });
 
-metaRouter.get("/getGroup/:name", async (req, res) => {
+metaRouter.get("/getMetaGroup/:name", async (req, res) => {
   const { name } = req.params;
 
   const INDEX_NAME = "meta_index_by_name";

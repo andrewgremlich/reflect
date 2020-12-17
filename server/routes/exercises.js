@@ -16,7 +16,7 @@ exercisesRouter.get("/test", (req, res) => {
   res.status(200).send(successful("hello from exercises!"));
 });
 
-exercisesRouter.post("/create", async (req, res) => {
+exercisesRouter.post("/createExercise", async (req, res) => {
   const keysMatch = matchKeys(exerciseSchema, req.body);
 
   if (keysMatch) {
@@ -61,17 +61,17 @@ exercisesRouter.get("/getExerciseById/:id", async (req, res) => {
   }
 });
 
-exercisesRouter.get("/group", async (req, res) => {
-  const { exerciseGroupName } = req.query;
+exercisesRouter.get("/getExercisesByGroupName", async (req, res) => {
+  const { groupName } = req.query;
 
-  if (Array.isArray(exerciseGroupName)) {
+  if (Array.isArray(groupName)) {
     res.status(200).send({
       message: "Exercise group array is not supported. Try individually.",
       loaded: false,
     });
   } else {
     const { loaded, data } = await getMetaGroupByName(
-      exerciseGroupName,
+      groupName,
       "index_exercises_by_exercise_group"
     );
     const response = successful(

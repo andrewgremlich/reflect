@@ -20,7 +20,7 @@ programRouter.get("/test", (req, res) => {
   res.status(200).send(successful("Hello from program!"));
 });
 
-programRouter.post("/create", async (req, res) => {
+programRouter.post("/createProgram", async (req, res) => {
   const keysMatch = matchKeys(programSchema, req.body);
 
   if (keysMatch) {
@@ -69,7 +69,7 @@ programRouter.get("/getProgramById/:id", async (req, res) => {
   }
 });
 
-programRouter.get("/all", async (req, res) => {
+programRouter.get("/allPrograms", async (req, res) => {
   const { data, loaded } = await getProgramsWithSets();
 
   if (loaded) {

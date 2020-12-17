@@ -16,7 +16,7 @@ exerciseSetsRouter.get("/test", (req, res) => {
   res.status(200).send(successful("Hello from Exercise Sets!"));
 });
 
-exerciseSetsRouter.post("/create", async (req, res) => {
+exerciseSetsRouter.post("/createSet", async (req, res) => {
   const keysMatch = matchKeys(setsSchema, req.body);
 
   if (keysMatch) {
@@ -61,7 +61,7 @@ exerciseSetsRouter.get("/getSetById/:id", async (req, res) => {
   }
 });
 
-exerciseSetsRouter.get("/all", async (req, res) => {
+exerciseSetsRouter.get("/allSets", async (req, res) => {
   const sets = "all_exercise_sets";
 
   const { data, loaded } = await getAllDocumentsInCollection(sets);

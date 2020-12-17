@@ -8,7 +8,7 @@ GET {{ROOT}}/mainRouterTest HTTP/1.1
 GET {{SETS}}/test HTTP/1.1
 
 ###
-POST {{SETS}}/create HTTP/1.1
+POST {{SETS}}/createSet HTTP/1.1
 Content-Type: application/json
 
 {
@@ -21,7 +21,7 @@ Content-Type: application/json
 GET {{SETS}}/getSetById/284362639416492557 HTTP/1.1
 
 ###
-GET {{SETS}}/all HTTP/1.1
+GET {{SETS}}/allSets HTTP/1.1
 
 ###
 PUT {{SETS}}/updateSetById/284362639416492557 HTTP/1.1

@@ -8,4 +8,4 @@ GET {{ROOT}}/mainRouterTest HTTP/1.1
 GET {{GROUP}}/test HTTP/1.1
 
 ###
-GET {{GROUP}}/getGroup/exercise-groups HTTP/1.1
+GET {{GROUP}}/getMetaGroup/exercise-groups HTTP/1.1
