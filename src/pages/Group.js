@@ -22,7 +22,10 @@ export const Group = () => {
   return (
     <Fragment>
       <h1>Group</h1>
-      {group && group.map(({ name }) => <p>{name}</p>)}
+      <p>Select the exercise that you want to do.</p>
+      {group?.map(({ name }) => (
+        <p>{name}</p>
+      ))}
     </Fragment>
   );
 };

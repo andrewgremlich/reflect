@@ -24,18 +24,17 @@ export const Program = () => {
   return (
     <Fragment>
       <h1>Program Home</h1>
-      {selectedProgram &&
-        selectedProgram.sets.map((set) => (
-          <div onClick={() => dispatch(setSelectedSet(set))} key={set.id}>
-            <h3>
-              <Link to={`/set/${set.id}`}>{set.name}</Link>
-            </h3>
-            <p>{set.description}</p>
-            {set.exerciseGroups.map((group, index) => (
-              <p key={index}>{group}</p>
-            ))}
-          </div>
-        ))}
+      {selectedProgram?.sets.map((set) => (
+        <div onClick={() => dispatch(setSelectedSet(set))} key={set.id}>
+          <h3>
+            <Link to={`/set/${set.id}`}>{set.name}</Link>
+          </h3>
+          <p>{set.description}</p>
+          {set.exerciseGroups.map((group, index) => (
+            <p key={index}>{group}</p>
+          ))}
+        </div>
+      ))}
     </Fragment>
   );
 };
