@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,7 @@ export const Home = () => {
   const dispatch = useDispatch();
 
   const allPrograms = useSelector(selectAllPrograms);
-  
+
   useEffect(() => {
     if (!allPrograms) {
       dispatch(getPrograms());
@@ -20,19 +20,21 @@ export const Home = () => {
   }, [dispatch, allPrograms]);
 
   return (
-    <Fragment>
-      <h1>Home Page.</h1>
+    <main>
       {allPrograms?.map(({ name, description, id, sets }) => (
-        <div
+        <section
+          className="detail-block"
           onClick={() =>
             dispatch(setSelectedProgram({ name, description, id, sets }))
           }
           key={id}
         >
-          <Link to={`/program/${id}`}>{name}</Link>
+          <p>
+            <Link to={`/program/${id}`}>{name}</Link>
+          </p>
           {description && <p>{description}</p>}
-        </div>
+        </section>
       ))}
-    </Fragment>
+    </main>
   );
 };

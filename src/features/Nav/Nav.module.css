@@ -1,10 +1,15 @@
 .nav-bar {
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 10px;
 }
 
 .nav-item {
   display: inline-block;
   margin-right: 10px;
+}
+
+.nav-item a:visited,
+.nav-item a:hover {
+  color: var(--text-main-theme);
 }
