@@ -25,6 +25,7 @@ export const ExerciseTableRow = ({
     </p>
     <div className={styles["table-cell"]}>
       <button
+        className={`button secondary-button`}
         onClick={() => {
           setEdit({
             id,

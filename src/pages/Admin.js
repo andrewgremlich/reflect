@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 export const Admin = () => {
   return (
-    <Fragment>
+    <main>
       <h1>Admin Page.</h1>
       <div>
         <p>
@@ -16,6 +16,6 @@ export const Admin = () => {
           <Link to="/admin/programs">Edit Programs</Link>
         </p>
       </div>
-    </Fragment>
+    </main>
   );
 };

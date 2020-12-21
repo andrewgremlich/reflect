@@ -28,9 +28,10 @@ export const Administration = ({
   const EditForm = React.cloneElement(children, { ...editData });
 
   return (
-    <div>
+    <div className="margin-bottom-20px">
       <h1>{name}</h1>
       <button
+        className="button primary-button"
         onClick={() => {
           dispatch(switchNewItem());
         }}

@@ -6,6 +6,8 @@
 :root {
   --main-theme-color: rgb(179, 77, 77);
   --text-main-theme: white;
+
+  --border-raidus: 2px;
 }
 
 body {
@@ -18,7 +20,8 @@ body {
 }
 
 h1 {
-  margin-bottom: 30px;
+  font-size: 35px;
+  margin-bottom: 25px;
   color: var(--text-main-theme);
 }
 
@@ -58,11 +61,41 @@ main {
   cursor: pointer;
 }
 
+.margin-bottom-20px {
+  margin-bottom: 20px;
+}
+
+.text-color-white {
+  color: white;
+}
+
 .detail-block {
   border: 1px solid black;
   width: 200px;
-  margin: 10px;
+  margin-bottom: 20px;
   padding: 10px;
+  font-size: 20px;
+  border-radius: var(--border-raidus);
+}
+
+.button {
+  border: none;
+  padding: 5px 10px;
+  border-radius: var(--border-raidus);
+  background: white;
+  color: black;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.primary-button {
+  background: rgb(136, 214, 136);
+}
+
+.secondary-button {
+  background: rgb(136, 172, 214);
 }
 
 @media only screen and (max-width: 600px) {

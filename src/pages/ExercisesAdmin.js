@@ -54,7 +54,7 @@ export const ExercisesAdmin = () => {
   }, [dispatch, sortByExerciseGroup, exerciseGroups]);
 
   return (
-    <Fragment>
+    <section>
       <Administration
         name="Exercise"
         create={() => dispatch(createExercise(inputValue))}
@@ -97,6 +97,6 @@ export const ExercisesAdmin = () => {
           dispatch(switchEdit());
         }}
       />
-    </Fragment>
+    </section>
   );
 };

@@ -28,6 +28,8 @@ export const MultiSelect = ({ origValue, changeValue, children }) => (
 export const SingleSelect = ({ origValue, changeValue, children }) => (
   <FieldLabel>
     <SpanLabel origValue={origValue} />
-    <select onChange={changeValue}>{children}</select>
+    <select className={`margin-bottom-20px`} onChange={changeValue}>
+      {children}
+    </select>
   </FieldLabel>
 );
