@@ -31,20 +31,16 @@ programRouter.post("/createProgram", async (req, res) => {
         makeMd5: true,
         makeId: true,
       },
-      { data }
+      { data },
     );
 
     if (loaded) {
       res.status(200).send(response);
     } else {
-      res
-        .status(data.statusCode)
-        .send(unsuccessful(data.description));
+      res.status(data.statusCode).send(unsuccessful(data.description));
     }
   } else {
-    res
-      .status(400)
-      .send(unsuccessful("Keys don't match for program post"));
+    res.status(400).send(unsuccessful("Keys don't match for program post"));
   }
 });
 
@@ -60,7 +56,7 @@ programRouter.get("/getProgramById/:id", async (req, res) => {
         makeMd5: true,
         makeId: true,
       },
-      { data }
+      { data },
     );
 
     res.status(200).send(response);
@@ -79,7 +75,7 @@ programRouter.get("/allPrograms", async (req, res) => {
         makeMd5: false,
         makeId: false,
       },
-      { data }
+      { data },
     );
 
     res.status(200).send(response);
@@ -101,20 +97,16 @@ programRouter.put("/updateProgramById/:id", async (req, res) => {
         makeMd5: true,
         makeId: true,
       },
-      { data }
+      { data },
     );
 
     if (loaded) {
       res.status(200).send(response);
     } else {
-      res
-        .status(data.statusCode)
-        .send(unsuccessful(data.description));
+      res.status(data.statusCode).send(unsuccessful(data.description));
     }
   } else {
-    res
-      .status(400)
-      .send(unsuccessful("Keys don't match for program update"));
+    res.status(400).send(unsuccessful("Keys don't match for program update"));
   }
 });
 

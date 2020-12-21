@@ -16,10 +16,7 @@ export const programsTableSlice = createSlice({
   },
 });
 
-export const {
-  setAllPrograms,
-  setEditProgram,
-} = programsTableSlice.actions;
+export const { setAllPrograms, setEditProgram } = programsTableSlice.actions;
 
 export const selectAllPrograms = (state) => state.programsTable.allPrograms;
 export const selectEditProgram = (state) => state.programsTable.editProgram;

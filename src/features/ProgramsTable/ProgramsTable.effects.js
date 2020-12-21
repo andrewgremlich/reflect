@@ -6,7 +6,7 @@ const PROGRAMS_ROOT_API = "/.netlify/functions/index/programs";
 
 export const getPrograms = () => (dispatch) => {
   jsonFetch(`${PROGRAMS_ROOT_API}/allPrograms`).then(({ data }) =>
-    dispatch(setAllPrograms(data))
+    dispatch(setAllPrograms(data)),
   );
 };
 
@@ -18,7 +18,7 @@ export const createProgram = (payload) => (dispatch) => {
 };
 
 export const modifyProgram = ({ id, description, name, sets }) => (
-  dispatch
+  dispatch,
 ) => {
   jsonFetch(`${PROGRAMS_ROOT_API}/updateProgramById/${id}`, {
     body: JSON.stringify({ description, name, sets }),

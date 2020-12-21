@@ -51,12 +51,12 @@ const getProgramsWithSets = async () => {
               program: Var("programDoc"),
               sets: Map(
                 Select(["data", "sets"], Var("programDoc")),
-                Lambda("sets", Get(Var("sets")))
+                Lambda("sets", Get(Var("sets"))),
               ),
-            }
-          )
-        )
-      )
+            },
+          ),
+        ),
+      ),
     );
 
     const reducedProgramsResp = data.map(
@@ -71,7 +71,7 @@ const getProgramsWithSets = async () => {
         name: programName,
         description: programDescription,
         sets: setsData.map(extractSet),
-      })
+      }),
     );
 
     return { data: reducedProgramsResp, loaded: true };
@@ -96,10 +96,10 @@ const getProgramWithSets = async (id) => {
           program: Var("programDoc"),
           sets: Map(
             Select(["data", SETS_PROPERTY], Var("programDoc")),
-            Lambda(SETS_PROPERTY, Get(Var(SETS_PROPERTY)))
+            Lambda(SETS_PROPERTY, Get(Var(SETS_PROPERTY))),
           ),
-        }
-      )
+        },
+      ),
     );
 
     const cleanResp = {
@@ -124,7 +124,7 @@ const createProgramWithSetRefIds = async (data) => {
 
   try {
     const { data: dbResp } = await client.query(
-      Create(Collection(PROGRAM_NAME), { data: dataToCreate })
+      Create(Collection(PROGRAM_NAME), { data: dataToCreate }),
     );
 
     return { data: dbResp, loaded: true };
@@ -143,7 +143,7 @@ const updateProgramWithSetRefIds = async (id, data) => {
 
   try {
     await client.query(
-      Replace(Ref(Collection(PROGRAM_NAME), id), { data: dataToCreate })
+      Replace(Ref(Collection(PROGRAM_NAME), id), { data: dataToCreate }),
     );
 
     return { data: `${data.name} has been updated`, loaded: true };

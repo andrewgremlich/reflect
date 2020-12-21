@@ -22,7 +22,7 @@ exercisesRouter.post("/createExercise", async (req, res) => {
   if (keysMatch) {
     const { loaded, data } = await postBodyInCollection(
       COLLECTION_NAME,
-      req.body
+      req.body,
     );
 
     if (loaded) {
@@ -52,7 +52,7 @@ exercisesRouter.get("/getExerciseById/:id", async (req, res) => {
         makeMd5: true,
         makeId: true,
       },
-      { data }
+      { data },
     );
 
     res.status(200).send(response);
@@ -72,7 +72,7 @@ exercisesRouter.get("/getExercisesByGroupName", async (req, res) => {
   } else {
     const { loaded, data } = await getMetaGroupByName(
       groupName,
-      "index_exercises_by_exercise_group"
+      "index_exercises_by_exercise_group",
     );
     const response = successful(
       "exercise group fetched",
@@ -82,7 +82,7 @@ exercisesRouter.get("/getExercisesByGroupName", async (req, res) => {
       },
       {
         data,
-      }
+      },
     );
 
     if (loaded) {
@@ -102,7 +102,7 @@ exercisesRouter.put("/updateExerciseById/:id", async (req, res) => {
     const { data, loaded } = await updateDocInCollection(
       COLLECTION_NAME,
       id,
-      req.body
+      req.body,
     );
     const response = successful(
       "exercise updated",
@@ -110,7 +110,7 @@ exercisesRouter.put("/updateExerciseById/:id", async (req, res) => {
         makeMd5: true,
         makeId: true,
       },
-      { data }
+      { data },
     );
 
     if (loaded) {

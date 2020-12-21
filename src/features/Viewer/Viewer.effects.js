@@ -33,8 +33,8 @@ export const getSet = (id) => (dispatch) => {
 export const getGroup = (groupNames) => (dispatch) => {
   jsonFetch(
     `${EXERCISES_ROOT_API}/getExercisesByGroupName?${makeGroupNameQueryString(
-      groupNames
-    )}`
+      groupNames,
+    )}`,
   ).then((group) => {
     dispatch(setSelectedGroup(group.data));
   });

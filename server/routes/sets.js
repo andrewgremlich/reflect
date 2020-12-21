@@ -22,7 +22,7 @@ exerciseSetsRouter.post("/createSet", async (req, res) => {
   if (keysMatch) {
     const { loaded, data } = await postBodyInCollection(
       COLLECTION_NAME,
-      req.body
+      req.body,
     );
 
     if (loaded) {
@@ -52,7 +52,7 @@ exerciseSetsRouter.get("/getSetById/:id", async (req, res) => {
         makeMd5: true,
         makeId: true,
       },
-      { data }
+      { data },
     );
 
     res.status(200).send(response);
@@ -73,7 +73,7 @@ exerciseSetsRouter.get("/allSets", async (req, res) => {
         makeMd5: false,
         makeId: false,
       },
-      { data }
+      { data },
     );
 
     res.status(200).send(response);
@@ -91,7 +91,7 @@ exerciseSetsRouter.put("/updateSetById/:id", async (req, res) => {
     const { data, loaded } = await updateDocInCollection(
       COLLECTION_NAME,
       id,
-      req.body
+      req.body,
     );
     const response = successful(
       "set updated!",
@@ -99,7 +99,7 @@ exerciseSetsRouter.put("/updateSetById/:id", async (req, res) => {
         makeMd5: true,
         makeId: true,
       },
-      { data }
+      { data },
     );
 
     if (loaded) {

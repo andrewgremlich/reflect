@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import classes from "classnames";
 
 import styles from "./ProgramsTableView.module.css";
 
@@ -12,14 +11,11 @@ export const ProgramsTableView = ({ data, setEdit }) => (
     {data &&
       data.map(({ id, name, description, sets }) => (
         <Fragment key={id}>
-          <p className={classes(styles["table-cell"], styles["name-cell"])}>
+          <p className={`${styles["table-cell"]} ${styles["name-cell"]}`}>
             {name}
           </p>
           <p
-            className={classes(
-              styles["table-cell"],
-              styles["description-cell"]
-            )}
+            className={`${styles["table-cell"]} ${styles["description-cell"]}`}
           >
             {description}
           </p>

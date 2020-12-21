@@ -13,7 +13,7 @@ const getMetaGroup = (groupName) => {
         } else {
           reject(`could not load meta group ${groupName}`);
         }
-      }
+      },
     );
   });
 };

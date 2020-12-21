@@ -73,7 +73,7 @@ export const SetsAdmin = () => {
               setEditSet({
                 ...exerciseSet,
                 exerciseGroups: allExerciseGroups,
-              })
+              }),
             );
             dispatch(switchEdit());
           },

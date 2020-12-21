@@ -29,7 +29,7 @@ export const ExercisesAdmin = () => {
   const exerciseGroups = useSelector(selectExerciseGroups);
 
   const [sortByExerciseGroup, setSortByExerciseGroup] = useState(
-    exerciseGroups || ""
+    exerciseGroups || "",
   );
   const [inputValue, setInputValue] = useState({
     name: "",
@@ -40,7 +40,7 @@ export const ExercisesAdmin = () => {
   });
 
   const filteredGroups = allExercises?.data?.filter(
-    (exercise) => exercise.exerciseGroup === sortByExerciseGroup
+    (exercise) => exercise.exerciseGroup === sortByExerciseGroup,
   );
 
   useEffect(() => {
@@ -63,7 +63,7 @@ export const ExercisesAdmin = () => {
             modifyExercise({
               ...inputValue,
               id: editExercise.id,
-            })
+            }),
           )
         }
         editData={editExercise}

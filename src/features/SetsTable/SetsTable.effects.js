@@ -6,7 +6,7 @@ const EXERCISE_SETS_ROOT_API = "/.netlify/functions/index/sets";
 
 export const getSets = () => (dispatch) => {
   jsonFetch(`${EXERCISE_SETS_ROOT_API}/allSets`).then(({ data }) =>
-    dispatch(setAllSets(data))
+    dispatch(setAllSets(data)),
   );
 };
 
@@ -15,7 +15,7 @@ export const getSet = (id) => (dispatch) => {
     (exerciseSet) => {
       dispatch(setAllSets([exerciseSet]));
       dispatch(setSelectedGroup(exerciseSet.exerciseGroups[0]));
-    }
+    },
   );
 };
 
@@ -27,7 +27,7 @@ export const createSet = (payload) => (dispatch) => {
 };
 
 export const modifySet = ({ id, description, name, exerciseGroups }) => (
-  dispatch
+  dispatch,
 ) => {
   jsonFetch(`${EXERCISE_SETS_ROOT_API}/updateSetById/${id}`, {
     body: JSON.stringify({ description, name, exerciseGroups }),

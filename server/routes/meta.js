@@ -24,13 +24,11 @@ metaRouter.get("/getMetaGroup/:name", async (req, res) => {
         makeMd5: false,
         makeId: true,
       },
-      { data }
+      { data },
     );
     res.status(200).send(response);
   } else {
-    res
-      .status(400)
-      .send(unsuccessful(`could not load meta ${name}`));
+    res.status(400).send(unsuccessful(`could not load meta ${name}`));
   }
 });
 

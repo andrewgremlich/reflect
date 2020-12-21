@@ -58,7 +58,7 @@ const updateDocInCollection = async (collectionName, id, body) => {
     const { data } = await client.query(
       Replace(Ref(Collection(collectionName), id), {
         data: body,
-      })
+      }),
     );
     return { data, loaded: true };
   } catch (err) {
@@ -78,7 +78,7 @@ const getIndexResultByInput = async (input, indexName) => {
 
   try {
     const { data } = await client.query(
-      Map(paginateMatchIndex, Lambda("X", Get(Var("X"))))
+      Map(paginateMatchIndex, Lambda("X", Get(Var("X")))),
     );
 
     return {
@@ -102,7 +102,7 @@ const getAllDocumentsInCollection = async (IndexName) => {
 
   try {
     const { data } = await client.query(
-      Map(paginateMatchIndex, Lambda("X", Get(Var("X"))))
+      Map(paginateMatchIndex, Lambda("X", Get(Var("X")))),
     );
 
     return { data: extractData(data), loaded: true };

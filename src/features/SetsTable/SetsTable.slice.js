@@ -26,10 +26,8 @@ export const {
   setSelectedGroup,
 } = exerciseSetsTableSlice.actions;
 
-export const selectAllSets = (state) =>
-  state.exerciseSetsTable.allExerciseSets;
-export const selectEditSet = (state) =>
-  state.exerciseSetsTable.editExerciseSet;
+export const selectAllSets = (state) => state.exerciseSetsTable.allExerciseSets;
+export const selectEditSet = (state) => state.exerciseSetsTable.editExerciseSet;
 export const selectExerciseGroup = (state) =>
   state.exerciseSetsTable.selectedGroup;
 

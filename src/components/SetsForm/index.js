@@ -32,7 +32,7 @@ export const ExerciseSetsForm = ({
         changeValue={setChosenOptions(
           setInputValue,
           inputValue,
-          "exerciseGroups"
+          "exerciseGroups",
         )}
       >
         {exerciseGroups.map((group, index) => (
