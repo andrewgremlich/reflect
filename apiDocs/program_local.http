@@ -1,5 +1,7 @@
+@REMOTE_ROOT = https://we-are-reflect.netlify.app/.netlify/functions/index
 @ROOT = http://localhost:8888/.netlify/functions/index
 @PROGRAM = {{ROOT}}/programs
+@REMOTE_PROGRAM = {{REMOTE_ROOT}}/programs
 
 ###
 GET {{ROOT}}/mainRouterTest HTTP/1.1
@@ -21,7 +23,7 @@ Content-Type: application/json
 GET {{PROGRAM}}/getProgramById/285093650722980364 HTTP/1.1
 
 ###
-GET {{PROGRAM}}/allPrograms HTTP/1.1
+GET {{REMOTE_PROGRAM}}/allPrograms HTTP/1.1
 
 ###
 PUT {{PROGRAM}}/updateProgramById/285093650722980364 HTTP/1.1

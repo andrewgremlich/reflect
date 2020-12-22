@@ -6,7 +6,7 @@ const {
   updateDocInCollection,
   getAllDocumentsInCollection,
 } = require("../db/generic.js");
-const { matchKeys, successful } = require("../utils/index.js");
+const { matchKeys, successful, unsuccessful } = require("../utils/index.js");
 const { sets: setsSchema } = require("../model/index.js");
 
 const exerciseSetsRouter = express.Router();
