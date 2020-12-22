@@ -66,6 +66,6 @@
     ]
   },
   "devDependencies": {
-    "netlify-lambda": "^2.0.1"
+    "netlify-lambda": "^2.0.2"
   }
 }

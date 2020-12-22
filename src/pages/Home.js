@@ -22,18 +22,17 @@ export const Home = () => {
   return (
     <main>
       {allPrograms?.map(({ name, description, id, sets }) => (
-        <section
-          className="detail-block"
-          onClick={() =>
-            dispatch(setSelectedProgram({ name, description, id, sets }))
-          }
-          key={id}
-        >
-          <p>
-            <Link to={`/program/${id}`}>{name}</Link>
-          </p>
-          {description && <p>{description}</p>}
-        </section>
+        <Link to={`/program/${id}`} key={id}>
+          <div
+            className="detail-block"
+            onClick={() =>
+              dispatch(setSelectedProgram({ name, description, id, sets }))
+            }
+          >
+            <p>{name}</p>
+            {description && <p>{description}</p>}
+          </div>
+        </Link>
       ))}
     </main>
   );

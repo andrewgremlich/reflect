@@ -11,5 +11,5 @@
 
 .nav-item a:visited,
 .nav-item a:hover {
-  color: var(--text-main-theme);
+  color: var(--white-theme);
 }
