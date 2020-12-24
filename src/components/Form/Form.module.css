@@ -9,3 +9,15 @@
 .textarea {
   width: 100%;
 }
+
+.single-select {
+  background: var(--blue-theme);
+  border: 5px solid var(--blue-theme-darker);
+  border-radius: var(--border-raidus);
+  font-size: 20px;
+  appearance: none;
+}
+
+.greyed {
+  color: grey;
+}

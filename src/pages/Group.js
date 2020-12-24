@@ -8,7 +8,7 @@ export const Group = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const [groupNameKey, groupNameValue] = location.search.split("=");
+  const [, groupNameValue] = location.search.split("=");
   const group = useSelector(getSelectedGroup);
 
   const groupNameDecoded = decodeURI(groupNameValue);

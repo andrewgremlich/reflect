@@ -45,7 +45,7 @@ export const ProgramsAdmin = () => {
   }, [dispatch, allPrograms, allSets]);
 
   return (
-    <Fragment>
+    <section>
       <Administration
         {...{
           name: "Program",
@@ -64,6 +64,6 @@ export const ProgramsAdmin = () => {
           dispatch(switchEdit());
         }}
       />
-    </Fragment>
+    </section>
   );
 };

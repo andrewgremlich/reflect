@@ -1,11 +1,4 @@
 .table-cell {
-  padding: 5px 0px;
-}
-
-.name-cell {
-  width: 100px;
-}
-
-.description-cell {
-  width: 200px;
+  border: 1px solid var(--black-theme);
+  padding: 5px;
 }

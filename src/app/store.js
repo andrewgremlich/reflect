@@ -9,7 +9,7 @@ import programsTableReducer from "../features/ProgramsTable/ProgramsTable.slice"
 
 import viewerSlice from "../features/Viewer/Viewer.slice";
 
-const APP_LOCAL_STORAGE_KEY = "previousAppState";
+// const APP_LOCAL_STORAGE_KEY = "previousAppState";
 
 // const parsedPreviousAppState =
 //   localStorage[APP_LOCAL_STORAGE_KEY] &&

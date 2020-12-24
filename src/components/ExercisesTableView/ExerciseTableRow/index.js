@@ -12,17 +12,11 @@ export const ExerciseTableRow = ({
   svgId,
 }) => (
   <Fragment>
-    <p className={`${styles["table-cell"]} ${styles["name-cell"]}`}>{name}</p>
-    <p className={`${styles["table-cell"]} ${styles["description-cell"]}`}>
-      {description}
-    </p>
-    <p className={`${styles["table-cell"]} ${styles["description-cell"]}`}>
-      {difficulty}
-    </p>
-    <p className={`${styles["table-cell"]} ${styles["description-cell"]}`}>
-      {exerciseGroup}
-    </p>
-    <div className={styles["table-cell"]}>
+    <p className={`table-cell`}>{name}</p>
+    <p className={`table-cell`}>{description}</p>
+    <p className={`table-cell`}>{difficulty}</p>
+    <p className={`table-cell`}>{exerciseGroup}</p>
+    <div className={`table-cell`}>
       <button
         className={`button secondary-button`}
         onClick={() => {

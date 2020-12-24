@@ -47,7 +47,7 @@ export const SetsAdmin = () => {
   }, [dispatch, allSets, allExerciseGroups]);
 
   return (
-    <Fragment>
+    <section>
       <Administration
         {...{
           name: "Exercise Set",
@@ -79,6 +79,6 @@ export const SetsAdmin = () => {
           },
         }}
       />
-    </Fragment>
+    </section>
   );
 };

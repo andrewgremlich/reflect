@@ -4,10 +4,10 @@
 @REMOTE_PROGRAM = {{REMOTE_ROOT}}/programs
 
 ###
-GET {{ROOT}}/mainRouterTest HTTP/1.1
+GET {{REMOTE_ROOT}}/mainRouterTest HTTP/1.1
 
 ###
-GET {{PROGRAM}}/test HTTP/1.1
+GET {{REMOTE_PROGRAM}}/test HTTP/1.1
 
 ###
 POST {{PROGRAM}}/createProgram HTTP/1.1
@@ -20,7 +20,7 @@ Content-Type: application/json
 }
 
 ###
-GET {{PROGRAM}}/getProgramById/285093650722980364 HTTP/1.1
+GET {{REMOTE_PROGRAM}}/getProgramById/285093650722980364 HTTP/1.1
 
 ###
 GET {{REMOTE_PROGRAM}}/allPrograms HTTP/1.1

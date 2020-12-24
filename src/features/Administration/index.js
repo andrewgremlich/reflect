@@ -29,7 +29,6 @@ export const Administration = ({
 
   return (
     <div className="margin-bottom-20px">
-      <h1>{name}</h1>
       <button
         className="button primary-button"
         onClick={() => {

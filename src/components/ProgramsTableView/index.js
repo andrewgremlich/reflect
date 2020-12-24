@@ -3,29 +3,24 @@ import React, { Fragment } from "react";
 import styles from "./ProgramsTableView.module.css";
 
 export const ProgramsTableView = ({ data, setEdit }) => (
-  <div className={styles.table}>
-    <p className={styles["table-header"]}>Name</p>
-    <p className={styles["table-header"]}>Description</p>
-    <p className={styles["table-header"]}>Sets</p>
-    <p className={styles["table-header"]}>Edit Program</p>
+  <div className={`table ${styles["program-table"]}`}>
+    <p className={`table-header`}>Name</p>
+    <p className={`table-header`}>Description</p>
+    <p className={`table-header`}>Sets</p>
+    <p className={`table-header`}>Edit Program</p>
     {data &&
       data.map(({ id, name, description, sets }) => (
         <Fragment key={id}>
-          <p className={`${styles["table-cell"]} ${styles["name-cell"]}`}>
-            {name}
-          </p>
-          <p
-            className={`${styles["table-cell"]} ${styles["description-cell"]}`}
-          >
-            {description}
-          </p>
-          <p className={styles["table-cell"]}>
+          <p className={`table-cell`}>{name}</p>
+          <p className={`table-cell`}>{description}</p>
+          <p className={`table-cell`}>
             {sets?.length > 0
               ? sets.map(({ name: setName }) => `${setName}, `)
               : ""}
           </p>
-          <div className={styles["table-cell"]}>
+          <div className={`table-cell`}>
             <button
+              className={`secondary-button button`}
               onClick={() => {
                 setEdit({ id, name, description, sets });
               }}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Administration } from "../features/Administration";
@@ -82,7 +82,6 @@ export const ExercisesAdmin = () => {
           changeValue={({ target }) => setSortByExerciseGroup(target.value)}
           origValue="Filter Exercise Group"
         >
-          <option value=""></option>
           {exerciseGroups?.map((group, index) => (
             <option key={index} value={group}>
               {group}
