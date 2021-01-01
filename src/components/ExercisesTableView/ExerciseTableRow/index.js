@@ -1,7 +1,5 @@
 import React, { Fragment } from "react";
 
-import styles from "./ExerciseTableRow.module.css";
-
 export const ExerciseTableRow = ({
   id,
   setEdit,

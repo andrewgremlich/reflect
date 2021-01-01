@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from "react";
+import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -22,19 +22,22 @@ export const Program = () => {
   }, [dispatch, programId, selectedProgram]);
 
   return (
-    <Fragment>
-      <h1>Program Home</h1>
+    <main>
       {selectedProgram?.sets.map((set) => (
-        <div onClick={() => dispatch(setSelectedSet(set))} key={set.id}>
-          <h3>
+        <div
+          className="detail-block"
+          onClick={() => dispatch(setSelectedSet(set))}
+          key={set.id}
+        >
+          <h2>
             <Link to={`/set/${set.id}`}>{set.name}</Link>
-          </h3>
+          </h2>
           <p>{set.description}</p>
           {set.exerciseGroups.map((group, index) => (
             <p key={index}>{group}</p>
           ))}
         </div>
       ))}
-    </Fragment>
+    </main>
   );
 };

@@ -82,12 +82,10 @@ section {
 .detail-block {
   border: 1px solid var(--black-theme);
   background: var(--red-theme);
-  width: 200px;
+  width: 100%;
   margin-bottom: 20px;
   padding: 10px;
-  font-size: 20px;
   border-radius: var(--border-raidus);
-  text-align: center;
 }
 
 .button {

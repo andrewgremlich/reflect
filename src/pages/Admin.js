@@ -4,17 +4,17 @@ import { Link } from "react-router-dom";
 export const Admin = () => {
   return (
     <main>
-      <p className="detail-block">
+      <h2 className="detail-block">
         <Link to="/admin/exercises">Edit Exercises</Link>
-      </p>
+      </h2>
 
-      <p className="detail-block">
+      <h2 className="detail-block">
         <Link to="/admin/sets">Edit Exercise sets</Link>
-      </p>
+      </h2>
 
-      <p className="detail-block">
+      <h2 className="detail-block">
         <Link to="/admin/programs">Edit programs</Link>
-      </p>
+      </h2>
     </main>
   );
 };

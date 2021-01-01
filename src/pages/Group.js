@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -20,12 +20,10 @@ export const Group = () => {
   }, [dispatch, group, groupNameDecoded]);
 
   return (
-    <Fragment>
-      <h1>Group</h1>
-      <p>Select the exercise that you want to do.</p>
+    <main>
       {group?.map(({ name }) => (
-        <p>{name}</p>
+        <h2 className="detail-block">{name}</h2>
       ))}
-    </Fragment>
+    </main>
   );
 };

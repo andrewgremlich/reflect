@@ -28,9 +28,9 @@ export const Home = () => {
             dispatch(setSelectedProgram({ name, description, id, sets }))
           }
         >
-          <p className="detail-block">
+          <h2 className="detail-block">
             <Link to={`/program/${id}`}>{name}</Link>
-          </p>
+          </h2>
         </div>
       ))}
     </main>
