@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import { Input, SingleSelect, Textarea } from "../Form";
 
@@ -11,7 +11,7 @@ export const ExerciseForm = ({
   exerciseGroups,
   difficulty,
 }) => (
-  <Fragment>
+  <>
     <Input
       value={inputValue.name}
       placeholder="Exercise Name"
@@ -64,5 +64,5 @@ export const ExerciseForm = ({
         setInputValue({ ...inputValue, difficulty: target.value })
       }
     />
-  </Fragment>
+  </>
 );

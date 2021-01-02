@@ -8,27 +8,26 @@ export const ProgramsTableView = ({ data, setEdit }) => (
     <p className={`table-header`}>Description</p>
     <p className={`table-header`}>Sets</p>
     <p className={`table-header`}>Edit Program</p>
-    {data &&
-      data.map(({ id, name, description, sets }) => (
-        <Fragment key={id}>
-          <p className={`table-cell`}>{name}</p>
-          <p className={`table-cell`}>{description}</p>
-          <p className={`table-cell`}>
-            {sets?.length > 0
-              ? sets.map(({ name: setName }) => `${setName}, `)
-              : ""}
-          </p>
-          <div className={`table-cell`}>
-            <button
-              className={`secondary-button button`}
-              onClick={() => {
-                setEdit({ id, name, description, sets });
-              }}
-            >
-              Edit Program
-            </button>
-          </div>
-        </Fragment>
-      ))}
+    {data?.map(({ id, name, description, sets }) => (
+      <Fragment key={id}>
+        <p className={`table-cell`}>{name}</p>
+        <p className={`table-cell`}>{description}</p>
+        <p className={`table-cell`}>
+          {sets?.length > 0
+            ? sets.map(({ name: setName }) => `${setName}, `)
+            : ""}
+        </p>
+        <div className={`table-cell`}>
+          <button
+            className={`secondary-button button`}
+            onClick={() => {
+              setEdit({ id, name, description, sets });
+            }}
+          >
+            Edit Program
+          </button>
+        </div>
+      </Fragment>
+    ))}
   </div>
 );

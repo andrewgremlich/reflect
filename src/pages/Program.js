@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -8,6 +8,11 @@ import {
   setSelectedSet,
 } from "../features/Viewer/Viewer.slice";
 
+import { Swiper } from "../components/Swiper";
+
+/**
+ * Program page to see the sets in a program.
+ */
 export const Program = () => {
   const { id: programId } = useParams();
 
@@ -23,21 +28,28 @@ export const Program = () => {
 
   return (
     <main>
-      {selectedProgram?.sets.map((set) => (
-        <div
-          className="detail-block"
-          onClick={() => dispatch(setSelectedSet(set))}
-          key={set.id}
-        >
-          <h2>
-            <Link to={`/set/${set.id}`}>{set.name}</Link>
-          </h2>
-          <p>{set.description}</p>
-          {set.exerciseGroups.map((group, index) => (
-            <p key={index}>{group}</p>
+      {selectedProgram ? (
+        <Swiper>
+          {selectedProgram?.sets.map((set) => (
+            <Fragment
+              onClick={() => dispatch(setSelectedSet(set))}
+              key={set.id}
+            >
+              <div className="detail-block">
+                <h2>
+                  <Link to={`/set/${set.id}`}>{set.name}</Link>
+                </h2>
+                <p>{set.description}</p>
+                {set.exerciseGroups.map((group, index) => (
+                  <p key={index}>{group}</p>
+                ))}
+              </div>
+            </Fragment>
           ))}
-        </div>
-      ))}
+        </Swiper>
+      ) : (
+        <h2>No set data... :(</h2>
+      )}
     </main>
   );
 };

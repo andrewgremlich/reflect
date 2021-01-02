@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import { Input, Textarea, MultiSelect, setChosenOptions } from "../Form";
 
@@ -9,7 +9,7 @@ export const ProgramsForm = ({
   description,
   sets,
 }) => (
-  <Fragment>
+  <>
     <Input
       value={inputValue.name}
       placeholder="Program Name"
@@ -37,5 +37,5 @@ export const ProgramsForm = ({
           </option>
         ))}
     </MultiSelect>
-  </Fragment>
+  </>
 );

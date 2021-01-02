@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 export const ExerciseTableRow = ({
   id,
@@ -9,7 +9,7 @@ export const ExerciseTableRow = ({
   difficulty,
   svgId,
 }) => (
-  <Fragment>
+  <>
     <p className={`table-cell`}>{name}</p>
     <p className={`table-cell`}>{description}</p>
     <p className={`table-cell`}>{difficulty}</p>
@@ -30,5 +30,5 @@ export const ExerciseTableRow = ({
         Edit Exercise
       </button>
     </div>
-  </Fragment>
+  </>
 );

@@ -1,3 +1,8 @@
+/**
+ * jsonFetch just makes XHR requests in a shortcut fashion.
+ * @param {string} url
+ * @param {object} options
+ */
 export const jsonFetch = (url, options) => {
   return new Promise((resolve, reject) => {
     fetch(url, options)

@@ -8,6 +8,11 @@ import {
   getSet,
 } from "../features/Viewer/Viewer.slice";
 
+import { Swiper } from "../components/Swiper";
+
+/**
+ * Set page to see the exercise groups in a set.
+ */
 export const Set = () => {
   const { id: setId } = useParams();
 
@@ -23,15 +28,19 @@ export const Set = () => {
 
   return (
     <main>
-      {selectedSet?.exerciseGroups.map((group, index) => (
-        <h2
-          className="detail-block"
-          onClick={() => dispatch(getGroup(group))}
-          key={index}
-        >
-          <Link to={`/group?groupName=${encodeURI(group)}`}>{group}</Link>
-        </h2>
-      ))}
+      {selectedSet ? (
+        <Swiper>
+          {selectedSet?.exerciseGroups.map((group, index) => (
+            <div key={index} onClick={() => dispatch(getGroup(group))}>
+              <h2 className="detail-block flex-center">
+                <Link to={`/group?groupName=${encodeURI(group)}`}>{group}</Link>
+              </h2>
+            </div>
+          ))}
+        </Swiper>
+      ) : (
+        <h2>No group data...</h2>
+      )}
     </main>
   );
 };

@@ -63,6 +63,12 @@ main {
   margin-top: 50px;
 }
 
+@media only screen and (max-width: 600px) {
+  main {
+    width: 95%;
+  }
+}
+
 section {
   width: 70%;
 }
@@ -79,13 +85,28 @@ section {
   color: var(--white-theme);
 }
 
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .detail-block {
   border: 1px solid var(--black-theme);
+  border-radius: var(--border-raidus);
+
   background: var(--red-theme);
-  width: 100%;
+
+  min-height: 100px;
+  width: 90%;
   margin-bottom: 20px;
   padding: 10px;
-  border-radius: var(--border-raidus);
+}
+
+@media only screen and (min-width: 600px) {
+  .detail-block {
+    width: 200px;
+  }
 }
 
 .button {
@@ -125,10 +146,4 @@ section {
 .table-cell {
   border: 1px solid var(--black-theme);
   padding: 5px;
-}
-
-@media only screen and (max-width: 600px) {
-  main {
-    width: 95%;
-  }
 }
