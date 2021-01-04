@@ -31,18 +31,16 @@ export const Program = () => {
       {selectedProgram ? (
         <Swiper>
           {selectedProgram?.sets.map((set) => (
-            <div
-              className="detail-block"
-              onClick={() => dispatch(setSelectedSet(set))}
-              key={set.id}
-            >
-              <h2>
-                <Link to={`/set/${set.id}`}>{set.name}</Link>
-              </h2>
-              <p>{set.description}</p>
-              {set.exerciseGroups.map((group, index) => (
-                <p key={index}>{group}</p>
-              ))}
+            <div onClick={() => dispatch(setSelectedSet(set))} key={set.id}>
+              <div className="detail-block">
+                <h2>
+                  <Link to={`/set/${set.id}`}>{set.name}</Link>
+                </h2>
+                <p>{set.description}</p>
+                {set.exerciseGroups.map((group, index) => (
+                  <p key={index}>{group}</p>
+                ))}
+              </div>
             </div>
           ))}
         </Swiper>

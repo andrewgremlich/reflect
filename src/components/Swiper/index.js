@@ -6,6 +6,8 @@ import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
 
 import styles from "./Swiper.module.css";
 
+const iconProps = { size: "48px" };
+
 /**
  * Will appear as swipeable blocks on mobile.
  * @param {*} param0
@@ -17,22 +19,28 @@ export const Swiper = ({ children }) => {
 
   return mobile ? (
     <div className={`${styles["swiper-mobile"]}`}>
-      <ReactSwipe
-        swipeOptions={{ continuous: false }}
-        ref={(el) => (reactSwipeEl = el)}
-      >
-        {children}
-      </ReactSwipe>
-      <IconContext.Provider value={{ size: "48px" }}>
-        <div onClick={() => reactSwipeEl.prev()}>
-          <FiArrowLeft />
-        </div>
-      </IconContext.Provider>
-      <IconContext.Provider value={{ size: "48px" }}>
-        <div onClick={() => reactSwipeEl.next()}>
-          <FiArrowRight />
-        </div>
-      </IconContext.Provider>
+      <div className={styles.main}>
+        <ReactSwipe
+          swipeOptions={{ continuous: false }}
+          ref={(el) => (reactSwipeEl = el)}
+        >
+          {children}
+        </ReactSwipe>
+      </div>
+      <div className={styles["back-arrow"]}>
+        <IconContext.Provider value={iconProps}>
+          <div onClick={() => reactSwipeEl.prev()}>
+            <FiArrowLeft />
+          </div>
+        </IconContext.Provider>
+      </div>
+      <div className={styles["forward-arrow"]}>
+        <IconContext.Provider value={iconProps}>
+          <div onClick={() => reactSwipeEl.next()}>
+            <FiArrowRight />
+          </div>
+        </IconContext.Provider>
+      </div>
     </div>
   ) : (
     <>{children}</>

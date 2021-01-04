@@ -1,0 +1,30 @@
+.swiper-mobile {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: 80% 15%;
+  grid-template-areas: "main main" "switch switch";
+}
+
+.main {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  align-self: center;
+}
+
+.back-arrow {
+  justify-self: start;
+  align-self: end;
+}
+
+.forward-arrow {
+  align-self: end;
+  justify-self: end;
+}
+
+@media only screen and (min-width: 600px) {
+  .swiper-mobile {
+    height: auto;
+    display: block;
+  }
+}

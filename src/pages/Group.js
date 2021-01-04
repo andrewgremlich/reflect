@@ -29,9 +29,9 @@ export const Group = () => {
       {group ? (
         <Swiper>
           {group?.map(({ name, id }) => (
-            <h2 key={id} className="detail-block">
-              {name}
-            </h2>
+            <div key={id}>
+              <h2 className="detail-block">{name}</h2>
+            </div>
           ))}
         </Swiper>
       ) : (
