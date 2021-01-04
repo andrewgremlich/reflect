@@ -58,6 +58,10 @@ a:visited {
   color: var(--green-theme);
 }
 
+svg {
+  color: var(--white-theme);
+}
+
 main {
   width: 50%;
   margin-top: 50px;
@@ -92,11 +96,6 @@ section {
 }
 
 .detail-block {
-  border: 1px solid var(--black-theme);
-  border-radius: var(--border-raidus);
-
-  background: var(--red-theme);
-
   min-height: 100px;
   width: 90%;
   margin-bottom: 20px;
@@ -105,6 +104,11 @@ section {
 
 @media only screen and (min-width: 600px) {
   .detail-block {
+    border: 1px solid var(--black-theme);
+    border-radius: var(--border-raidus);
+
+    background: var(--red-theme);
+
     width: 200px;
   }
 }

@@ -25,3 +25,4 @@ yarn-error.log*
 .netlify/
 .netlify/functions/index.js
 .env
+.eslintcache

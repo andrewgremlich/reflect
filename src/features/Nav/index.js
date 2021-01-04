@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { IconContext } from "react-icons";
+import { FiHome, FiEdit, FiLogIn, FiLogOut } from "react-icons/fi";
 
 import { authenticateUser, signoutUser, selectLogin } from "./Nav.slice";
 
 import styles from "./Nav.module.css";
+
+const iconProps = { size: "30px" };
 
 export const Nav = () => {
   const login = useSelector(selectLogin);
@@ -14,32 +18,42 @@ export const Nav = () => {
     <nav className={`${styles["nav-bar"]} margin-bottom-20px`}>
       <div>
         <p className={styles["nav-item"]}>
-          <Link to="/">Home</Link>
+          <Link to="/">
+            <IconContext.Provider value={iconProps}>
+              <FiHome />
+            </IconContext.Provider>
+          </Link>
         </p>
         {login.isAuthenticated && login.userRoles.includes("Administrator") && (
           <p className={styles["nav-item"]}>
-            <Link to="/admin">Admin</Link>
+            <Link to="/admin">
+              <IconContext.Provider value={iconProps}>
+                <FiEdit />
+              </IconContext.Provider>
+            </Link>
           </p>
         )}
       </div>
       {login.isAuthenticated ? (
-        <button
-          className="button secondary-button"
-          onClick={() => {
-            dispatch(signoutUser());
-          }}
-        >
-          Sign out
-        </button>
+        <IconContext.Provider value={iconProps}>
+          <div
+            onClick={() => {
+              dispatch(signoutUser());
+            }}
+          >
+            <FiLogOut />
+          </div>
+        </IconContext.Provider>
       ) : (
-        <button
-          className="button secondary-button"
-          onClick={() => {
-            dispatch(authenticateUser());
-          }}
-        >
-          Log in
-        </button>
+        <IconContext.Provider value={iconProps}>
+          <div
+            onClick={() => {
+              dispatch(authenticateUser());
+            }}
+          >
+            <FiLogIn />
+          </div>
+        </IconContext.Provider>
       )}
     </nav>
   );
