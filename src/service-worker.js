@@ -1,22 +1,29 @@
 // https://create-react-app.dev/docs/making-a-progressive-web-app/
+// maybe use workbox?
 
-import { BackgroundSyncPlugin } from "workbox-background-sync";
-import { registerRoute } from "workbox-routing";
-import { NetworkOnly } from "workbox-strategies";
+const CACHE = "reflect_cache";
 
-// eslint-disable-next-line no-restricted-globals
-const ignored = self.__WB_MANIFEST;
+self.addEventListener("install", (evt) =>
+  evt.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(["/"]))),
+);
 
-//TODO: be sure to remove local storage for app updates.
-
-const bgSyncPlugin = new BackgroundSyncPlugin("myQueueName", {
-  maxRetentionTime: 24 * 60, // Retry for max of 24 Hours (specified in minutes)
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
+    caches.match(event.request).then((resp) => resp || fetch(event.request)),
+  );
 });
 
-registerRoute(
-  /\/api\/.*\/*.json/,
-  new NetworkOnly({
-    plugins: [bgSyncPlugin],
-  }),
-  "POST",
+self.addEventListener("activate", (evt) =>
+  evt.waitUntil(
+    caches
+      .keys()
+      .then((keyList) =>
+        Promise.all(keyList.map((key) => key !== CACHE && caches.delete(key))),
+      ),
+  ),
+);
+
+self.addEventListener(
+  "message",
+  (event) => event.data.action === "skipWaiting" && self.skipWaiting(),
 );

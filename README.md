@@ -1,5 +1,7 @@
 # reflect
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ca1c7fb2-c0d8-442c-83e9-fd1b39e4be6c/deploy-status)](https://app.netlify.com/sites/we-are-reflect/deploys)
+
 Physical and mental health application.
 
 ## References

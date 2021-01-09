@@ -1,50 +1,16 @@
 // https://create-react-app.dev/docs/making-a-progressive-web-app/
 
-const isLocalhost = Boolean(
-  window.location.hostname === "localhost" ||
-    window.location.hostname === "[::1]" ||
-    window.location.hostname.match(
-      /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/,
-    ),
-);
-
-export function register(config) {
-  if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
-    const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
-    if (publicUrl.origin !== window.location.origin) {
-      // Our service worker won't work if PUBLIC_URL is on a different origin
-      // from what our page is served on. This might happen if a CDN is used to
-      // serve assets; see https://github.com/facebook/create-react-app/issues/2374
-      return;
-    }
-
-    window.addEventListener("load", () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
-
-      if (isLocalhost) {
-        checkValidServiceWorker(swUrl, config);
-        navigator.serviceWorker.ready.then(() => {
-          console.log(
-            "This web app is being served cache-first by a service " +
-              "worker. To learn more, visit https://create-react-app.dev/docs/making-a-progressive-web-app/",
-          );
-        });
-      } else {
-        registerValidSW(swUrl, config);
-      }
-    });
-  }
-}
-
-function registerValidSW(swUrl, config) {
+const registerSW = (swUrl, config) => {
   navigator.serviceWorker
     .register(swUrl)
     .then((registration) => {
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
+
         if (installingWorker == null) {
           return;
         }
+
         installingWorker.onstatechange = () => {
           if (installingWorker.state === "installed") {
             if (navigator.serviceWorker.controller) {
@@ -53,12 +19,12 @@ function registerValidSW(swUrl, config) {
                   "tabs for this page are closed. See https://bit.ly/CRA-PWA.",
               );
 
-              if (config && config.onUpdate) {
+              if (config?.onUpdate) {
                 config.onUpdate(registration);
               }
             } else {
               console.log("Content is cached for offline use.");
-              if (config && config.onSuccess) {
+              if (config?.onSuccess) {
                 config.onSuccess(registration);
               }
             }
@@ -69,38 +35,27 @@ function registerValidSW(swUrl, config) {
     .catch((error) => {
       console.error("Error during service worker registration:", error);
     });
-}
+};
 
-function checkValidServiceWorker(swUrl, config) {
-  fetch(swUrl, {
-    headers: { "Service-Worker": "script" },
-  })
-    .then((response) => {
-      const contentType = response.headers.get("content-type");
-      if (
-        response.status === 404 ||
-        (contentType != null && contentType.indexOf("javascript") === -1)
-      ) {
-        navigator.serviceWorker.ready.then((registration) => {
-          registration.unregister().then(() => {
-            window.location.reload();
-          });
-        });
-      } else {
-        registerValidSW(swUrl, config);
-      }
-    })
-    .catch(() => {
+export const register = (config) => {
+  if ("serviceWorker" in navigator) {
+    const swUrl = `/service-worker.js`;
+
+    registerSW(swUrl, config);
+
+    navigator.serviceWorker.ready.then(() => {
       console.log(
-        "No internet connection found. App is running in offline mode.",
+        "This web app is being served cache-first by a service " +
+          "worker. To learn more, visit https://create-react-app.dev/docs/making-a-progressive-web-app/",
       );
     });
-}
+  }
+};
 
-export function unregister() {
+export const unregister = () => {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.ready.then((registration) => {
       registration.unregister();
     });
   }
-}
+};

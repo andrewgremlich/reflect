@@ -22,6 +22,17 @@ import {
 import * as serviceWorker from "./registerServiceWorker";
 import "./index.css";
 
+const swConfig = {
+  onUpdate: (registration) => {
+    console.log("update application");
+    console.log(registration);
+  },
+  onSuccess: (registration) => {
+    console.log("succesful cache");
+    console.log(registration);
+  },
+};
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -45,4 +56,4 @@ ReactDOM.render(
   document.getElementById("root"),
 );
 
-serviceWorker.unregister();
+serviceWorker.unregister(swConfig);
