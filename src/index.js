@@ -19,7 +19,7 @@ import {
   ProgramsAdmin,
 } from "./pages";
 
-import * as serviceWorker from "./registerServiceWorker";
+import * as serviceWorker from "./serviceWorkerRegistration";
 import "./index.css";
 
 const swConfig = {
@@ -56,4 +56,4 @@ ReactDOM.render(
   document.getElementById("root"),
 );
 
-serviceWorker.unregister(swConfig);
+serviceWorker.register(swConfig);
