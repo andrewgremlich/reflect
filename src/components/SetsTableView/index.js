@@ -1,15 +1,17 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import styles from "./SetsTableView.module.css";
 
 export const SetsTableView = ({ data = [], setEdit }) => (
-  <div className={`table ${styles["set-table"]}`}>
-    <p className={`table-header`}>Name</p>
-    <p className={`table-header`}>Description</p>
-    <p className={`table-header`}>Exercise Groups</p>
-    <p className={`table-header`}>Edit Exercise Set</p>
+  <div className={`table`}>
+    <div className={`table-row ${styles["set-table-row"]}`}>
+      <p className={`table-header`}>Name</p>
+      <p className={`table-header`}>Description</p>
+      <p className={`table-header`}>Exercise Groups</p>
+      <p className={`table-header`}>Edit Exercise Set</p>
+    </div>
     {data.map(({ id, name, description, exerciseGroups }) => (
-      <Fragment key={id}>
+      <div key={id} className={`table-row ${styles["set-table-row"]}`}>
         <p className={`table-cell`}>{name}</p>
         <p className={`table-cell`}>{description}</p>
         <p className={`table-cell`}>
@@ -25,7 +27,7 @@ export const SetsTableView = ({ data = [], setEdit }) => (
             Edit Exercise Set
           </button>
         </div>
-      </Fragment>
+      </div>
     ))}
   </div>
 );
