@@ -20,7 +20,9 @@ import {
 } from "./pages";
 
 import * as serviceWorker from "./serviceWorkerRegistration";
+
 import "./index.css";
+import "swiper/swiper.min.css";
 
 const swConfig = {
   onUpdate: (registration) => {
@@ -37,19 +39,25 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <Nav />
-        <Route exact path="/" component={Home} />
-        <Route exact path="/program/:id" component={Program} />
-        <Route exact path="/set/:id" component={Set} />
-        <Route exact path="/group" component={Group} />
-        <PrivateRoute exact path="/admin" component={Admin} />
-        <PrivateRoute
-          exact
-          path="/admin/exercises"
-          component={ExercisesAdmin}
-        />
-        <PrivateRoute exact path="/admin/sets" component={SetsAdmin} />
-        <PrivateRoute exact path="/admin/programs" component={ProgramsAdmin} />
+        <main>
+          <Nav />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/program/:id" component={Program} />
+          <Route exact path="/set/:id" component={Set} />
+          <Route exact path="/group" component={Group} />
+          <PrivateRoute exact path="/admin" component={Admin} />
+          <PrivateRoute
+            exact
+            path="/admin/exercises"
+            component={ExercisesAdmin}
+          />
+          <PrivateRoute exact path="/admin/sets" component={SetsAdmin} />
+          <PrivateRoute
+            exact
+            path="/admin/programs"
+            component={ProgramsAdmin}
+          />
+        </main>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,

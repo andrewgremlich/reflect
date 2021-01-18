@@ -8,7 +8,7 @@ import {
   setSelectedSet,
 } from "../features/Viewer/Viewer.slice";
 
-import { Swiper } from "../components/Swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 /**
  * Program page to see the sets in a program.
@@ -26,27 +26,23 @@ export const Program = () => {
     }
   }, [dispatch, programId, selectedProgram]);
 
-  return (
-    <main>
-      {selectedProgram ? (
-        <Swiper>
-          {selectedProgram?.sets.map((set) => (
-            <div onClick={() => dispatch(setSelectedSet(set))} key={set.id}>
-              <div className="detail-block">
-                <h2>
-                  <Link to={`/set/${set.id}`}>{set.name}</Link>
-                </h2>
-                <p>{set.description}</p>
-                {set.exerciseGroups.map((group, index) => (
-                  <p key={index}>{group}</p>
-                ))}
-              </div>
-            </div>
-          ))}
-        </Swiper>
-      ) : (
-        <h2>No set data... :(</h2>
-      )}
-    </main>
+  return selectedProgram ? (
+    <Swiper>
+      {selectedProgram?.sets.map((set) => (
+        <SwiperSlide onClick={() => dispatch(setSelectedSet(set))} key={set.id}>
+          <div className="detail-block flex-center flex-column">
+            <h2>
+              <Link to={`/set/${set.id}`}>{set.name}</Link>
+            </h2>
+            <p>{set.description}</p>
+            {set.exerciseGroups.map((group, index) => (
+              <p key={index}>{group}</p>
+            ))}
+          </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  ) : (
+    <h2>No set data... :(</h2>
   );
 };

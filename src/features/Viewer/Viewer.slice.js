@@ -5,7 +5,7 @@ export const viewerSlice = createSlice({
   initialState: {
     selectedSet: undefined,
     selectedProgram: undefined,
-    selectedGroup: undefined,
+    selectedGroupData: undefined,
   },
   reducers: {
     setSelectedSet: (state, { payload }) => {
@@ -15,7 +15,7 @@ export const viewerSlice = createSlice({
       state.selectedProgram = payload;
     },
     setSelectedGroup: (state, { payload }) => {
-      state.selectedGroup = payload;
+      state.selectedGroupData = payload;
     },
   },
 });
@@ -28,7 +28,7 @@ export const {
 
 export const getSelectedSet = (state) => state.viewer.selectedSet;
 export const getSelectedProgram = (state) => state.viewer.selectedProgram;
-export const getSelectedGroup = (state) => state.viewer.selectedGroup;
+export const getSelectedGroup = (state) => state.viewer.selectedGroupData;
 
 export default viewerSlice.reducer;
 export * from "./Viewer.effects";

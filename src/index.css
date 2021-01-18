@@ -16,14 +16,7 @@
   --border-raidus: 5px;
 }
 
-html,
-body,
-#root {
-  height: 100%;
-}
-
 body {
-  padding: 10px;
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -68,16 +61,17 @@ svg {
   color: var(--white-theme);
 }
 
-main {
-  height: 100%;
-  width: 50%;
-  margin-top: 50px;
+html,
+body,
+#root {
+  height: 100vh;
+  overflow: hidden;
 }
 
-@media only screen and (max-width: 600px) {
-  main {
-    width: 95%;
-  }
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 section {
@@ -102,11 +96,15 @@ section {
   align-items: center;
 }
 
+.flex-column {
+  flex-direction: column;
+}
+
 .detail-block {
-  min-height: 100px;
-  width: 90%;
-  margin-bottom: 20px;
   padding: 10px;
+  width: 95vw;
+  height: 80vh;
+  word-wrap: break-word;
 }
 
 @media only screen and (min-width: 600px) {

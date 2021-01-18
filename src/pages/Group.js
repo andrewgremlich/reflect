@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getSelectedGroup, getGroup } from "../features/Viewer/Viewer.slice";
 
-import { Swiper } from "../components/Swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 /**
  * Exercise group page to see the exercises in a group.
@@ -24,19 +24,17 @@ export const Group = () => {
     }
   }, [dispatch, group, groupNameDecoded]);
 
-  return (
-    <main>
-      {group ? (
-        <Swiper>
-          {group?.map(({ name, id }) => (
-            <div key={id}>
-              <h2 className="detail-block">{name}</h2>
-            </div>
-          ))}
-        </Swiper>
-      ) : (
-        <h2>No group data... :(</h2>
-      )}
-    </main>
+  return group ? (
+    <Swiper>
+      {group?.map(({ name, id }) => (
+        <SwiperSlide key={id}>
+          <div className="detail-block flex-center">
+            <h2>{name}</h2>
+          </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  ) : (
+    <h2>No group data... :(</h2>
   );
 };
